@@ -19,11 +19,7 @@ const Nav = () => {
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
         </Col>
-        <Col md={3} className="login_wrap text-center">
-          <div>
-            <a href="#">로그인</a>/<a href="#">회원가입</a>
-          </div>
-        </Col>
+        <Col md={3} className="login_wrap text-center"></Col>
       </Row>
       <Row className="Menubar">
         <Col className="text-center">
