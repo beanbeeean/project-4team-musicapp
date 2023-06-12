@@ -1,14 +1,14 @@
-/* * {
+div.search_wrap {
   margin: 10px auto;
   padding: 0;
-} */
-
-div.search_wrap {
   height: 60px;
 }
 
-div.search img {
-  width: 50px;
+div.search a img {
+  min-width: 60px;
+  max-width: 60px;
+  min-height: 60px;
+  max-height: 60px;
 }
 
 div.search input {
@@ -23,7 +23,7 @@ div.search input {
 
 div.search button {
   position: relative;
-  top: 10px;
+  top: 0px;
   right: 40px;
   width: 30px;
   height: 30px;
@@ -31,13 +31,6 @@ div.search button {
   background-color: transparent;
   border-radius: 3px;
   border: none;
-  font-size: 0.9em;
-}
-
-.login_wrap a {
-  color: #242424;
-  line-height: 70px;
-  text-decoration: none;
   font-size: 0.9em;
 }
 

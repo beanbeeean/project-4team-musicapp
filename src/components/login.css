@@ -1,0 +1,37 @@
+div.section_wrap {
+  margin: 30px auto;
+  text-align: center;
+  padding: 30px 0 50px 0;
+  background-color: #f8f8f8;
+  border: 1px solid #dadada;
+  border-radius: 7px;
+}
+
+div.section_wrap div.info {
+  font-size: 0.9em;
+}
+
+div.section_wrap input {
+  font-size: 0.9em;
+  width: 300px;
+  padding: 5px;
+  margin: 3px;
+  border: 1px solid #dadada;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+div.section_wrap input[type="button"] {
+  margin-top: 5px;
+  background-color: rgb(76, 144, 121);
+  color: #fff;
+}
+
+div.sign_up {
+  font-size: 0.8em;
+  color: #8f8f8f;
+}
+
+div.sign_up a {
+  color: #8f8f8f;
+}

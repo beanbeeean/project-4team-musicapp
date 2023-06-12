@@ -4,17 +4,10 @@ import "./footer.css";
 const Footer = () => {
   return (
     <Container className="footer_container">
-      <Row>
-        <ul>
-          <li>이용약관</li>
-          <li>이용약관</li>
-          <li>이용약관</li>
-          <li>이용약관</li>
-          <li>이용약관</li>
-          <li>이용약관</li>
-          <li>이용약관</li>
-        </ul>
-      </Row>
+      <div className="">CopyRight BTC</div>
+      <div className="">CopyRight</div>
+      <div className="">CopyRight</div>
+      <div className="">CopyRight</div>
     </Container>
   );
 };
