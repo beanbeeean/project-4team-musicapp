@@ -1,0 +1,50 @@
+div.main_charts {
+  display: flex;
+  justify-content: space-between;
+}
+
+div.main_charts > h5 {
+  font-weight: bold;
+}
+
+div.main_charts > p {
+  font-size: 0.9em;
+  color: rgba(50, 50, 50, 0.7);
+}
+
+.charts_header_wrap {
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #dadada;
+}
+
+.main_charts_header {
+  text-align: center;
+  font-weight: bold;
+  color: rgba(50, 50, 50, 0.8);
+}
+
+.charts_list_wrap {
+  border-bottom: 1px solid #dadada;
+  display: flex;
+  align-items: center;
+}
+
+.charts_list_wrap:hover .main_charts_number {
+  font-size: 30px;
+}
+
+/* .charts_list_wrap:hover .main_charts_song::before {
+  content: url("https://picsum.photos/50/50");
+  margin-right: 10px;
+} */
+
+.main_charts_number {
+  font-size: 1.1em;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.main_charts_song {
+  display: flex;
+  align-items: center;
+}
