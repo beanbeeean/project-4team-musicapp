@@ -57,7 +57,7 @@ img {
 table {
   margin: 10px auto;
 }
-span {
+a.album span {
   position: absolute;
   margin: 35px;
   display: none;
