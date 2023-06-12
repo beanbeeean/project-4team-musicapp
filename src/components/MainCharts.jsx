@@ -35,10 +35,6 @@ const Charts = () => {
       <MainChartsItem />
       <MainChartsItem />
       <MainChartsItem />
-      <MainChartsItem />
-      <MainChartsItem />
-      <MainChartsItem />
-      <MainChartsItem />
       {/* </Row> */}
     </Container>
   );

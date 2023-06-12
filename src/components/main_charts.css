@@ -33,11 +33,6 @@ div.main_charts > p {
   font-size: 30px;
 }
 
-/* .charts_list_wrap:hover .main_charts_song::before {
-  content: url("https://picsum.photos/50/50");
-  margin-right: 10px;
-} */
-
 .main_charts_number {
   font-size: 1.1em;
   font-weight: bold;
