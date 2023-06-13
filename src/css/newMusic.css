@@ -1,51 +1,53 @@
-a {
-  text-decoration: none;
-  color: #242424;
-}
-ul {
-  width: 660px;
+.albumbox .titleBox {
+  width: 860px;
   overflow: hidden;
   text-align: center;
-  margin-right: 30px;
 }
-
-.box li {
+.albumbox > ul {
+  height: 100%;
+  width: 100%;
+}
+.albumbox > ul > li {
   list-style: none;
   float: right;
-  margin: 5px;
+  margin-right: 5px;
   margin-top: 10px;
 }
-.box li:nth-child(1) {
+.albumbox > ul > li:nth-child(1) {
   font-weight: bold;
-  margin: 10px;
 }
-.box li:nth-child(-n + 4) {
+.albumbox > ul > li:nth-child(-n + 4) {
   font-size: 1.2em;
   float: left;
-  margin: 5px;
 }
-.box li:nth-child(6) {
+.albumbox > ul > li:nth-child(6) {
   width: 30px;
   height: 30px;
   font-weight: bold;
-  margin: 10px;
   border-radius: 15px;
   border: 1px solid #dadada;
   line-height: 25px;
 }
-.box li:nth-child(5) {
+.albumbox > ul > li:nth-child(5) {
   width: 30px;
   height: 30px;
   font-weight: bold;
-  margin: 10px;
   border-radius: 15px;
   border: 1px solid #dadada;
   line-height: 25px;
 }
-img {
-  min-width: 100px;
+
+.albumbox {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.album img {
+  min-width: 141px;
   min-height: 100px;
-  margin: 1px;
+  max-height: 120px;
+  margin: 2px;
 }
 .album:hover img {
   filter: brightness(0.5);
