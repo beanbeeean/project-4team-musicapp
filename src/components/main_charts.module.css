@@ -47,3 +47,9 @@ div.main_charts > p {
   display: flex;
   align-items: center;
 }
+
+@media screen and (max-width: 576px) {
+  .main_charts_song {
+    justify-content: center;
+  }
+}

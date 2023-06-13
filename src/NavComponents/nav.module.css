@@ -4,6 +4,10 @@
   height: 60px;
 }
 
+.search {
+  display: flex;
+}
+
 .search a img {
   min-width: 60px;
   max-width: 60px;

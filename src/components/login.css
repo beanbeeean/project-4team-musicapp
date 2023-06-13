@@ -1,5 +1,4 @@
 div.section_wrap {
-  width: 400px;
   margin: 30px 0 30px auto;
   text-align: center;
   padding: 30px 0 50px 0;
@@ -14,7 +13,6 @@ div.section_wrap div.info {
 
 div.section_wrap input {
   font-size: 0.9em;
-  width: 300px;
   padding: 5px;
   margin: 3px;
   border: 1px solid #dadada;

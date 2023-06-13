@@ -1,20 +1,78 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import styles from "./nav.module.css";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 
 const Nav = () => {
+  const CLIENT_ID = "e27a41062e2a4ed8839eb8c8ded5e793";
+  const REDIRECT_URI = "http://localhost:3000";
+  const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
+  const RESPONSE_TYPE = "token";
+
+  const [token, setToken] = useState("");
+  const [searchKey, setSearchKey] = useState("");
+  const [artists, setArtists] = useState();
+  // const getSerachData = async () => {
+  //   let url = `https://api.spotify.com/v1/search?q=${search}&type=artist`;
+  //   let res = await fetch(url);
+  //   console.log("res", res);
+  // };
+
+  // useEffect(() => {
+  //   getSerachData();
+  // }, [search]);
+  useEffect(() => {
+    const hash = window.location.hash;
+    let token = window.localStorage.getItem("token");
+
+    // getToken()
+
+    if (!token && hash) {
+      token = hash
+        .substring(1)
+        .split("&")
+        .find((elem) => elem.startsWith("access_token"))
+        .split("=")[1];
+
+      window.location.hash = "";
+      window.localStorage.setItem("token", token);
+    }
+
+    setToken(token);
+  }, []);
+
+  const searchArtists = async (e) => {
+    e.preventDefault();
+    const { data } = await axios.get("https://api.spotify.com/v1/search", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      params: {
+        q: searchKey,
+        type: "artist",
+      },
+    });
+
+    // setArtists(data.artists.items);
+    console.log(data.artists.items[0]);
+  };
   return (
     <Container>
       <Row className={styles.search_wrap}>
         <Col className={styles.search} md={9}>
-          <a href="#">
+          <a
+            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+          >
             <img src="./imgs/default.jpg" />
           </a>
-          <input type="text" placeholder="검색어를 입력하세요" />
+          <form onSubmit={searchArtists}>
+            <input type="text" onChange={(e) => setSearchKey(e.target.value)} />
+            <button type="submit">Search</button>
+          </form>
           <button>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>

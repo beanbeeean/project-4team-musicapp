@@ -13,17 +13,19 @@ const ListWrap = styled.div`
 const MainChartsItem = ({ test }) => {
   return (
     <ListWrap className={`${styles.charts_list_wrap} row pb-3 pt-3`}>
-      <Col className={`text-center ${styles.main_charts_number}`} md={1}>
+      <Col className={`text-center ${styles.main_charts_number}`} md={1} sm={2}>
         {test}
       </Col>
-      <Col className={`col-md-5 song_img ${styles.main_charts_song}`}>제목</Col>
-      <Col className={`text-center ${styles.main_charts_singer}`} md={2}>
+      <Col className={`song_img ${styles.main_charts_song}`} md={5} sm={4}>
+        제목
+      </Col>
+      <Col className={`text-center ${styles.main_charts_singer}`} md={2} sm={2}>
         가수
       </Col>
-      <Col className={`text-center ${styles.main_charts_temp}`} md={2}>
+      <Col className={`text-center ${styles.main_charts_temp}`} md={2} sm={2}>
         temp
       </Col>
-      <Col className={`text-center ${styles.main_charts_temp}`} md={2}>
+      <Col className={`text-center ${styles.main_charts_temp}`} md={2} sm={2}>
         temp
       </Col>
     </ListWrap>
