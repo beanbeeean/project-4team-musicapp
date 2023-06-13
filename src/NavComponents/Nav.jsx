@@ -18,30 +18,26 @@ const Nav = () => {
 
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
-  const [artists, setArtists] = useState();
 
   useEffect(() => {
     const hash = window.location.hash;
     let token = window.localStorage.getItem("token");
-
-    // getToken()
-
+    // getToken();
     if (!token && hash) {
       token = hash
         .substring(1)
         .split("&")
         .find((elem) => elem.startsWith("access_token"))
         .split("=")[1];
-
       window.location.hash = "";
       window.localStorage.setItem("token", token);
     }
-
     setToken(token);
   }, []);
 
   const searchArtists = async (e) => {
     e.preventDefault();
+    console.log(token);
     const { data } = await axios.get("https://api.spotify.com/v1/search", {
       headers: {
         Authorization: `Bearer ${token}`,

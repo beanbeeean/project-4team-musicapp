@@ -1,0 +1,57 @@
+.tracks_header {
+  font-weight: bold;
+  border-bottom: 1px dotted #000;
+}
+.tracks_wrap {
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid #dadada;
+}
+.tracks_wrap:hover {
+  background-color: rgba(50, 150, 50, 0.4);
+}
+.tracks_wrap:hover .tracks_info span,
+.tracks_wrap:hover .tracks_album {
+  color: #242424;
+}
+
+.tracks_title {
+  display: flex;
+  align-items: center;
+}
+
+.tracks_num {
+  display: flex;
+  justify-content: center;
+}
+
+.tracks_img {
+  margin-right: 5px;
+}
+
+.tracks_info .tracks_track {
+  cursor: pointer;
+}
+
+.tracks_info .tracks_track:hover {
+  text-decoration: underline;
+}
+
+.tracks_info span {
+  color: #b3b3b3;
+  cursor: pointer;
+}
+
+.tracks_info span:hover {
+  text-decoration: underline;
+}
+
+.tracks_album {
+  color: #b3b3b3;
+  cursor: pointer;
+}
+
+.tracks_album:hover {
+  text-decoration: underline;
+}
