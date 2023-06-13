@@ -1,0 +1,29 @@
+.footer_container {
+  background-color: rgb(76, 144, 121);
+  padding: 30px 50px;
+}
+
+div.footer_copyright {
+  font-size: 1.2em;
+  color: rgba(233, 233, 233, 0.8);
+  margin-bottom: 5px;
+}
+
+div.footer_member {
+  /* font-size: 1.1em; */
+  margin-bottom: 5px;
+  color: rgba(233, 233, 233, 0.8);
+  font-style: italic;
+}
+
+div.footer_member > span {
+  color: #fff;
+  font-weight: bold;
+  font-style: normal;
+}
+
+a.footer_link {
+  margin-left: 15px;
+  font-size: 1.2em;
+  color: #fff;
+}

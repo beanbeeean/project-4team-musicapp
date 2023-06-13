@@ -9,14 +9,13 @@ const ListWrap = styled.div`
   }
 `;
 
-const MainChartsItem = () => {
+const MainChartsItem = ({ test }) => {
   return (
-    <ListWrap className="charts_list_wrap pb-3 pt-3">
+    <ListWrap className="row charts_list_wrap pb-3 pt-3">
       <Col className="text-center main_charts_number" md={1}>
-        1
+        {test}
       </Col>
       <Col className="col-md-5 main_charts_song">제목</Col>
-      {/* <Song className="col-md-5 main_charts_song">제목</Song> */}
       <Col className="text-center main_charts_singer" md={2}>
         가수
       </Col>

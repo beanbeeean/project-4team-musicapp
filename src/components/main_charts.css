@@ -1,15 +1,19 @@
 div.main_charts {
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
 div.main_charts > h5 {
   font-weight: bold;
+  width: 120px;
 }
 
 div.main_charts > p {
   font-size: 0.9em;
   color: rgba(50, 50, 50, 0.7);
+  width: 150px;
+  float: right;
 }
 
 .charts_header_wrap {
