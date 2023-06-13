@@ -48,19 +48,19 @@ const Charts = () => {
         </p>
       </div>
       <Row className={`${styles.charts_header_wrap} pb-3 pt-3`}>
-        <Col className={styles.main_charts_header} md={1}>
+        <Col className={styles.main_charts_header} md={1} sm={2}>
           순위
         </Col>
-        <Col className={styles.main_charts_header} md={5}>
+        <Col className={styles.main_charts_header} md={5} sm={4}>
           제목
         </Col>
-        <Col className={styles.main_charts_header} md={2}>
+        <Col className={styles.main_charts_header} md={2} sm={2}>
           가수
         </Col>
-        <Col className={styles.main_charts_header} md={2}>
+        <Col className={styles.main_charts_header} md={2} sm={2}>
           temp
         </Col>
-        <Col className={styles.main_charts_header} md={2}>
+        <Col className={styles.main_charts_header} md={2} sm={2}>
           temp
         </Col>
       </Row>
