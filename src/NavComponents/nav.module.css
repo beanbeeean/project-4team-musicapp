@@ -15,7 +15,20 @@
   max-height: 60px;
 }
 
+.search form {
+  position: absolute;
+}
+
+.search form select {
+  position: relative;
+  left: 90px;
+  font-size: 0.9em;
+  border: 0px;
+  z-index: 1;
+}
+
 .search input {
+  position: relative;
   margin-left: 5px;
   padding: 3px;
   border-radius: 25px;
@@ -27,7 +40,6 @@
 
 .search button {
   position: relative;
-  top: 0px;
   right: 40px;
   width: 30px;
   height: 30px;
