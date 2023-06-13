@@ -1,11 +1,12 @@
 .artists_wrap {
   display: flex;
   flex-wrap: wrap;
+  justify-content: stretch;
 }
 
 .item_wrap {
-  margin-right: 10px;
-  padding: 10px;
+  /* margin: 0px 11px; */
+  /* display: inline-block; */
 }
 
 .item_wrap:hover {
@@ -21,9 +22,7 @@
 }
 
 .artists_img {
-  border-radius: 50%;
-  min-width: 100px;
-  max-width: 200px;
+  /* border-radius: 50%; */
 }
 
 .artists_play {

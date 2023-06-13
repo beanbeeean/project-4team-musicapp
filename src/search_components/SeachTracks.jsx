@@ -28,6 +28,7 @@ const SearchTracks = () => {
       <TracksItem num={8} />
       <TracksItem num={9} />
       <TracksItem num={10} />
+      <TracksItem num={11} />
     </div>
   );
 };
