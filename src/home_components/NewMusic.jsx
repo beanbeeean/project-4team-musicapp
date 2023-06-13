@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Album from "./Album";
 import "../css/newMusic.css";
-import styles from "../css/newMusic.css";
+import styles from "./css/newMusic.css";
 import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -32,7 +32,7 @@ const NewMusic = () => {
               <li className="menu">국외</li>
               <li onClick={nextBtnHandler}>&#62;</li>
               <li onClick={prevBtnHandler}>&#60;</li>
-              <li className="menu2" >{page}/5</li>
+              <li className="menu2">{page}/5</li>
             </ul>
           </div>
 

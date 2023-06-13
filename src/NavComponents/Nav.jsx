@@ -6,8 +6,10 @@ import styles from "./nav.module.css";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Nav = () => {
+  const navigate = useNavigate();
   const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
   console.log(process.env.REACT_APP_CLIENT_ID);
   const REDIRECT_URI = "http://localhost:3000";
@@ -17,15 +19,7 @@ const Nav = () => {
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [artists, setArtists] = useState();
-  // const getSerachData = async () => {
-  //   let url = `https://api.spotify.com/v1/search?q=${search}&type=artist`;
-  //   let res = await fetch(url);
-  //   console.log("res", res);
-  // };
 
-  // useEffect(() => {
-  //   getSerachData();
-  // }, [search]);
   useEffect(() => {
     const hash = window.location.hash;
     let token = window.localStorage.getItem("token");
@@ -60,6 +54,7 @@ const Nav = () => {
 
     // setArtists(data.artists.items);
     console.log(data.artists.items[0]);
+    navigate("/search");
   };
   return (
     <Container>
