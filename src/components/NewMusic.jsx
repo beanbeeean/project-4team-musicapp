@@ -23,8 +23,8 @@ const NewMusic = () => {
     <Container>
       <Row>
         <Col>
-          <div className="box">
-            <ul>
+          <div className="albumbox">
+            <ul className="titleBox">
               <li>최신음악</li>
               <li>종합</li>
               <li>국내</li>
