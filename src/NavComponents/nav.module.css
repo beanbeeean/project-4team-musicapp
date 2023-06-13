@@ -1,17 +1,17 @@
-div.search_wrap {
+.search_wrap {
   margin: 10px auto;
   padding: 0;
   height: 60px;
 }
 
-div.search a img {
+.search a img {
   min-width: 60px;
   max-width: 60px;
   min-height: 60px;
   max-height: 60px;
 }
 
-div.search input {
+.search input {
   margin-left: 5px;
   padding: 3px;
   border-radius: 25px;
@@ -21,7 +21,7 @@ div.search input {
   text-align: center;
 }
 
-div.search button {
+.search button {
   position: relative;
   top: 0px;
   right: 40px;
@@ -47,11 +47,12 @@ div.search button {
   background-color: rgb(76, 144, 121);
 }
 
-.Menubar div.col {
+.Menubar .list {
   padding-top: 5px;
 }
 
-.Menubar div.col a {
+.Menubar .list a {
+  margin-top: 5px;
   color: #fff;
   text-decoration: none;
   font-style: italic;
