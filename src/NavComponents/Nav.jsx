@@ -48,7 +48,7 @@ const Nav = () => {
       },
     });
 
-    setArtists(data.artists.items);
+    //setArtists(data.artists.items);
     console.log(data.artists.items[0]);
     navigate("/search");
   };
