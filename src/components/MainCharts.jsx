@@ -1,14 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "./main_charts.module.css";
 import MainChartsItem from "./MainChartsItem";
 
 const Charts = () => {
+  const [year, setYear] = useState("");
+  const [month, setMonth] = useState("");
+  const [date, setDate] = useState("");
+  const [hour, setHour] = useState("");
+  const [minute, setMinute] = useState("");
+
+  const getNowDate = () => {
+    let today = new Date();
+    let year = today.getFullYear();
+    let month =
+      today.getMonth() + 1 < 10
+        ? "0" + (today.getMonth() + 1)
+        : today.getMonth() + 1;
+    let date =
+      today.getDate() < 10 ? "0" + today.getDate() < 10 : today.getDate();
+    let hour =
+      today.getHours() < 10 ? "0" + today.getHours() : today.getHours();
+    let minute =
+      today.getMinutes() < 10
+        ? today.getMinutes() == 0
+          ? "00"
+          : "0" + today.getMinutes()
+        : today.getMinutes();
+
+    setYear(year);
+    setMonth(month);
+    setDate(date);
+    setHour(hour);
+    setMinute(minute);
+  };
+
+  useEffect(() => {
+    getNowDate();
+  }, []);
+
   return (
     <Container className="pb-3">
       <div className={styles.main_charts}>
         <h5>실시간 차트</h5>
-        <p>2023.06.12 15:00</p>
+        <p>
+          {year}.{month}.{date} {hour}:{minute}
+        </p>
       </div>
       <Row className={`${styles.charts_header_wrap} pb-3 pt-3`}>
         <Col className={styles.main_charts_header} md={1}>
