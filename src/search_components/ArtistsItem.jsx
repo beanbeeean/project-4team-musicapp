@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./css/search_artists.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import { Col } from "react-bootstrap";
 const ArtistsItem = () => {
   return (
     <div className={styles.item_wrap}>

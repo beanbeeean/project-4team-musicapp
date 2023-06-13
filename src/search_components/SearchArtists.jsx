@@ -12,6 +12,10 @@ const SearchArtists = () => {
       <ArtistsItem />
       <ArtistsItem />
       <ArtistsItem />
+      <ArtistsItem />
+      <ArtistsItem />
+      {/* <ArtistsItem /> */}
+      {/* <ArtistsItem /> */}
     </div>
   );
 };
