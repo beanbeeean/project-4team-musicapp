@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Album from "./Album";
+import "../css/newMusic.css";
 import styles from "../css/newMusic.css";
 import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
@@ -26,12 +27,12 @@ const NewMusic = () => {
           <div className="albumbox">
             <ul className="titleBox">
               <li>최신음악</li>
-              <li>종합</li>
-              <li>국내</li>
-              <li>국외</li>
+              <li className="menu">종합</li>
+              <li className="menu">국내</li>
+              <li className="menu">국외</li>
               <li onClick={nextBtnHandler}>&#62;</li>
               <li onClick={prevBtnHandler}>&#60;</li>
-              <li>{page}/5</li>
+              <li className="menu2" >{page}/5</li>
             </ul>
           </div>
 
