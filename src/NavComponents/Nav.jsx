@@ -8,7 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 
 const Nav = () => {
-  // const CLIENT_ID = "e27a41062e2a4ed8839eb8c8ded5e793";
+  // const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+  // console.log(process.env.REACT_APP_CLIENT_ID);
   // const REDIRECT_URI = "http://localhost:3000";
   // const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   // const RESPONSE_TYPE = "token";
