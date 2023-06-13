@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import styles from "./main_charts.module.css";
+import styles from "./css/main_charts.module.css";
 import MainChartsItem from "./MainChartsItem";
 
 const Charts = () => {

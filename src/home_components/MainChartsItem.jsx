@@ -1,7 +1,7 @@
 import React from "react";
 import { Col } from "react-bootstrap";
 import styled from "styled-components";
-import styles from "./main_charts.module.css";
+import styles from "./css/main_charts.module.css";
 
 const ListWrap = styled.div`
   &:hover .song_img::before {

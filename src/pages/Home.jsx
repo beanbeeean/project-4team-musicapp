@@ -1,6 +1,6 @@
 import React from "react";
-import MainCharts from "../components/MainCharts";
-import NewMusic from "../components/NewMusic";
+import MainCharts from "../home_components/MainCharts";
+import NewMusic from "../home_components/NewMusic";
 const Home = () => {
   return (
     <>
