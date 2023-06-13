@@ -1,105 +1,53 @@
-<<<<<<< HEAD
 .albumbox .titleBox {
-    width: 860px;
-    overflow: hidden;
-    text-align: center;
+  width: 860px;
+  overflow: hidden;
+  text-align: center;
 }
 .albumbox > ul {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
-.albumbox > ul > li{
-    list-style: none;
-    float: right;
-    margin-right: 5px;
-    margin-top: 10px;
+.albumbox > ul > li {
+  list-style: none;
+  float: right;
+  margin-right: 5px;
+  margin-top: 10px;
 }
-.albumbox > ul > li:nth-child(1){
-    font-weight: bold;
+.albumbox > ul > li:nth-child(1) {
+  font-weight: bold;
 }
-.albumbox > ul > li:nth-child(-n+4){
-    font-size: 1.2em;
-    float: left;
-    
+.albumbox > ul > li:nth-child(-n + 4) {
+  font-size: 1.2em;
+  float: left;
 }
-.albumbox > ul > li:nth-child(6){
-    width: 30px;
-    height: 30px;
-    font-weight: bold;
-    border-radius: 15px;
-    border: 1px solid #dadada;
-    line-height: 25px;
+.albumbox > ul > li:nth-child(6) {
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+  border-radius: 15px;
+  border: 1px solid #dadada;
+  line-height: 25px;
 }
-.albumbox > ul > li:nth-child(5){
-    width: 30px;
-    height: 30px;
-    font-weight: bold;
-    border-radius: 15px;
-    border: 1px solid #dadada;
-    line-height: 25px;
+.albumbox > ul > li:nth-child(5) {
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+  border-radius: 15px;
+  border: 1px solid #dadada;
+  line-height: 25px;
 }
 
 .albumbox {
-    height: 50px;
-    display: flex;
-    justify-content: center;
+  height: 50px;
+  display: flex;
+  justify-content: center;
 }
 
 .album img {
-    min-width: 141px;
-    min-height: 100px;
-    max-height: 120px;
-    margin: 2px;
-=======
-a {
-  text-decoration: none;
-  color: #242424;
-}
-ul {
-  width: 660px;
-  overflow: hidden;
-  text-align: center;
-  margin-right: 30px;
-}
-
-.box li {
-  list-style: none;
-  float: right;
-  margin: 5px;
-  margin-top: 10px;
-}
-.box li:nth-child(1) {
-  font-weight: bold;
-  margin: 10px;
-}
-.box li:nth-child(-n + 4) {
-  font-size: 1.2em;
-  float: left;
-  margin: 5px;
-}
-.box li:nth-child(6) {
-  width: 30px;
-  height: 30px;
-  font-weight: bold;
-  margin: 10px;
-  border-radius: 15px;
-  border: 1px solid #dadada;
-  line-height: 25px;
-}
-.box li:nth-child(5) {
-  width: 30px;
-  height: 30px;
-  font-weight: bold;
-  margin: 10px;
-  border-radius: 15px;
-  border: 1px solid #dadada;
-  line-height: 25px;
-}
-img {
-  min-width: 100px;
+  min-width: 141px;
   min-height: 100px;
-  margin: 1px;
->>>>>>> a5e8f7149f9a25ade1c6a041d5d4113e54b81154
+  max-height: 120px;
+  margin: 2px;
 }
 .album:hover img {
   filter: brightness(0.5);
@@ -108,16 +56,6 @@ img {
   display: block;
 }
 
-<<<<<<< HEAD
-.album span {
-    position: absolute;
-    margin: 50px;
-    display: none;
-    color: #fff;
-    z-index: 100;
-}
-
-=======
 table {
   margin: 10px auto;
 }
@@ -133,4 +71,3 @@ a.album span {
   display: flex;
   justify-content: center;
 }
->>>>>>> a5e8f7149f9a25ade1c6a041d5d4113e54b81154

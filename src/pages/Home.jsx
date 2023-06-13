@@ -6,12 +6,7 @@ const Home = () => {
     <>
       <NewMusic />
       <MainCharts />
-<<<<<<< HEAD
-    </div>
-    
-=======
     </>
->>>>>>> a5e8f7149f9a25ade1c6a041d5d4113e54b81154
   );
 };
 
