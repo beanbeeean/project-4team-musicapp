@@ -1,0 +1,86 @@
+li {
+  float: none;
+}
+
+h5 {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-weight: bold;
+  color: rgb(76, 144, 121);
+}
+
+.song_title,
+.singer,
+.running_time {
+  line-height: 50px;
+}
+
+.artist_name img {
+  width: 250px;
+  height: 250px;
+  margin-right: 30px;
+}
+
+.artist_name li {
+  float: left;
+}
+
+.songs {
+  margin: 0 20px 0 20px;
+}
+
+div.list_wrap:hover {
+  background-color: #f8f8f8;
+}
+
+.songs .list_wrap {
+  padding: 5px;
+  border-top: 1px solid #dadada4f;
+}
+
+.song_img img {
+  width: 50px;
+  height: 50px;
+}
+
+.songs .running_time {
+  text-align: right;
+}
+
+.album_wrap,
+.artists_wrap {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.album_wrap div {
+  margin: 0 10px 0 10px;
+}
+
+.artists_wrap div {
+  margin: 0 30px 0 30px;
+}
+
+.album_wrap img {
+  border-radius: 7px;
+  max-width: 150px;
+  min-width: auto;
+  max-height: 150px;
+}
+
+.artists_wrap img {
+  width: 150px;
+  height: 150px;
+  border-radius: 125px;
+}
+
+.album_wrap div ul li:nth-child(2),
+.artists_wrap div ul li:nth-child(2) {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+.album_wrap div ul li:nth-child(3),
+.artists_wrap div ul li:nth-child(3) {
+  font-size: 0.8em;
+}
