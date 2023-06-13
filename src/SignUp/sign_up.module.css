@@ -1,0 +1,78 @@
+section {
+  width: 100%;
+  text-align: center;
+  margin: 70px auto;
+}
+
+section h4 {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.section_wrap {
+  text-align: left;
+  margin: 0 auto;
+  padding: 50px;
+  width: 450px;
+  height: 600px;
+  border: 1px solid #dadada;
+}
+
+.section_wrap input {
+  width: 100%;
+  margin: 5px;
+  border: 10px;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  padding: 7px;
+  margin-bottom: 10px;
+}
+
+.section_wrap .title {
+  margin-top: 10px;
+  font-size: 0.85em;
+  font-weight: bold;
+  color: #5e5e5e;
+}
+
+.section_wrap input[name="m_id"] {
+  width: 64%;
+}
+
+.section_wrap input[name="m_phone"] {
+  margin-bottom: 130px;
+}
+
+.section_wrap input {
+  padding: 10px;
+  font-size: 0.9em;
+  color: #5e5e5e;
+}
+
+.section_wrap button {
+  padding: 9px 25px 9px 25px;
+  border: 0px;
+  border-radius: 7px;
+  margin-left: 5px;
+  font-size: 0.9em;
+}
+
+.section_wrap input[type="button"] {
+  background-color: #5e5e5e;
+  color: #fff;
+}
+
+.section_wrap input[type="email"] {
+  width: 50%;
+}
+
+.section_wrap select {
+  width: 40%;
+  padding: 10px;
+  font-size: 0.9em;
+  border: 0px;
+  border-radius: 5px;
+  margin-left: 5px;
+  background-color: #f8f8f8;
+  color: #5e5e5e;
+}
