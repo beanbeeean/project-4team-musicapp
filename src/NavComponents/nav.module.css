@@ -16,20 +16,13 @@
 }
 
 .search form {
+  margin-top: 15px;
   position: absolute;
-}
-
-.search form select {
-  position: relative;
-  left: 90px;
-  font-size: 0.9em;
-  border: 0px;
-  z-index: 1;
 }
 
 .search input {
   position: relative;
-  margin-left: 5px;
+  margin-left: 70px;
   padding: 3px;
   border-radius: 25px;
   border: 2px solid rgb(76, 144, 121);

@@ -8,81 +8,62 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 
 const Nav = () => {
-  // const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-  // console.log(process.env.REACT_APP_CLIENT_ID);
-  // const REDIRECT_URI = "http://localhost:3000";
-  // const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
-  // const RESPONSE_TYPE = "token";
+  const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+  console.log(process.env.REACT_APP_CLIENT_ID);
+  const REDIRECT_URI = "http://localhost:3000";
+  const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
+  const RESPONSE_TYPE = "token";
 
-  // const [token, setToken] = useState("");
-  // const [searchKey, setSearchKey] = useState("");
-  // const [artists, setArtists] = useState();
-  // // const getSerachData = async () => {
-  // //   let url = `https://api.spotify.com/v1/search?q=${search}&type=artist`;
-  // //   let res = await fetch(url);
-  // //   console.log("res", res);
-  // // };
+  const [token, setToken] = useState("");
+  const [searchKey, setSearchKey] = useState("");
+  const [artists, setArtists] = useState();
 
-  // // useEffect(() => {
-  // //   getSerachData();
-  // // }, [search]);
-  // useEffect(() => {
-  //   const hash = window.location.hash;
-  //   let token = window.localStorage.getItem("token");
+  useEffect(() => {
+    const hash = window.location.hash;
+    let token = window.localStorage.getItem("token");
 
-  //   // getToken()
+    // getToken()
 
-  //   if (!token && hash) {
-  //     token = hash
-  //       .substring(1)
-  //       .split("&")
-  //       .find((elem) => elem.startsWith("access_token"))
-  //       .split("=")[1];
+    if (!token && hash) {
+      token = hash
+        .substring(1)
+        .split("&")
+        .find((elem) => elem.startsWith("access_token"))
+        .split("=")[1];
 
-  //     window.location.hash = "";
-  //     window.localStorage.setItem("token", token);
-  //   }
+      window.location.hash = "";
+      window.localStorage.setItem("token", token);
+    }
 
-  //   setToken(token);
-  // }, []);
+    setToken(token);
+  }, []);
 
-  // const searchArtists = async (e) => {
-  //   e.preventDefault();
-  //   const { data } = await axios.get("https://api.spotify.com/v1/search", {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //     params: {
-  //       q: searchKey,
-  //       type: "artist",
-  //     },
-  //   });
+  const searchArtists = async (e) => {
+    e.preventDefault();
+    const { data } = await axios.get("https://api.spotify.com/v1/search", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      params: {
+        q: searchKey,
+        type: "artist",
+      },
+    });
 
-  //   // setArtists(data.artists.items);
-  //   console.log(data.artists.items[0]);
-  // };
+    setArtists(data.artists.items);
+    console.log(data.artists.items[0]);
+  };
   return (
     <Container>
       <Row className={styles.search_wrap}>
         <Col className={styles.search} md={9}>
           <a
-          // href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
           >
             <img src="./imgs/default.jpg" />
           </a>
-          <form
-          // onSubmit={searchArtists}
-          >
-            <select className="select_item">
-              <option value>선택</option>
-              <option value="album">앨범명</option>
-              <option value="singer">가수명</option>
-              <option value="title">제목</option>
-            </select>
-            <input
-              type="text"
-              // onChange={(e) => setSearchKey(e.target.value)}
-            />
+          <form onSubmit={searchArtists}>
+            <input type="text" onChange={(e) => setSearchKey(e.target.value)} />
             <button type="submit">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>{" "}
