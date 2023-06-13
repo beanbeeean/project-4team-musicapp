@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import { GoMarkGithub } from "react-icons/go";
-import styles from "./footer.module.css";
+import styles from "./css/footer.module.css";
 const Footer = () => {
   return (
     <Container className={styles.footer_container}>

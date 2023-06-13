@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import Album from "./Album";
-import "../css/newMusic.css";
-import styles from "./css/newMusic.css";
+import "./css/newMusic.css";
 import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import "./login.css";
+import "./css/login.css";
 
 const NewMusic = () => {
   const [page, setPage] = useState(1);
