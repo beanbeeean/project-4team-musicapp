@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./sign_up.module.css";
 import Modal from "./Modal";
+import $ from "jquery";
 
 $("#select_email").change(function () {
   $("#select_email option:selected").each(function () {
@@ -10,6 +11,7 @@ $("#select_email").change(function () {
       $(document).ready(function () {
         $("#str_email").focus();
       });
+
       $("#str_email").val(""); //값 초기화
       $("#str_email").attr("disabled", false); //활성화
     } else {
@@ -82,7 +84,7 @@ const SignUp = ({ memberDB, airReservationDB }) => {
   };
   // Validate END
 
-  return (  
+  return (
     <section>
       <h4>정보 입력</h4>
       <div className={styles.section_wrap}>
@@ -117,7 +119,9 @@ const SignUp = ({ memberDB, airReservationDB }) => {
         <input type="text" name="m_mail2" id="str_email" />
         <br />
         <select id="select_email">
-          <option disabled>선택</option>
+          <option selected disabled>
+            선택
+          </option>
           <option value="1">직접입력</option>
           <option value="naver.com">naver.com</option>
           <option value="gmail.com">gmail.com</option>
