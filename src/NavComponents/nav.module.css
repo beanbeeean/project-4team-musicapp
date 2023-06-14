@@ -23,12 +23,12 @@
 .search input {
   position: relative;
   margin-left: 70px;
-  padding: 3px;
+  padding: 8px 8px 8px 15px;
   border-radius: 25px;
   border: 2px solid rgb(76, 144, 121);
   width: 300px;
   font-size: 0.9em;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .search button {
