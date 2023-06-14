@@ -18,6 +18,7 @@ const Nav = () => {
 
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
+  const [m_id, setM_id] = useState(window.localStorage.getItem('session'));
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -54,6 +55,13 @@ const Nav = () => {
     console.log(data.artists.items[0]);
     navigate("/search");
   };
+
+  const logoutBtnHandler = () => {
+      alert("로그아웃 되었습니다!!");
+      setM_id();
+      window.localStorage.removeItem('session');
+  }
+
   return (
     <Container>
       <Row className={styles.search_wrap}>
@@ -70,11 +78,17 @@ const Nav = () => {
             </button>{" "}
           </form>
         </Col>
-        <Col md={3} className={`${styles.login_wrap} text-center`}></Col>
+        <Col md={3} className={`${styles.login_wrap} text-center`}>
+          { m_id !== null ? 
+            <div>{m_id}님, 반갑습니다.
+            <input type="button" value="Logout" onClick={logoutBtnHandler}/>
+            </div> : <div></div>
+          }
+        </Col>
       </Row>
       <Row className={styles.Menubar}>
         <Col className={`${styles.list} text-center`}>
-          <a href="#">Music Chart</a>
+          <a href="#" >Music Chart</a>
         </Col>
         <Col className={`${styles.list} text-center`}>
           <a href="#">Gongju</a>
