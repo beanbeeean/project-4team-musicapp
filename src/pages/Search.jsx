@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import SearchTracks from "../search_components/SeachTracks";
 import SearchArtists from "../search_components/SearchArtists";
@@ -9,6 +9,9 @@ import SearchNav from "../search_components/SearchNav";
 const Search = () => {
   const [option, setOption] = useState(0);
 
+  // useEffect(() => {
+  //   console.log("token", window.localStorage.getItem("token"));
+  // }, [option]);
   if (option == 0) {
     return (
       <Container>

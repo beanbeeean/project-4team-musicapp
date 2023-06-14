@@ -4,8 +4,10 @@ import { Col, Row } from "react-bootstrap";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import styles from "./css/search_tracks.module.css";
 import TracksItem from "./TracksItem";
+import { useSelector } from "react-redux";
 
 const SearchTracks = () => {
+  const { searchTracks } = useSelector((state) => state.search);
   return (
     <div>
       <Row className={`${styles.tracks_header} pt-2 pb-1`}>
@@ -18,17 +20,9 @@ const SearchTracks = () => {
           <FontAwesomeIcon icon={faClock} />
         </Col>
       </Row>
-      <TracksItem num={1} />
-      <TracksItem num={2} />
-      <TracksItem num={3} />
-      <TracksItem num={4} />
-      <TracksItem num={5} />
-      <TracksItem num={6} />
-      <TracksItem num={7} />
-      <TracksItem num={8} />
-      <TracksItem num={9} />
-      <TracksItem num={10} />
-      <TracksItem num={11} />
+      {searchTracks.length > 0
+        ? searchTracks.map((item, key) => <TracksItem num={key} item={item} />)
+        : ""}
     </div>
   );
 };

@@ -5,14 +5,14 @@
 }
 
 .item_wrap {
-  /* margin: 0px 11px; */
-  /* display: inline-block; */
+  padding: 20px;
+  width: 250px;
 }
 
 .item_wrap:hover {
   background-color: rgba(50, 150, 50, 0.3);
 }
-.item_wrap:hover .artists_play {
+.item_wrap:hover .album_play {
   opacity: 1;
   transition: all 0.8s;
 }
@@ -21,15 +21,16 @@
   position: relative;
 }
 
-.artists_img {
-  /* border-radius: 50%; */
+.album_img {
+  max-width: 200px;
+  min-width: 200px;
 }
 
-.artists_play {
+.album_play {
   position: absolute;
   opacity: 0;
-  bottom: 5px;
-  right: 5px;
+  bottom: 0px;
+  right: 0px;
   width: 50px;
   height: 50px;
   border-radius: 50%;

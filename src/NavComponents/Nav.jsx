@@ -7,11 +7,15 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { searchAction } from "../redux/actions/searchAction";
 
 const Nav = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-  console.log(process.env.REACT_APP_CLIENT_ID);
+  // console.log(process.env.REACT_APP_CLIENT_ID);
   const REDIRECT_URI = "http://localhost:3000";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
@@ -35,22 +39,63 @@ const Nav = () => {
     setToken(token);
   }, []);
 
-  const searchArtists = async (e) => {
+  const searching = (e) => {
     e.preventDefault();
-    console.log(token);
-    const { data } = await axios.get("https://api.spotify.com/v1/search", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      params: {
-        q: searchKey,
-        type: "artist",
-      },
-    });
-
-    console.log(data.artists.items[0]);
+    // console.log("search Key ", searchKey);
+    dispatch(searchAction.searchByKeyword(searchKey));
     navigate("/search");
   };
+  // const searchArtists = async (e) => {
+  //   e.preventDefault();
+  //   // console.log(token);
+  //   const artists = await axios.get("https://api.spotify.com/v1/search", {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //     params: {
+  //       q: searchKey,
+  //       type: "artist",
+  //       limit: 50,
+  //     },
+  //   });
+
+  //   const tracks = await axios.get("https://api.spotify.com/v1/search", {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //     params: {
+  //       q: searchKey,
+  //       type: "track",
+  //       limit: 50,
+  //     },
+  //   });
+
+  //   const albums = await axios.get("https://api.spotify.com/v1/search", {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //     params: {
+  //       q: searchKey,
+  //       type: "album",
+  //       limit: 50,
+  //     },
+  //   });
+  //   // ("6RHTUrRF63xao58xh9FXYJ");
+  //   const artistsTrack = await axios.get("https://api.spotify.com/v1/tracks", {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //     params: {
+  //       id: "6RHTUrRF63xao58xh9FXYJ",
+  //     },
+  //   });
+  //   console.log("artists", artists.data.artists.items);
+  //   console.log("tracks", tracks.data.tracks.items);
+  //   console.log("albums", albums.data.albums.items);
+  //   console.log("artistsTrack", artistsTrack);
+  //   navigate("/search");
+  // };
+
   return (
     <Container>
       <Row className={styles.search_wrap}>
@@ -60,11 +105,11 @@ const Nav = () => {
           >
             <img src="./imgs/default.jpg" />
           </a>
-          <form onSubmit={searchArtists}>
+          <form onSubmit={searching}>
             <input type="text" onChange={(e) => setSearchKey(e.target.value)} />
             <button type="submit">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </button>{" "}
+            </button>
           </form>
         </Col>
         <Col md={3} className={`${styles.login_wrap} text-center`}></Col>
