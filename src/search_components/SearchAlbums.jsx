@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 const SearchAlbums = () => {
   const { searchAlbums } = useSelector((state) => state.search);
   return (
-    <div className={styles.artists_wrap}>
+    <div className={styles.albums_wrap}>
       {searchAlbums.length > 0
         ? searchAlbums.map((item) => <AlbumsItem item={item} />)
         : ""}

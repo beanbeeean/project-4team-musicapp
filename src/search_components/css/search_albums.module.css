@@ -1,7 +1,6 @@
-.artists_wrap {
+.albums_wrap {
   display: flex;
   flex-wrap: wrap;
-  justify-content: stretch;
 }
 
 .item_wrap {

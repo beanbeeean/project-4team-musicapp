@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./sign_up.module.css";
-import $ from "jquery";
+import Modal from "./Modal";
 
 const SIGN_UP_BUTTON = "1";
 
@@ -10,6 +10,8 @@ const SignUp = ({ memberDB, airReservationDB }) => {
   const [m_pw, setM_pw] = useState("");
   const [m_mail, setM_mail] = useState("");
   const [m_phone, setM_phone] = useState("");
+  const selectEmailRef = useRef(null);
+  const strEmailRef = useRef(null);
 
   useEffect(() => {
     console.log("[UserSignUp] useEffect() CALLED!!");
@@ -65,6 +67,18 @@ const SignUp = ({ memberDB, airReservationDB }) => {
   };
   // Validate END
 
+  const handleSelectChange = (e) => {
+    const selectedValue = e.target.value;
+    if (selectedValue === "1") {
+      strEmailRef.current.value = "";
+      strEmailRef.current.disabled = false;
+      strEmailRef.current.focus();
+    } else {
+      strEmailRef.current.value = selectedValue;
+      strEmailRef.current.disabled = true;
+    }
+  };
+
   return (
     <section>
       <h4>정보 입력</h4>
@@ -97,8 +111,16 @@ const SignUp = ({ memberDB, airReservationDB }) => {
           onChange={(e) => setM_mail(e.target.value)}
         />
         @
-        <select className="select_email">
-          <option>선택</option>
+        <input type="text" name="m_mail2" id="str_email" ref={strEmailRef} />
+        <br />
+        <select
+          id="select_email"
+          ref={selectEmailRef}
+          onChange={handleSelectChange}
+        >
+          <option selected disabled>
+            선택
+          </option>
           <option value="1">직접입력</option>
           <option value="naver.com">naver.com</option>
           <option value="gmail.com">gmail.com</option>
