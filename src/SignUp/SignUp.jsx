@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./sign_up.module.css";
-import $ from "jquery";
+import Modal from "./Modal";
 
 const SIGN_UP_BUTTON = "1";
 
@@ -65,7 +65,7 @@ const SignUp = ({ memberDB, airReservationDB }) => {
   };
   // Validate END
 
-  return (
+  return (  
     <section>
       <h4>정보 입력</h4>
       <div className={styles.section_wrap}>

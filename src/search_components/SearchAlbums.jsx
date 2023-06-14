@@ -4,7 +4,7 @@ import styles from "./css/search_albums.module.css";
 
 const SearchAlbums = () => {
   return (
-    <div className={styles.artists_wrap}>
+    <div className={styles.albums_wrap}>
       <AlbumsItem />
       <AlbumsItem />
       <AlbumsItem />
