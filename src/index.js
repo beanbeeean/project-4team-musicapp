@@ -8,8 +8,7 @@ import SignUp from "./SignUp/SignUp";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    {/* <App /> */}
-    <SignUp />
+    <App /> 
   </BrowserRouter>
 );
 

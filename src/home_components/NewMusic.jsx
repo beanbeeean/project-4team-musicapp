@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Album from "./Album";
-import "./css/newMusic.css";
+import styles from "./css/newMusic.module.css";
 import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import "./css/login.css";
+import loginStyles from "./css/login.module.css";
 import Modal from "../SignUp/Modal";
 
 const NewMusic = () => {
@@ -24,15 +24,15 @@ const NewMusic = () => {
     <Container>
       <Row>
         <Col>
-          <div className="albumbox">
-            <ul className="titleBox">
+          <div className={styles.albumbox}>
+            <ul className={styles.titleBox}>
               <li>최신음악</li>
-              <li className="menu">종합</li>
-              <li className="menu">국내</li>
-              <li className="menu">국외</li>
+              <li className={styles.menu}>종합</li>
+              <li className={styles.menu}>국내</li>
+              <li className={styles.menu}>국외</li>
               <li onClick={nextBtnHandler}>&#62;</li>
               <li onClick={prevBtnHandler}>&#60;</li>
-              <li className="menu2">{page}/5</li>
+              <li className={styles.menu2}>{page}/5</li>
             </ul>
           </div>
 
@@ -58,8 +58,8 @@ const NewMusic = () => {
           </table>
         </Col>
         <Col>
-          <div className="section_wrap">
-            <div className="info">서비스를 더 안전하게 이용하세요</div>
+          <div className={loginStyles.section_wrap}>
+            <div className={loginStyles.info}>서비스를 더 안전하게 이용하세요</div>
             <br />
             <input type="text" placeholder="Input ID" />
             <br />
