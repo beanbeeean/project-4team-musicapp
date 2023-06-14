@@ -3,6 +3,23 @@ import { useNavigate } from "react-router-dom";
 import styles from "./sign_up.module.css";
 import $ from "jquery";
 
+$("#select_email").change(function () {
+  $("#select_email option:selected").each(function () {
+    if ($(this).val() == "1") {
+      //직접입력일 경우
+      $(document).ready(function () {
+        $("#str_email").focus();
+      });
+      $("#str_email").val(""); //값 초기화
+      $("#str_email").attr("disabled", false); //활성화
+    } else {
+      //직접입력이 아닐경우
+      $("#str_email").val($(this).text()); //선택값 입력
+      $("#str_email").attr("disabled", true); //비활성화
+    }
+  });
+});
+
 const SIGN_UP_BUTTON = "1";
 
 const SignUp = ({ memberDB, airReservationDB }) => {
@@ -97,8 +114,10 @@ const SignUp = ({ memberDB, airReservationDB }) => {
           onChange={(e) => setM_mail(e.target.value)}
         />
         @
-        <select className="select_email">
-          <option>선택</option>
+        <input type="text" name="m_mail2" id="str_email" />
+        <br />
+        <select id="select_email">
+          <option disabled>선택</option>
           <option value="1">직접입력</option>
           <option value="naver.com">naver.com</option>
           <option value="gmail.com">gmail.com</option>
