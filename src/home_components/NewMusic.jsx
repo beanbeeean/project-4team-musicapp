@@ -5,6 +5,7 @@ import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./css/login.css";
+import Modal from "../SignUp/Modal";
 
 const NewMusic = () => {
   const [page, setPage] = useState(1);
@@ -66,10 +67,7 @@ const NewMusic = () => {
             <br />
             <input type="button" value="Login" />
             <br />
-            <div className="sign_up">
-              아직 회원이 아니신가요?&nbsp;
-              <a href="#">회원가입</a>
-            </div>
+            <Modal />
           </div>
         </Col>
       </Row>
