@@ -7,7 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import Search from "./pages/Search";
 import Playlists from "./playlist_components/Playlists";
 import Sign from "./pages/Sign";
-import SignUp from "./sign_components/SignUp";
+import PlaylistItem from "./playlist_components/PlaylistItem";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/playlist" element={<Playlists />} />
         <Route path="/sign" element={<Sign />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/playlistitem" element={<PlaylistItem />} />
       </Routes>
       <Footer />
     </div>
