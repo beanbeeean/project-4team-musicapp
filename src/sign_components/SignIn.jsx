@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./css/sign_in.module.css";
 
 const SIGN_IN_BUTTON = "1";
 
-const SignIn = ({ setOption }) => {
+const SignIn = ({ setOption, login}) => {
   const [m_id, setM_id] = useState("");
   const [m_pw, setM_pw] = useState("");
 
@@ -15,35 +15,22 @@ const SignIn = ({ setOption }) => {
   const navigate = useNavigate();
 
   // Handler START
-  const btnClickedHandler = (e) => {
-    console.log("[SignIn] btnClickedHandler() CALLED!!");
 
-    switch (e.target.name) {
-      case SIGN_IN_BUTTON:
-        console.log("[SignIn] SIGN_IN_BUTTON CLICKED!!");
+  const loginBtnHandler = () => {
+    let chk = JSON.parse(window.localStorage.getItem(m_id));
 
-        break;
+    if (chk !== null && m_pw === chk.m_pw) {
+      console.log(m_id);
+      window.localStorage.setItem("session", m_id);
+      alert("로그인 되었습니다!!");
+      login.current = window.localStorage.getItem("session");
+      navigate('/');
+
+    } else {
+      alert("아이디 또는 비밀번호를 확인하세요!!");
     }
   };
   // Handler END
-
-  // Validate START
-  const ValidateUserInputData = () => {
-    console.log("[SignIn] ValidateUserInputData() CALLED!!");
-
-    let result = true;
-
-    if (m_id === "") {
-      alert("Input member ID!!");
-      result = false;
-    } else if (m_pw === "") {
-      alert("Input member PW!!");
-      result = false;
-    }
-
-    return result;
-  };
-  // Validate END
 
   return (
     <section>
@@ -75,7 +62,7 @@ const SignIn = ({ setOption }) => {
           type="button"
           value="SIGN IN"
           name={SIGN_IN_BUTTON}
-          onClick={btnClickedHandler}
+          onClick={loginBtnHandler}
         />
         <div className={styles.go_sign_up}>
           아직 회원이 아니신가요? <a onClick={() => setOption(1)}>회원가입</a>

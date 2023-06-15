@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styles from "./css/sign_up.module.css";
 
 import $ from "jquery";
@@ -30,7 +29,7 @@ $(document).ready(function () {
 
 const SIGN_UP_BUTTON = "1";
 
-const SignUp = ({ memberDB, userDB }) => {
+const SignUp = ({ setOption}) => {
   const [m_id, setM_id] = useState("");
   const [m_pw, setM_pw] = useState("");
   const [m_mail, setM_mail] = useState("");
@@ -40,27 +39,30 @@ const SignUp = ({ memberDB, userDB }) => {
     console.log("[SignUp] useEffect() CALLED!!");
   });
 
-  const navigate = useNavigate();
-
   // Handler START
   const btnClickedHandler = (e) => {
     console.log("[SignUp] btnClickedHandler() CALLED!!");
 
     switch (e.target.name) {
       case SIGN_UP_BUTTON:
-        console.log("[SignUp] SIGN_UP_BUTTON CLICKED!!");
-        let chk = JSON.parse(window.localStorage.getItem(m_id));
-        let Obj;
+        if(ValidateUserInputData()){
+          console.log("[SignUp] SIGN_UP_BUTTON CLICKED!!");
+          let chk = JSON.parse(window.localStorage.getItem(m_id));
+          let Obj;
 
-        if (chk === null) {
-          Obj = { m_pw: m_pw, m_mail: m_mail, m_phone: m_phone };
-          console.log(JSON.stringify(Obj), m_pw, m_mail, m_phone);
-          window.localStorage.setItem(m_id, JSON.stringify(Obj));
-          alert("회원가입이 완료되었습니다!!");
-        } else alert("아이디 중복 확인하세요!!");
+          if (chk === null) {
+            Obj = { m_pw: m_pw, m_mail: m_mail, m_phone: m_phone };
+            console.log(JSON.stringify(Obj), m_pw, m_mail, m_phone);
+            window.localStorage.setItem(m_id, JSON.stringify(Obj));
+            alert("회원가입이 완료되었습니다!!");
+            setOption(0);
+          } 
+          else alert("아이디 중복 확인하세요!!");
+        }
         break;
     }
   };
+  
   // Handler END
 
   // Validate START

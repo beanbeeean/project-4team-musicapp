@@ -7,18 +7,19 @@ import { Route, Routes } from "react-router-dom";
 import Search from "./pages/Search";
 import Playlists from "./playlist_components/Playlists";
 import Sign from "./pages/Sign";
-import SignUp from "./sign_components/SignUp";
+import { useRef, useState } from "react";
 
 function App() {
+  let login = useRef(window.localStorage.getItem("session"));
+    
   return (
     <div>
-      <Nav />
+      <Nav login={login}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
         <Route path="/playlist" element={<Playlists />} />
-        <Route path="/sign" element={<Sign />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/sign" element={<Sign login={login}/>}/>
       </Routes>
       <Footer />
     </div>

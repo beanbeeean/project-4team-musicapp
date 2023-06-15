@@ -10,7 +10,7 @@ import Playlists from "../playlist_components/Playlists";
 import { useDispatch } from "react-redux";
 import { searchAction } from "../redux/actions/searchAction";
 
-const Nav = () => {
+const Nav = ({login}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -55,13 +55,17 @@ const Nav = () => {
   const logoutBtnHandler = () => {
     alert("로그아웃 되었습니다!!");
     window.localStorage.removeItem('session');
-    window.localStorage.removeItem('session2');
-    setM_id();
+    login.current =null
+    navigate("/");
   }
 
   const logInBtnHandler = () => {
     navigate("/sign");
   };
+
+  useEffect(()=>{
+    setM_id(window.localStorage.getItem("session"))
+  },[login])
 
   return (
     <Container>
@@ -81,8 +85,8 @@ const Nav = () => {
         </Col>
         <Col md={3} className={`${styles.login_wrap} text-center`}>
 
-          { m_id ? <>
-            {m_id}님, 반갑습니다
+          { login.current !== null? <>
+            {login.current}님, 반갑습니다
             <input type="button" value="Logout" onClick={logoutBtnHandler}/>
             </>:<a href="#none" onClick={logInBtnHandler}>로그인/회원가입</a>
           }
