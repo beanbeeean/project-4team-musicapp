@@ -42,7 +42,7 @@ const Nav = () => {
     }
 
     setToken(token);
-    console.log("m_id :", m_id)
+    console.log("m_id :", m_id);
   }, []);
 
   const searching = (e) => {
@@ -68,12 +68,16 @@ const Nav = () => {
           </form>
         </Col>
         <Col md={3} className={`${styles.login_wrap} text-center`}>
-
-          { m_id ? <>
-            {m_id}님, 반갑습니다
-            <input type="button" value="Logout" onClick={logoutBtnHandler}/>
-            </>:<a href="#none" onClick={logInBtnHandler}>로그인/회원가입</a>
-          }
+          {m_id ? (
+            <>
+              {m_id}님, 반갑습니다
+              <input type="button" value="Logout" onClick={logoutBtnHandler} />
+            </>
+          ) : (
+            <a href="#none" onClick={logInBtnHandler}>
+              로그인/회원가입
+            </a>
+          )}
         </Col>
       </Row>
       <Row className={styles.Menubar}>
