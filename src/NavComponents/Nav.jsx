@@ -49,56 +49,6 @@ const Nav = () => {
     dispatch(searchAction.searchByKeyword(searchKey));
     navigate("/search");
   };
-  // const searchArtists = async (e) => {
-  //   e.preventDefault();
-  //   // console.log(token);
-  //   const artists = await axios.get("https://api.spotify.com/v1/search", {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //     params: {
-  //       q: searchKey,
-  //       type: "artist",
-  //       limit: 50,
-  //     },
-  //   });
-
-  //   const tracks = await axios.get("https://api.spotify.com/v1/search", {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //     params: {
-  //       q: searchKey,
-  //       type: "track",
-  //       limit: 50,
-  //     },
-  //   });
-
-  //   const albums = await axios.get("https://api.spotify.com/v1/search", {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //     params: {
-  //       q: searchKey,
-  //       type: "album",
-  //       limit: 50,
-  //     },
-  //   });
-  //   // ("6RHTUrRF63xao58xh9FXYJ");
-  //   const artistsTrack = await axios.get("https://api.spotify.com/v1/tracks", {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //     params: {
-  //       id: "6RHTUrRF63xao58xh9FXYJ",
-  //     },
-  //   });
-  //   console.log("artists", artists.data.artists.items);
-  //   console.log("tracks", tracks.data.tracks.items);
-  //   console.log("albums", albums.data.albums.items);
-  //   console.log("artistsTrack", artistsTrack);
-  //   navigate("/search");
-  // };
 
   return (
     <Container>
