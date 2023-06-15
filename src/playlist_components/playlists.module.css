@@ -1,0 +1,49 @@
+li {
+  float: left;
+}
+
+div.wrap {
+  margin: 20px auto;
+  width: 60%;
+}
+
+h5 {
+  color: rgb(76, 144, 121);
+  font-weight: bold;
+}
+
+a.create_playlist {
+  float: right;
+  margin-bottom: 10px;
+}
+
+ul.playlist_item_wrap {
+  margin: 20px auto;
+  padding: 20px;
+}
+
+ul.playlist_item_wrap:hover {
+  background-color: #f8f8f8;
+}
+
+div.wrap ul.playlist_item_wrap {
+  border: 1px solid #dadada;
+  border-radius: 7px;
+  box-shadow: 3px 3px 5px#dadada;
+  width: 100%;
+}
+
+div.wrap ul.playlist_item_wrap li img {
+  width: 100px;
+  margin-right: 20px;
+}
+
+div.wrap ul.playlist_item_wrap li div.playlist_name {
+  font-weight: bold;
+}
+
+div.wrap ul li div.song_cnt,
+div.wrap ul li div.create_date {
+  font-size: 0.9em;
+  color: #5a5a5a;
+}

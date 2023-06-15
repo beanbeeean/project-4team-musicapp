@@ -6,8 +6,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import loginStyles from "./css/login.module.css";
 import Modal from "../SignUp/Modal";
-import { useDispatch, useSelector } from "react-redux";
-import { homeAction } from "../redux/actions/homeAction";
 
 const NewMusic = () => {
   const { newRelease } = useSelector((state) => state.home);
@@ -65,22 +63,7 @@ const NewMusic = () => {
     window.localStorage.removeItem(m_id);
     setM_id();
   };
-  const domesticBtnHandler = () => {
-    setPage(1);
-    setOffset(0);
-    setSelection("KR");
-  };
 
-  const abroadBtnHandler = () => {
-    setPage(1);
-    setOffset(0);
-    setSelection("ES");
-  };
-
-  useEffect(() => {
-    dispatch(homeAction.getNewReleaseAlbums(selection, offset));
-    console.log("USEEFFECT ", offset);
-  }, [selection, page]);
   return (
     <Container>
       <Row>

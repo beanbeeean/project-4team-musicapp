@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import styles from "./nav.module.css";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { searchAction } from "../redux/actions/searchAction";
@@ -41,6 +42,7 @@ const Nav = () => {
     }
 
     setToken(token);
+    console.log("m_id :", m_id);
   }, []);
 
   const searching = (e) => {
@@ -49,6 +51,18 @@ const Nav = () => {
     dispatch(searchAction.searchByKeyword(searchKey));
     navigate("/search");
   };
+
+  const logoutBtnHandler = () => {
+    alert("로그아웃 되었습니다!!");
+    window.localStorage.removeItem("session");
+    window.localStorage.removeItem("session2");
+    setM_id();
+  };
+
+  const logInBtnHandler = () => {
+    navigate("/sign");
+  };
+
   return (
     <Container>
       <Row className={styles.search_wrap}>
@@ -69,7 +83,7 @@ const Nav = () => {
           {m_id !== null ? (
             <div>
               {m_id}님, 반갑습니다.
-              <input type="button" value="Logout" />
+              <input type="button" value="Logout" onClick={logoutBtnHandler} />
             </div>
           ) : (
             <div></div>
@@ -90,7 +104,7 @@ const Nav = () => {
           <a href="#">All Playlist</a>
         </Col>
         <Col className={`${styles.list} text-center`}>
-          <a href="#">Playlist</a>
+          <Link to="/playlist">Playlist</Link>
         </Col>
       </Row>
     </Container>

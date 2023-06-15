@@ -10,7 +10,11 @@ const TracksItem = ({ num, item, test, setTest }) => {
       temp = test.slice();
       setTest(temp);
     } else if (!e.target.checked) {
-      test.splice();
+      test.forEach((item, index)=> {
+        if(item.num === num) {
+          test.splice(index, 1);
+        }
+      });
       temp = test.slice();
       setTest(temp);
     }

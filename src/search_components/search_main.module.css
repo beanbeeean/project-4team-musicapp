@@ -1,4 +1,4 @@
-li {
+div.container li {
   float: none;
 }
 
@@ -71,6 +71,10 @@ div.list_wrap:hover {
 
 .album_wrap > div {
   width: 180px;
+}
+
+.artists li {
+  float: none;
 }
 
 .artists_wrap img {

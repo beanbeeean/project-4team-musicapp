@@ -71,7 +71,7 @@ const SearchMain = () => {
         </div>
       </div>
       <hr />
-      <div className="artists">
+      <div className={styles.artists}>
         <h5>아티스트</h5>
         <div className={styles.artists_wrap}>
           {searchArtists.length > 0
