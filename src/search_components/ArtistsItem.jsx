@@ -2,23 +2,19 @@ import React from "react";
 import styles from "./css/search_artists.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
-import { Col } from "react-bootstrap";
-const ArtistsItem = () => {
+
+const ArtistsItem = ({ item }) => {
   return (
     <div className={styles.item_wrap}>
       <div className={styles.img_wrap}>
-        <img
-          className={styles.artists_img}
-          src="https://picsum.photos/200/200"
-          alt=""
-        />
+        <img className={styles.artists_img} src={item.images[1].url} alt="" />
         <div className={styles.artists_play}>
           <FontAwesomeIcon className={styles.play_icon} icon={faPlay} />
         </div>
       </div>
       <div>
-        <p>aespa</p>
-        <span>아티스트</span>
+        <p>{item.name}</p>
+        <span>{item.type}</span>
       </div>
     </div>
   );

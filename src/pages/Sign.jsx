@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 const Sign = () => {
   return (
     <Routes>
-      <Route path="/" element={<SignIn />} />
+      {/* <Route path="/" element={<SignIn />} /> */}
       <Route path="/" element={<SignUp />} />
     </Routes>
   );

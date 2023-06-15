@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./css/search_nav.module.css";
 
 const SearchNav = ({ setOption }) => {

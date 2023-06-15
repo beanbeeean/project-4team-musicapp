@@ -5,20 +5,24 @@ import Container from "react-bootstrap/Container";
 import styles from "./nav.module.css";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import Playlists from "../playlist_components/Playlists";
+import { useDispatch } from "react-redux";
+import { searchAction } from "../redux/actions/searchAction";
 
 const Nav = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-  console.log(process.env.REACT_APP_CLIENT_ID);
+  // console.log(process.env.REACT_APP_CLIENT_ID);
   const REDIRECT_URI = "http://localhost:3000";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
 
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
+  const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -40,19 +44,10 @@ const Nav = () => {
     setToken(token);
   }, []);
 
-  const searchArtists = async (e) => {
+  const searching = (e) => {
     e.preventDefault();
-    const { data } = await axios.get("https://api.spotify.com/v1/search", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      params: {
-        q: searchKey,
-        type: "artist",
-      },
-    });
-
-    console.log(data.artists.items[0]);
+    // console.log("search Key ", searchKey);
+    dispatch(searchAction.searchByKeyword(searchKey));
     navigate("/search");
   };
   return (
@@ -64,14 +59,23 @@ const Nav = () => {
           >
             <img src="./imgs/default.jpg" />
           </a>
-          <form onSubmit={searchArtists}>
+          <form onSubmit={searching}>
             <input type="text" onChange={(e) => setSearchKey(e.target.value)} />
             <button type="submit">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </button>{" "}
+            </button>
           </form>
         </Col>
-        <Col md={3} className={`${styles.login_wrap} text-center`}></Col>
+        <Col md={3} className={`${styles.login_wrap} text-center`}>
+          {m_id !== null ? (
+            <div>
+              {m_id}님, 반갑습니다.
+              <input type="button" value="Logout" />
+            </div>
+          ) : (
+            <div></div>
+          )}
+        </Col>
       </Row>
       <Row className={styles.Menubar}>
         <Col className={`${styles.list} text-center`}>
