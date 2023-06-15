@@ -6,11 +6,11 @@ import styles from "./nav.module.css";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { searchAction } from "../redux/actions/searchAction";
 
-const Nav = ({login}) => {
+const Nav = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -54,18 +54,14 @@ const Nav = ({login}) => {
 
   const logoutBtnHandler = () => {
     alert("로그아웃 되었습니다!!");
-    window.localStorage.removeItem('session');
-    login.current =null
-    navigate("/");
-  }
+    window.localStorage.removeItem("session");
+    window.localStorage.removeItem("session2");
+    setM_id();
+  };
 
   const logInBtnHandler = () => {
     navigate("/sign");
   };
-
-  useEffect(()=>{
-    setM_id(window.localStorage.getItem("session"))
-  },[login])
 
   return (
     <Container>
@@ -84,12 +80,14 @@ const Nav = ({login}) => {
           </form>
         </Col>
         <Col md={3} className={`${styles.login_wrap} text-center`}>
-
-          { login.current !== null? <>
-            {login.current}님, 반갑습니다
-            <input type="button" value="Logout" onClick={logoutBtnHandler}/>
-            </>:<a href="#none" onClick={logInBtnHandler}>로그인/회원가입</a>
-          }
+          {m_id !== null ? (
+            <div>
+              {m_id}님, 반갑습니다.
+              <input type="button" value="Logout" onClick={logoutBtnHandler} />
+            </div>
+          ) : (
+            <div></div>
+          )}
         </Col>
       </Row>
       <Row className={styles.Menubar}>

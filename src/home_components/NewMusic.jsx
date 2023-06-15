@@ -5,13 +5,15 @@ import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import loginStyles from "./css/login.module.css";
-import Modal from "../SignUp/Modal";
+import { useDispatch, useSelector } from "react-redux";
+import { homeAction } from "../redux/actions/homeAction";
 
 const NewMusic = () => {
   const { newRelease } = useSelector((state) => state.home);
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
-  const [m_id, setM_id] = useState(window.localStorage.getItem('session'));
+  const [m_login, setLogin] = useState(window.localStorage.getItem("session"));
+  const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
   const [m_pw, setM_pw] = useState("");
   const [selection, setSelection] = useState("KR");
   const [offset, setOffset] = useState(0);
@@ -42,6 +44,7 @@ const NewMusic = () => {
     if (chk !== null && m_pw === chk.m_pw) {
       console.log(m_id);
       window.localStorage.setItem("session", m_id);
+      setLogin(true);
     } else {
       alert("아이디 또는 비밀번호를 확인하세요!!");
     }
@@ -49,18 +52,34 @@ const NewMusic = () => {
 
   const logoutBtnHandler = () => {
     alert("로그아웃 되었습니다!!");
-    window.localStorage.removeItem('session');
     setLogin(false);
+    window.localStorage.removeItem("session");
     setM_id();
   };
 
   const deleteBtnHandler = () => {
     alert("회원삭제 되었습니다!!");
-    window.localStorage.removeItem('session');
+    setLogin(false);
+    window.localStorage.removeItem("session");
     window.localStorage.removeItem(m_id);
     setM_id();
   };
+  const domesticBtnHandler = () => {
+    setPage(1);
+    setOffset(0);
+    setSelection("KR");
+  };
 
+  const abroadBtnHandler = () => {
+    setPage(1);
+    setOffset(0);
+    setSelection("ES");
+  };
+
+  useEffect(() => {
+    dispatch(homeAction.getNewReleaseAlbums(selection, offset));
+    console.log("USEEFFECT ", offset);
+  }, [selection, page]);
   return (
     <Container>
       <Row>
@@ -96,7 +115,7 @@ const NewMusic = () => {
           </div>
         </Col>
         <Col>
-          {m_id !== null || m_id === "" ? (
+          {m_login !== null || m_login === "" ? (
             <div className={loginStyles.section_wrap}>
               <div>{m_id}님, 반갑습니다.</div>
               <input type="button" value="Logout" onClick={logoutBtnHandler} />
@@ -124,7 +143,6 @@ const NewMusic = () => {
               <br />
               <input type="button" value="Login" onClick={loginBtnHandler} />
               <br />
-              <Modal />
             </div>
           )}
         </Col>
