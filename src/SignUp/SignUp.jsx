@@ -4,20 +4,44 @@ import styles from "./sign_up.module.css";
 
 import $ from "jquery";
 
-$("#select_email").change(function () {
-  $("#select_email option:selected").each(function () {
-    if ($(this).val() == "1") {
-      //직접입력일 경우
-      $(document).ready(function () {
-        $("#str_email").focus();
-      });
+// $("#select_email").change(function () {
+//   var selectedOption = $(this).val();
+//   console.log($(this).val());
 
-      $("#str_email").val(""); //값 초기화
-      $("#str_email").attr("disabled", false); //활성화
+//   if (selectedOption === "1") {
+//     // 직접입력일 경우
+//     $(document).ready(function () {
+//       $("#str_email").focus();
+//     });
+
+//     $("#str_email").val(""); // 값 초기화
+//     $("#str_email").attr("disabled", false); // 활성화
+//   } else {
+//     // 직접입력이 아닐 경우
+//     $("#str_email").val(selectedOption); // 선택값 입력
+//     $("#str_email").attr("disabled", true); // 비활성화
+//   }
+// });
+$(document).ready(function () {
+  var selectedOption = localStorage.getItem("selectedOption");
+
+  $("#select_email").change(function () {
+    var selectedOption = $(this).val();
+
+    if (selectedOption === "1") {
+      // 직접입력일 경우
+      $("#str_email").val(""); // 값 초기화
+      $("#str_email").prop("disabled", false); // 활성화
+      $("#str_email").focus(); // 포커스 이동
+    } else if (selectedOption === "선택") {
+      // 선택일 경우
+      $("#str_email").val(""); // 값 초기화
+      $("#str_email").prop("disabled", false); // 비활성화
     } else {
-      //직접입력이 아닐경우
-      $("#str_email").val($(this).text()); //선택값 입력
-      $("#str_email").attr("disabled", true); //비활성화
+      // 직접입력이 아닐 경우
+      var selectedText = $("#select_email option:selected").text();
+      $("#str_email").val(selectedText); // 선택값 입력
+      $("#str_email").prop("disabled", true); // 비활성화
     }
   });
 });
