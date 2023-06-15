@@ -35,5 +35,4 @@ const SearchTracks = () => {
     </div>
   );
 };
-
 export default SearchTracks;

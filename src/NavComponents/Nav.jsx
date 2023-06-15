@@ -5,8 +5,8 @@ import Container from "react-bootstrap/Container";
 import styles from "./nav.module.css";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate, Link } from "react-router-dom";
-import Playlists from "../playlist_components/Playlists";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { searchAction } from "../redux/actions/searchAction";
 
@@ -42,7 +42,7 @@ const Nav = ({login}) => {
     }
 
     setToken(token);
-    console.log("m_id :", m_id)
+    console.log("m_id :", m_id);
   }, []);
 
   const searching = (e) => {

@@ -14,35 +14,32 @@
   float: right;
   margin-right: 5px;
 }
-.albumbox > ul > li:nth-child(-n + 4) {
+.menu {
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.menu2 {
+  padding: 6px;
+}
+
+.menuBtn {
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+  border-radius: 15px;
+  border: 1px solid #dadada;
+  line-height: 25px;
+  cursor: pointer;
+}
+
+.albumbox > ul > li:nth-child(-n + 3) {
   font-size: 1em;
   float: left;
 }
 .albumbox > ul > li:nth-child(1) {
   font-size: 1.3em;
   font-weight: bold;
-}
-.albumbox > ul > li:nth-child(6) {
-  width: 30px;
-  height: 30px;
-  font-weight: bold;
-  border-radius: 15px;
-  border: 1px solid #dadada;
-  line-height: 25px;
-}
-.menu {
-  margin-top: 10px;
-}
-.menu2 {
-  padding: 6px;
-}
-.albumbox > ul > li:nth-child(5) {
-  width: 30px;
-  height: 30px;
-  font-weight: bold;
-  border-radius: 15px;
-  border: 1px solid #dadada;
-  line-height: 25px;
 }
 
 .albumbox {
@@ -73,9 +70,10 @@
   z-index: 100;
 }
 
-@media (max-width: 768px) {
+@media all and (max-width: 768px) {
   .album img {
-    min-width: 80px;
+    min-width: 100px;
+    max-width: 100px;
     min-height: 60px;
   }
   .album span {
@@ -85,6 +83,7 @@
 @media all and (min-width: 768px) and (max-width: 1024px) {
   .album img {
     min-width: 110px;
+    max-width: 110px;
     min-height: 60px;
   }
   .album span {
@@ -94,9 +93,12 @@
 @media all and (min-width: 1024px) and (max-width: 1398px) {
   .album img {
     min-width: 110px;
+    max-width: 110px;
     min-height: 60px;
   }
-  .album span {
-    margin: 60px;
-  }
+}
+
+.albums_list {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
 }

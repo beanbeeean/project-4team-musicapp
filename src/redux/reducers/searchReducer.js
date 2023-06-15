@@ -3,7 +3,7 @@ let initialState = {
   searchTracks: {},
   searchAlbums: {},
 };
-function searchreducer(state = initialState, action) {
+function searchReducer(state = initialState, action) {
   let { type, payload } = action;
   switch (type) {
     case "SEARCH_ARTISTS_SUCCESS":
@@ -17,4 +17,4 @@ function searchreducer(state = initialState, action) {
   }
 }
 
-export default searchreducer;
+export default searchReducer;
