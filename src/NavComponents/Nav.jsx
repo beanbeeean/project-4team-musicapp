@@ -5,12 +5,12 @@ import Container from "react-bootstrap/Container";
 import styles from "./nav.module.css";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate, Link } from "react-router-dom";
-import Playlists from "../playlist_components/Playlists";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { searchAction } from "../redux/actions/searchAction";
 
-const Nav = () => {
+const Nav = ({ login }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -55,13 +55,17 @@ const Nav = () => {
   const logoutBtnHandler = () => {
     alert("로그아웃 되었습니다!!");
     window.localStorage.removeItem("session");
-    window.localStorage.removeItem("session2");
-    setM_id();
+    login.current = null;
+    navigate("/");
   };
 
   const logInBtnHandler = () => {
     navigate("/sign");
   };
+
+  useEffect(() => {
+    setM_id(window.localStorage.getItem("session"));
+  }, [login]);
 
   return (
     <Container>
@@ -80,9 +84,9 @@ const Nav = () => {
           </form>
         </Col>
         <Col md={3} className={`${styles.login_wrap} text-center`}>
-          {m_id ? (
+          {login.current !== null ? (
             <>
-              {m_id}님, 반갑습니다
+              {login.current}님, 반갑습니다
               <input type="button" value="Logout" onClick={logoutBtnHandler} />
             </>
           ) : (

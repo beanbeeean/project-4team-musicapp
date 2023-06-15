@@ -7,17 +7,20 @@ import { Route, Routes } from "react-router-dom";
 import Search from "./pages/Search";
 import Playlists from "./playlist_components/Playlists";
 import Sign from "./pages/Sign";
+import { useRef } from "react";
 import PlaylistItem from "./playlist_components/PlaylistItem";
 
 function App() {
+  let login = useRef(window.localStorage.getItem("session"));
+
   return (
     <div>
-      <Nav />
+      <Nav login={login} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
         <Route path="/playlist" element={<Playlists />} />
-        <Route path="/sign" element={<Sign />} />
+        <Route path="/sign" element={<Sign login={login} />} />
         <Route path="/playlistitem" element={<PlaylistItem />} />
       </Routes>
       <Footer />
