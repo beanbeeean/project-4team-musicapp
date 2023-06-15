@@ -6,7 +6,7 @@ import PlaylistItem from "../playlist_components/PlaylistItem";
 const TracksItem = ({ num, item, test, setTest }) => {
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
   let temp;
-  let playlist;
+  let playlist = [];
 
   const testing = (e) => {
     if (e.target.checked) {
@@ -28,7 +28,7 @@ const TracksItem = ({ num, item, test, setTest }) => {
     playlist = JSON.parse(window.localStorage.getItem(m_id));
     playlist = [...playlist, ...test];
 
-    console.log(playlist);
+    console.log("ppp", playlist);
 
     window.localStorage.setItem(m_id, JSON.stringify(playlist));
 

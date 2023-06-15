@@ -29,7 +29,7 @@ $(document).ready(function () {
 
 const SIGN_UP_BUTTON = "1";
 
-const SignUp = ({ setOption}) => {
+const SignUp = ({ setOption }) => {
   const [m_id, setM_id] = useState("");
   const [m_pw, setM_pw] = useState("");
   const [m_mail, setM_mail] = useState("");
@@ -45,24 +45,23 @@ const SignUp = ({ setOption}) => {
 
     switch (e.target.name) {
       case SIGN_UP_BUTTON:
-        if(ValidateUserInputData()){
+        if (ValidateUserInputData()) {
           console.log("[SignUp] SIGN_UP_BUTTON CLICKED!!");
           let chk = JSON.parse(window.localStorage.getItem(m_id));
           let Obj;
 
           if (chk === null) {
-            Obj = { m_pw: m_pw, m_mail: m_mail, m_phone: m_phone };
+            Obj = [{ m_pw: m_pw, m_mail: m_mail, m_phone: m_phone }];
             console.log(JSON.stringify(Obj), m_pw, m_mail, m_phone);
             window.localStorage.setItem(m_id, JSON.stringify(Obj));
             alert("회원가입이 완료되었습니다!!");
             setOption(0);
-          } 
-          else alert("아이디 중복 확인하세요!!");
+          } else alert("아이디 중복 확인하세요!!");
         }
         break;
     }
   };
-  
+
   // Handler END
 
   // Validate START
