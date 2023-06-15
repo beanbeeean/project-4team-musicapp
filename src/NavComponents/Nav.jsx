@@ -22,9 +22,7 @@ const Nav = () => {
 
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
-  const [m_id, setM_id] = useState("");
-  
-
+  const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -53,18 +51,6 @@ const Nav = () => {
     dispatch(searchAction.searchByKeyword(searchKey));
     navigate("/search");
   };
-
-  const logoutBtnHandler = () => {
-    alert("로그아웃 되었습니다!!");
-    window.localStorage.removeItem('session');
-    window.localStorage.removeItem('session2');
-    setM_id();
-  }
-
-  const logInBtnHandler = () => {
-    navigate("/sign");
-  };
-
   return (
     <Container>
       <Row className={styles.search_wrap}>

@@ -73,6 +73,10 @@ div.list_wrap:hover {
   width: 180px;
 }
 
+.artists li {
+  float: none;
+}
+
 .artists_wrap img {
   width: 150px;
   height: 150px;
