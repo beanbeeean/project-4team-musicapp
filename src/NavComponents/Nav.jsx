@@ -22,6 +22,7 @@ const Nav = () => {
 
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
+  const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -49,7 +50,6 @@ const Nav = () => {
     dispatch(searchAction.searchByKeyword(searchKey));
     navigate("/search");
   };
-
   return (
     <Container>
       <Row className={styles.search_wrap}>
@@ -66,7 +66,16 @@ const Nav = () => {
             </button>
           </form>
         </Col>
-        <Col md={3} className={`${styles.login_wrap} text-center`}></Col>
+        <Col md={3} className={`${styles.login_wrap} text-center`}>
+          {m_id !== null ? (
+            <div>
+              {m_id}님, 반갑습니다.
+              <input type="button" value="Logout" onClick={logoutBtnHandler} />
+            </div>
+          ) : (
+            <div></div>
+          )}
+        </Col>
       </Row>
       <Row className={styles.Menubar}>
         <Col className={`${styles.list} text-center`}>

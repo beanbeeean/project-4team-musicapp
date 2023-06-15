@@ -1,7 +1,25 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./sign_up.module.css";
-import Modal from "./Modal";
+import $ from "jquery";
+
+$("#select_email").change(function () {
+  $("#select_email option:selected").each(function () {
+    if ($(this).val() == "1") {
+      //직접입력일 경우
+      $(document).ready(function () {
+        $("#str_email").focus();
+      });
+
+      $("#str_email").val(""); //값 초기화
+      $("#str_email").attr("disabled", false); //활성화
+    } else {
+      //직접입력이 아닐경우
+      $("#str_email").val($(this).text()); //선택값 입력
+      $("#str_email").attr("disabled", true); //비활성화
+    }
+  });
+});
 
 const SIGN_UP_BUTTON = "1";
 
@@ -10,8 +28,6 @@ const SignUp = ({ memberDB, airReservationDB }) => {
   const [m_pw, setM_pw] = useState("");
   const [m_mail, setM_mail] = useState("");
   const [m_phone, setM_phone] = useState("");
-  const selectEmailRef = useRef(null);
-  const strEmailRef = useRef(null);
 
   useEffect(() => {
     console.log("[UserSignUp] useEffect() CALLED!!");
@@ -27,17 +43,27 @@ const SignUp = ({ memberDB, airReservationDB }) => {
       case SIGN_UP_BUTTON:
         console.log("[UserSignUp] SIGN_UP_BUTTON CLICKED!!");
 
-        if (ValidateUserInputData()) {
-          memberDB.set(m_id, {
-            m_id: m_id,
-            m_pw: m_pw,
-            m_mail: m_mail,
-            m_phone: m_phone,
-          });
-          console.log(memberDB);
-          airReservationDB.set(m_id, []);
-        }
+        // if (ValidateUserInputData()) {
+        //   memberDB.set(m_id, {
+        //     m_id: m_id,
+        //     m_pw: m_pw,
+        //     m_mail: m_mail,
+        //     m_phone: m_phone,
+        //   });
+        //   console.log(memberDB);
+        //   airReservationDB.set(m_id, []);
+        // }
+        let chk=JSON.parse(window.localStorage.getItem(m_id));
+        let Obj;
 
+        if(chk===null){
+          Obj ={m_pw:m_pw,m_mail:m_mail,m_phone:m_phone};
+          console.log(JSON.stringify(Obj),m_pw,m_mail,m_phone);
+          window.localStorage.setItem(m_id,JSON.stringify(Obj));
+          alert("회원가입이 완료되었습니다!!");
+        }
+        else
+          alert("아이디 중복 확인하세요!!");
         break;
     }
   };
@@ -65,19 +91,15 @@ const SignUp = ({ memberDB, airReservationDB }) => {
 
     return result;
   };
+  const ValidateUserId = () => {
+      let chk=JSON.parse(window.localStorage.getItem(m_id));
+      if(chk===null){
+        alert("사용 가능한 아이디입니다!!");
+      }
+      else
+        alert("이미 존재하는 아이디입니다!!");
+  }
   // Validate END
-
-  const handleSelectChange = (e) => {
-    const selectedValue = e.target.value;
-    if (selectedValue === "1") {
-      strEmailRef.current.value = "";
-      strEmailRef.current.disabled = false;
-      strEmailRef.current.focus();
-    } else {
-      strEmailRef.current.value = selectedValue;
-      strEmailRef.current.disabled = true;
-    }
-  };
 
   return (
     <section>
@@ -91,7 +113,7 @@ const SignUp = ({ memberDB, airReservationDB }) => {
           value={m_id}
           onChange={(e) => setM_id(e.target.value)}
         />
-        <button>중복확인</button>
+        <button onClick={ValidateUserId}>중복확인</button>
         <br />
         <div className={styles.title}>비밀번호</div>
         <input
@@ -111,13 +133,9 @@ const SignUp = ({ memberDB, airReservationDB }) => {
           onChange={(e) => setM_mail(e.target.value)}
         />
         @
-        <input type="text" name="m_mail2" id="str_email" ref={strEmailRef} />
+        <input type="text" name="m_mail2" id="str_email" />
         <br />
-        <select
-          id="select_email"
-          ref={selectEmailRef}
-          onChange={handleSelectChange}
-        >
+        <select id="select_email">
           <option selected disabled>
             선택
           </option>
