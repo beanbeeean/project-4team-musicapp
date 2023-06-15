@@ -22,8 +22,8 @@ const Nav = () => {
 
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
-  const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
-
+  const [m_id, setM_id] = useState("");
+  let test = window.localStorage.getItem("session");
   useEffect(() => {
     const hash = window.location.hash;
     let token = window.localStorage.getItem("token");
@@ -50,6 +50,11 @@ const Nav = () => {
     dispatch(searchAction.searchByKeyword(searchKey));
     navigate("/search");
   };
+
+  useEffect(() => {
+    setM_id(test);
+    console.log("mid ", m_id);
+  }, [test]);
   return (
     <Container>
       <Row className={styles.search_wrap}>
