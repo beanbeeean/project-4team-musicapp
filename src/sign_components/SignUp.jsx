@@ -1,27 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./sign_up.module.css";
+import styles from "./css/sign_up.module.css";
 
 import $ from "jquery";
 
-// $("#select_email").change(function () {
-//   var selectedOption = $(this).val();
-//   console.log($(this).val());
-
-//   if (selectedOption === "1") {
-//     // 직접입력일 경우
-//     $(document).ready(function () {
-//       $("#str_email").focus();
-//     });
-
-//     $("#str_email").val(""); // 값 초기화
-//     $("#str_email").attr("disabled", false); // 활성화
-//   } else {
-//     // 직접입력이 아닐 경우
-//     $("#str_email").val(selectedOption); // 선택값 입력
-//     $("#str_email").attr("disabled", true); // 비활성화
-//   }
-// });
 $(document).ready(function () {
   var selectedOption = localStorage.getItem("selectedOption");
 

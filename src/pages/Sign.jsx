@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import SignIn from "../SignIn/SignIn";
-import SignUp from "../SignUp/SignUp";
+import SignIn from "../sign_components/SignIn";
+import SignUp from "../sign_components/SignUp";
 import { Routes, Route } from "react-router-dom";
 
 const Sign = () => {
