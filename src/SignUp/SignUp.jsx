@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./sign_up.module.css";
+
 import $ from "jquery";
 
 $("#select_email").change(function () {
@@ -23,47 +24,34 @@ $("#select_email").change(function () {
 
 const SIGN_UP_BUTTON = "1";
 
-const SignUp = ({ memberDB, airReservationDB }) => {
+const SignUp = ({ memberDB, userDB }) => {
   const [m_id, setM_id] = useState("");
   const [m_pw, setM_pw] = useState("");
   const [m_mail, setM_mail] = useState("");
   const [m_phone, setM_phone] = useState("");
 
   useEffect(() => {
-    console.log("[UserSignUp] useEffect() CALLED!!");
+    console.log("[SignUp] useEffect() CALLED!!");
   });
 
   const navigate = useNavigate();
 
   // Handler START
   const btnClickedHandler = (e) => {
-    console.log("[UserSignUp] btnClickedHandler() CALLED!!");
+    console.log("[SignUp] btnClickedHandler() CALLED!!");
 
     switch (e.target.name) {
       case SIGN_UP_BUTTON:
-        console.log("[UserSignUp] SIGN_UP_BUTTON CLICKED!!");
-
-        // if (ValidateUserInputData()) {
-        //   memberDB.set(m_id, {
-        //     m_id: m_id,
-        //     m_pw: m_pw,
-        //     m_mail: m_mail,
-        //     m_phone: m_phone,
-        //   });
-        //   console.log(memberDB);
-        //   airReservationDB.set(m_id, []);
-        // }
-        let chk=JSON.parse(window.localStorage.getItem(m_id));
+        console.log("[SignUp] SIGN_UP_BUTTON CLICKED!!");
+        let chk = JSON.parse(window.localStorage.getItem(m_id));
         let Obj;
 
-        if(chk===null){
-          Obj ={m_pw:m_pw,m_mail:m_mail,m_phone:m_phone};
-          console.log(JSON.stringify(Obj),m_pw,m_mail,m_phone);
-          window.localStorage.setItem(m_id,JSON.stringify(Obj));
+        if (chk === null) {
+          Obj = { m_pw: m_pw, m_mail: m_mail, m_phone: m_phone };
+          console.log(JSON.stringify(Obj), m_pw, m_mail, m_phone);
+          window.localStorage.setItem(m_id, JSON.stringify(Obj));
           alert("회원가입이 완료되었습니다!!");
-        }
-        else
-          alert("아이디 중복 확인하세요!!");
+        } else alert("아이디 중복 확인하세요!!");
         break;
     }
   };
@@ -71,7 +59,7 @@ const SignUp = ({ memberDB, airReservationDB }) => {
 
   // Validate START
   const ValidateUserInputData = () => {
-    console.log("[UserSignUp] ValidateUserInputData() CALLED!!");
+    console.log("[SignUp] ValidateUserInputData() CALLED!!");
 
     let result = true;
 
@@ -92,13 +80,11 @@ const SignUp = ({ memberDB, airReservationDB }) => {
     return result;
   };
   const ValidateUserId = () => {
-      let chk=JSON.parse(window.localStorage.getItem(m_id));
-      if(chk===null){
-        alert("사용 가능한 아이디입니다!!");
-      }
-      else
-        alert("이미 존재하는 아이디입니다!!");
-  }
+    let chk = JSON.parse(window.localStorage.getItem(m_id));
+    if (chk === null) {
+      alert("사용 가능한 아이디입니다!!");
+    } else alert("이미 존재하는 아이디입니다!!");
+  };
   // Validate END
 
   return (

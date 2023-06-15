@@ -5,8 +5,8 @@ import Container from "react-bootstrap/Container";
 import styles from "./nav.module.css";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import Playlists from "../playlist_components/Playlists";
 import { useDispatch } from "react-redux";
 import { searchAction } from "../redux/actions/searchAction";
 
@@ -22,8 +22,8 @@ const Nav = () => {
 
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
-  const [m_id, setM_id] = useState(window.localStorage.getItem('session'));
-  const [m_login,setLogin] = useState(window.localStorage.getItem('session2'));
+  const [m_id, setM_id] = useState("");
+  
 
 
   useEffect(() => {
@@ -44,6 +44,7 @@ const Nav = () => {
     }
 
     setToken(token);
+    console.log("m_id :", m_id)
   }, []);
 
   const searching = (e) => {
@@ -57,12 +58,11 @@ const Nav = () => {
     alert("로그아웃 되었습니다!!");
     window.localStorage.removeItem('session');
     window.localStorage.removeItem('session2');
-    setLogin(false);
     setM_id();
   }
 
   const logInBtnHandler = () => {
-    navigate("/search");
+    navigate("/sign");
   };
 
   return (
@@ -82,16 +82,17 @@ const Nav = () => {
           </form>
         </Col>
         <Col md={3} className={`${styles.login_wrap} text-center`}>
-          { m_login ? <>
-            {m_id}님, 반갑습니다.
+
+          { m_id ? <>
+            {m_id}님, 반갑습니다
             <input type="button" value="Logout" onClick={logoutBtnHandler}/>
-            </>:<><a href="#none" onClick={logInBtnHandler}>로그인</a>/회원가입</>
+            </>:<a href="#none" onClick={logInBtnHandler}>로그인/회원가입</a>
           }
         </Col>
       </Row>
       <Row className={styles.Menubar}>
         <Col className={`${styles.list} text-center`}>
-          <a href="#" >Music Chart</a>
+          <a href="#">Music Chart</a>
         </Col>
         <Col className={`${styles.list} text-center`}>
           <a href="#">Gongju</a>
@@ -103,7 +104,7 @@ const Nav = () => {
           <a href="#">All Playlist</a>
         </Col>
         <Col className={`${styles.list} text-center`}>
-          <a href="#">Playlist</a>
+          <Link to="/playlist">Playlist</Link>
         </Col>
       </Row>
     </Container>
