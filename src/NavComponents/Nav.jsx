@@ -5,7 +5,6 @@ import Container from "react-bootstrap/Container";
 import styles from "./nav.module.css";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { searchAction } from "../redux/actions/searchAction";
@@ -70,7 +69,7 @@ const Nav = () => {
           {m_id !== null ? (
             <div>
               {m_id}님, 반갑습니다.
-              <input type="button" value="Logout" onClick={logoutBtnHandler} />
+              <input type="button" value="Logout" />
             </div>
           ) : (
             <div></div>

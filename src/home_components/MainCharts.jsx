@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "./css/main_charts.module.css";
 import MainChartsItem from "./MainChartsItem";
+import { useDispatch, useSelector } from "react-redux";
+import { homeAction } from "../redux/actions/homeAction";
 
 const Charts = () => {
+  const dispatch = useDispatch();
+  const { charts, chartsImg } = useSelector((state) => state.home);
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [date, setDate] = useState("");
@@ -35,9 +39,15 @@ const Charts = () => {
     setMinute(minute);
   };
 
+  const getChartsImage = () => {};
   useEffect(() => {
     getNowDate();
+    dispatch(homeAction.getChartsTopTen());
   }, []);
+
+  useEffect(() => {
+    console.log("charts", charts);
+  }, [charts]);
 
   return (
     <Container className="pb-3">
@@ -58,22 +68,17 @@ const Charts = () => {
           가수
         </Col>
         <Col className={styles.main_charts_header} md={2} sm={2}>
-          temp
+          재생 횟수
         </Col>
         <Col className={styles.main_charts_header} md={2} sm={2}>
           temp
         </Col>
       </Row>
-      <MainChartsItem test="1" />
-      <MainChartsItem test="2" />
-      <MainChartsItem test="3" />
-      <MainChartsItem test="4" />
-      <MainChartsItem test="5" />
-      <MainChartsItem test="6" />
-      <MainChartsItem test="7" />
-      <MainChartsItem test="8" />
-      <MainChartsItem test="9" />
-      <MainChartsItem test="10" />
+      {chartsImg.length > 0
+        ? charts.tracks.track.map((item, idx) => (
+            <MainChartsItem item={item} img={chartsImg} idx={idx} />
+          ))
+        : ""}
     </Container>
   );
 };

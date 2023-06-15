@@ -7,7 +7,7 @@ const SearchMain = () => {
   const { searchArtists, searchTracks, searchAlbums } = useSelector(
     (state) => state.search
   );
-
+  useEffect(() => {}, [searchArtists]);
   return (
     <Container>
       <Row className={styles.artist_name}>
@@ -79,7 +79,13 @@ const SearchMain = () => {
                 <div>
                   <ul>
                     <li>
-                      <img src={artist.images[2].url} />
+                      <img
+                        src={
+                          artist.images.length == 0
+                            ? "https://picsum.photos/200/200"
+                            : artist.images[0].url
+                        }
+                      />
                     </li>
                     <li>{artist.name}</li>
                     <li>{artist.type}</li>
