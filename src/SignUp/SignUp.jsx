@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./sign_up.module.css";
-import Modal from "./Modal";
 
 const SIGN_UP_BUTTON = "1";
 
-const SignUp = ({ memberDB, airReservationDB }) => {
+const SignUp = ({ memberDB, userDB }) => {
   const [m_id, setM_id] = useState("");
   const [m_pw, setM_pw] = useState("");
   const [m_mail, setM_mail] = useState("");
@@ -14,18 +13,18 @@ const SignUp = ({ memberDB, airReservationDB }) => {
   const strEmailRef = useRef(null);
 
   useEffect(() => {
-    console.log("[UserSignUp] useEffect() CALLED!!");
+    console.log("[SignUp] useEffect() CALLED!!");
   });
 
   const navigate = useNavigate();
 
   // Handler START
   const btnClickedHandler = (e) => {
-    console.log("[UserSignUp] btnClickedHandler() CALLED!!");
+    console.log("[SignUp] btnClickedHandler() CALLED!!");
 
     switch (e.target.name) {
       case SIGN_UP_BUTTON:
-        console.log("[UserSignUp] SIGN_UP_BUTTON CLICKED!!");
+        console.log("[SignUp] SIGN_UP_BUTTON CLICKED!!");
 
         if (ValidateUserInputData()) {
           memberDB.set(m_id, {
@@ -35,7 +34,7 @@ const SignUp = ({ memberDB, airReservationDB }) => {
             m_phone: m_phone,
           });
           console.log(memberDB);
-          airReservationDB.set(m_id, []);
+          userDB.set(m_id, []);
         }
 
         break;
@@ -45,7 +44,7 @@ const SignUp = ({ memberDB, airReservationDB }) => {
 
   // Validate START
   const ValidateUserInputData = () => {
-    console.log("[UserSignUp] ValidateUserInputData() CALLED!!");
+    console.log("[SignUp] ValidateUserInputData() CALLED!!");
 
     let result = true;
 

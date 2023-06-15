@@ -6,7 +6,8 @@ import styles from "./nav.module.css";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import Playlists from "../playlist_components/Playlists";
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -86,7 +87,7 @@ const Nav = () => {
           <a href="#">All Playlist</a>
         </Col>
         <Col className={`${styles.list} text-center`}>
-          <a href="#">Playlist</a>
+          <Link to="/playlist">Playlist</Link>
         </Col>
       </Row>
     </Container>

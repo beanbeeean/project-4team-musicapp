@@ -5,10 +5,12 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import SignUp from "./SignUp/SignUp";
+import Playlists from "./playlist_components/Playlists";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <App /> 
+    <App />
+    {/* <Playlists /> */}
   </BrowserRouter>
 );
 

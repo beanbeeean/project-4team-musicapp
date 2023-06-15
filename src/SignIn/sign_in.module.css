@@ -1,0 +1,56 @@
+section {
+  width: 100%;
+  text-align: center;
+  margin: 70px auto;
+}
+
+section h4 {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.section_wrap {
+  margin: 0 auto;
+  padding: 50px;
+  width: 400px;
+  height: 350px;
+  border: 1px solid #dadada;
+}
+
+.section_wrap input {
+  width: 100%;
+  margin: 5px;
+  border: 10px;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  padding: 7px;
+  margin-bottom: 10px;
+}
+
+.section_wrap .title {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.85em;
+  font-weight: bold;
+  color: #5e5e5e;
+}
+
+.section_wrap input {
+  width: 70%;
+  padding: 10px;
+  font-size: 0.9em;
+  color: #5e5e5e;
+}
+
+.section_wrap input[type="button"] {
+  width: 50%;
+  background-color: #5e5e5e;
+  color: #fff;
+}
+
+.section_wrap div.go_sign_up,
+.section_wrap div.go_sign_up a {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #8f8f8f;
+}
