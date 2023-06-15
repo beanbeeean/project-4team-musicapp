@@ -67,7 +67,7 @@
 
 .album span {
   position: absolute;
-  margin: 50px;
+  margin: 60px;
   display: none;
   color: #fff;
   z-index: 100;
@@ -78,16 +78,25 @@
     min-width: 80px;
     min-height: 60px;
   }
+  .album span {
+    margin: 30px;
+  }
 }
 @media all and (min-width: 768px) and (max-width: 1024px) {
   .album img {
     min-width: 110px;
     min-height: 60px;
   }
+  .album span {
+    margin: 40px;
+  }
 }
 @media all and (min-width: 1024px) and (max-width: 1398px) {
   .album img {
     min-width: 110px;
     min-height: 60px;
+  }
+  .album span {
+    margin: 60px;
   }
 }

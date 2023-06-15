@@ -23,6 +23,8 @@ const Nav = () => {
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [m_id, setM_id] = useState(window.localStorage.getItem('session'));
+  const [m_login,setLogin] = useState(window.localStorage.getItem('session2'));
+
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -50,6 +52,19 @@ const Nav = () => {
     dispatch(searchAction.searchByKeyword(searchKey));
     navigate("/search");
   };
+
+  const logoutBtnHandler = () => {
+    alert("로그아웃 되었습니다!!");
+    window.localStorage.removeItem('session');
+    window.localStorage.removeItem('session2');
+    setLogin(false);
+    setM_id();
+  }
+
+  const logInBtnHandler = () => {
+    navigate("/search");
+  };
+
   return (
     <Container>
       <Row className={styles.search_wrap}>
@@ -67,10 +82,10 @@ const Nav = () => {
           </form>
         </Col>
         <Col md={3} className={`${styles.login_wrap} text-center`}>
-          { m_id !== null ? 
-            <div>{m_id}님, 반갑습니다.
+          { m_login ? <>
+            {m_id}님, 반갑습니다.
             <input type="button" value="Logout" onClick={logoutBtnHandler}/>
-            </div> : <div></div>
+            </>:<><a href="#none" onClick={logInBtnHandler}>로그인</a>/회원가입</>
           }
         </Col>
       </Row>

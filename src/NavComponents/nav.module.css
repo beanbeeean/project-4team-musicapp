@@ -47,8 +47,9 @@
   text-decoration: underline;
 }
 
-.login_wrap div {
-  margin-left: 150px;
+.login_wrap {
+  margin-top: 40px;
+  height: 60px;
 }
 
 .Menubar {

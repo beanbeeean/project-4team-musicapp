@@ -9,7 +9,7 @@ import Modal from "../SignUp/Modal";
 
 const NewMusic = () => {
   const [page, setPage] = useState(1);
-  const [m_login,setLogin] = useState(window.localStorage.getItem('session'));
+  const [m_login,setLogin] = useState(window.localStorage.getItem('session2'));
   const [m_id, setM_id] = useState(window.localStorage.getItem('session'));
   const [m_pw, setM_pw] = useState("");
 
@@ -29,6 +29,7 @@ const NewMusic = () => {
     if(chk!==null && m_pw===chk.m_pw){
       console.log(m_id);
       window.localStorage.setItem('session',m_id);
+      window.localStorage.setItem('session2',true);
       setLogin(true);
     }
     else{
@@ -40,15 +41,15 @@ const NewMusic = () => {
     alert("로그아웃 되었습니다!!");
     setLogin(false);
     window.localStorage.removeItem('session');
-    setM_id();
+    window.localStorage.removeItem('session2');
   }
 
   const deleteBtnHandler = () => {
     alert("회원삭제 되었습니다!!");
     setLogin(false);
     window.localStorage.removeItem('session');
+    window.localStorage.removeItem('session2');
     window.localStorage.removeItem(m_id);
-    setM_id();
   }
 
   return (
@@ -89,7 +90,7 @@ const NewMusic = () => {
           </table>
         </Col>
         <Col>
-        { (m_login!==null || m_login==='') ?<div className={loginStyles.section_wrap}>
+        { m_login ?<div className={loginStyles.section_wrap}>
           <div>{m_id}님, 반갑습니다.</div>
           <input type="button" value="Logout" onClick={logoutBtnHandler}/>
           <input type="button" value="delete" onClick={deleteBtnHandler}/>
