@@ -7,7 +7,8 @@ import { Route, Routes } from "react-router-dom";
 import Search from "./pages/Search";
 import Playlists from "./playlist_components/Playlists";
 import Sign from "./pages/Sign";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import Charts from "./charts_components/Charts";
 import PlaylistItem from "./playlist_components/PlaylistItem";
 import CreatePlaylist from "./playlist_components/CreatePlaylist";
 import SignIn from "./sign_components/SignIn";
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
         <Route path="/playlist" element={<Playlists />} />
+        <Route path="/charts" element={<Charts />} />
         <Route path="/signin" element={<SignIn login={login} />} />
         <Route path="/signup" element={<SignUp login={login} />} />
         <Route path="/playlistitem" element={<PlaylistItem />} />

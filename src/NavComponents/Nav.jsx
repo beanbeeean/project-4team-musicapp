@@ -42,7 +42,7 @@ const Nav = ({ login }) => {
     }
 
     setToken(token);
-    console.log("m_id :", m_id);
+    // console.log("m_id :", m_id);
   }, []);
 
   const searching = (e) => {
@@ -92,7 +92,7 @@ const Nav = ({ login }) => {
       </Row>
       <Row className={styles.Menubar}>
         <Col className={`${styles.list} text-center`}>
-          <a href="#">Music Chart</a>
+          <Link to="/charts">Music Chart</Link>
         </Col>
         <Col className={`${styles.list} text-center`}>
           <a href="#">Gongju</a>
