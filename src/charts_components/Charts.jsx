@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import styles from "./css/main_charts.module.css";
-import MainChartsItem from "./MainChartsItem";
+import React, { useEffect, useRef, useState } from "react";
+import { chartsAction } from "../redux/actions/chartsAction";
 import { useDispatch, useSelector } from "react-redux";
-import { homeAction } from "../redux/actions/homeAction";
+import { Col, Container, Row } from "react-bootstrap";
+import styles from "./css/charts.module.css";
+import MainChartsItem from "../home_components/MainChartsItem";
 
 const Charts = () => {
   const dispatch = useDispatch();
-  const { charts, chartsImg } = useSelector((state) => state.home);
+  const { allCharts, allChartsImg, loading } = useSelector(
+    (state) => state.charts
+  );
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [date, setDate] = useState("");
   const [hour, setHour] = useState("");
   const [minute, setMinute] = useState("");
-
+  //   const [page, setPage] = useState(1);
+  let page = useRef(1);
   const getNowDate = () => {
     let today = new Date();
     let year = today.getFullYear();
@@ -39,14 +42,19 @@ const Charts = () => {
     setMinute(minute);
   };
 
-  useEffect(() => {
-    getNowDate();
-    dispatch(homeAction.getChartsTopTen());
-  }, []);
+  const getMoreCharts = () => {
+    if (page.current < 4) {
+      dispatch(chartsAction.getAllCharts(++page.current));
+      console.log("page", page.current);
+    } else {
+      return;
+    }
+  };
 
   useEffect(() => {
-    console.log("charts", charts);
-  }, [charts]);
+    dispatch(chartsAction.getAllCharts());
+    getNowDate();
+  }, []);
 
   return (
     <Container className="pb-3">
@@ -73,11 +81,16 @@ const Charts = () => {
           temp
         </Col>
       </Row>
-      {chartsImg.length > 0
-        ? charts.tracks.track.map((item, idx) => (
-            <MainChartsItem item={item} img={chartsImg} idx={idx} />
-          ))
-        : ""}
+      {allCharts?.tracks?.track.map((item, idx) => (
+        <MainChartsItem item={item} img={allChartsImg} idx={idx} />
+      ))}
+      {page.current < 4 ? (
+        <div className={styles.more_charts_btn}>
+          <button onClick={getMoreCharts}>차트 더보기</button>
+        </div>
+      ) : (
+        <div className={styles.more_charts_btn}>차트 끝</div>
+      )}
     </Container>
   );
 };

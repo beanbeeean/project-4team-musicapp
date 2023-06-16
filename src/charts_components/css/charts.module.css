@@ -1,0 +1,77 @@
+div.main_charts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+div.main_charts > h5 {
+  font-weight: bold;
+  width: 120px;
+}
+
+div.main_charts > p {
+  font-size: 0.9em;
+  color: rgba(50, 50, 50, 0.7);
+  width: 150px;
+  float: right;
+}
+
+.charts_header_wrap {
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #dadada;
+}
+
+.main_charts_header {
+  text-align: center;
+  font-weight: bold;
+  color: rgba(50, 50, 50, 0.8);
+}
+
+.charts_list_wrap {
+  border-bottom: 1px solid #dadada;
+  display: flex;
+  align-items: center;
+}
+
+.charts_list_wrap:hover .main_charts_number {
+  font-size: 30px;
+}
+
+.main_charts_number {
+  font-size: 1.1em;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.main_charts_song {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 576px) {
+  .main_charts_song {
+    justify-content: center;
+  }
+}
+
+.more_charts_btn {
+  padding: 10px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.more_charts_btn > button {
+  padding: 8px;
+  width: 150px;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: rgba(111, 111, 111, 0.8);
+  border: 1px solid #dadada;
+  border-radius: 8px;
+}
+
+.more_charts_btn > button:hover {
+  background-color: #242424;
+  color: rgba(176, 172, 172, 0.8);
+}
