@@ -18,7 +18,7 @@ function getAllCharts(page) {
       //   console.log("sdsd", chartsArr);
       let tracksImg;
       let tracksArr = [];
-      // console.log("data : ", data.tracks[0].name);
+
       for (let i = 0; i < data.tracks.track.length; i++) {
         tracksImg = await api.get("/search", {
           params: {
@@ -27,12 +27,10 @@ function getAllCharts(page) {
             limit: 1,
           },
         });
-        //   console.log("dddd", data.tracks.track[i].name);
-        //   console.log(tracksImg.data.tracks.items[0].album.images[0].url);
+
         tracksArr.push(tracksImg.data.tracks.items[0].album.images[2].url);
       }
-      // console.log("tracks : ", tracksImg);
-      // console.log("tracksArr : ", tracksArr);
+
       dispatch({
         type: "GET_ALL_CHARTS_SUCCESS",
         payload: { allCharts: data },

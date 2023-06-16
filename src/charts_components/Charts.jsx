@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "./css/charts.module.css";
 import MainChartsItem from "../home_components/MainChartsItem";
-
 const Charts = () => {
   const dispatch = useDispatch();
   const { allCharts, allChartsImg, loading } = useSelector(
@@ -15,7 +14,7 @@ const Charts = () => {
   const [date, setDate] = useState("");
   const [hour, setHour] = useState("");
   const [minute, setMinute] = useState("");
-  //   const [page, setPage] = useState(1);
+
   let page = useRef(1);
   const getNowDate = () => {
     let today = new Date();
