@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./css/sign_up.module.css";
 
 import $ from "jquery";
+import { useNavigate } from "react-router-dom";
 
 $(document).ready(function () {
   var selectedOption = localStorage.getItem("selectedOption");
@@ -29,11 +30,21 @@ $(document).ready(function () {
 
 const SIGN_UP_BUTTON = "1";
 
-const SignUp = ({ setOption}) => {
-  const [m_id, setM_id] = useState("");
-  const [m_pw, setM_pw] = useState("");
-  const [m_mail, setM_mail] = useState("");
-  const [m_phone, setM_phone] = useState("");
+const SignUp = ({ login }) => {
+  const navigate = useNavigate()
+  let session=window.localStorage.getItem('session');
+  let log;
+
+  
+  console.log("session");
+  if(session!==null){
+    log=JSON.parse(window.localStorage.getItem(session));
+  }
+
+  const [m_id, setM_id] = useState(session===null? "":session);
+  const [m_pw, setM_pw] = useState(session===null? "":log[0].m_pw);
+  const [m_mail, setM_mail] = useState(session===null? "":log[0].m_mail);
+  const [m_phone, setM_phone] = useState(session===null? "":log[0].m_phone);
 
   useEffect(() => {
     console.log("[SignUp] useEffect() CALLED!!");
@@ -45,24 +56,34 @@ const SignUp = ({ setOption}) => {
 
     switch (e.target.name) {
       case SIGN_UP_BUTTON:
-        if(ValidateUserInputData()){
+        if (ValidateUserInputData()) {
           console.log("[SignUp] SIGN_UP_BUTTON CLICKED!!");
           let chk = JSON.parse(window.localStorage.getItem(m_id));
           let Obj;
 
           if (chk === null) {
-            Obj = { m_pw: m_pw, m_mail: m_mail, m_phone: m_phone };
+            Obj = [{ m_pw: m_pw, m_mail: m_mail, m_phone: m_phone }];
             console.log(JSON.stringify(Obj), m_pw, m_mail, m_phone);
             window.localStorage.setItem(m_id, JSON.stringify(Obj));
             alert("회원가입이 완료되었습니다!!");
-            setOption(0);
-          } 
-          else alert("아이디 중복 확인하세요!!");
+            navigate("/signin");
+          } else alert("아이디 중복 확인하세요!!");
         }
         break;
     }
   };
-  
+
+  const deleteBtnHandler = () => {
+    let result = window.confirm("정말 삭제하시겠습니까?");
+
+    if(result){
+      alert("회원 삭제 되었습니다!!");
+      window.localStorage.removeItem("session");
+      window.localStorage.removeItem(m_id);
+      navigate("/");
+    }
+  };
+
   // Handler END
 
   // Validate START
@@ -97,7 +118,7 @@ const SignUp = ({ setOption}) => {
 
   return (
     <section>
-      <h4>정보 입력</h4>
+      <h4>{login.current === null ? "회원가입" : "정보수정"}</h4>
       <div className={styles.section_wrap}>
         <div className={styles.title}>아이디</div>
         <input
@@ -106,12 +127,15 @@ const SignUp = ({ setOption}) => {
           placeholder="Input ID"
           value={m_id}
           onChange={(e) => setM_id(e.target.value)}
+          readOnly={login.current === null ? false : true}
         />
-        <button onClick={ValidateUserId}>중복확인</button>
+        {login.current === null ? 
+        <button onClick={ValidateUserId}>중복확인</button>:<></>
+        }
         <br />
         <div className={styles.title}>비밀번호</div>
         <input
-          type="password"
+          type="text"
           name="m_pw"
           placeholder="Input Password"
           value={m_pw}
@@ -150,10 +174,11 @@ const SignUp = ({ setOption}) => {
         <br />
         <input
           type="button"
-          value="SIGN UP"
+          value="SAVE"
           name={SIGN_UP_BUTTON}
           onClick={btnClickedHandler}
         />
+        {login.current === null ? <></> : <button onClick={deleteBtnHandler}>회원탈퇴</button>}
       </div>
     </section>
   );

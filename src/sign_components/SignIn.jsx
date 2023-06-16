@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./css/sign_in.module.css";
 
 const SIGN_IN_BUTTON = "1";
 
-const SignIn = ({ setOption, login}) => {
+const SignIn = ({ login }) => {
   const [m_id, setM_id] = useState("");
   const [m_pw, setM_pw] = useState("");
 
@@ -17,15 +17,14 @@ const SignIn = ({ setOption, login}) => {
   // Handler START
 
   const loginBtnHandler = () => {
-    let chk = JSON.parse(window.localStorage.getItem(m_id));
+    let chk = JSON.parse(window.localStorage.getItem(m_id))[0];
 
     if (chk !== null && m_pw === chk.m_pw) {
       console.log(m_id);
       window.localStorage.setItem("session", m_id);
       alert("로그인 되었습니다!!");
       login.current = window.localStorage.getItem("session");
-      navigate('/');
-
+      navigate("/");
     } else {
       alert("아이디 또는 비밀번호를 확인하세요!!");
     }
@@ -65,7 +64,7 @@ const SignIn = ({ setOption, login}) => {
           onClick={loginBtnHandler}
         />
         <div className={styles.go_sign_up}>
-          아직 회원이 아니신가요? <a onClick={() => setOption(1)}>회원가입</a>
+          아직 회원이 아니신가요? <Link to="/signup">회원가입</Link>
         </div>
       </div>
     </section>

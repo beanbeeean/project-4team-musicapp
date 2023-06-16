@@ -10,7 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { searchAction } from "../redux/actions/searchAction";
 
-const Nav = () => {
+const Nav = ({ login }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -55,13 +55,13 @@ const Nav = () => {
   const logoutBtnHandler = () => {
     alert("로그아웃 되었습니다!!");
     window.localStorage.removeItem("session");
-    window.localStorage.removeItem("session2");
-    setM_id();
+    login.current = null;
+    navigate("/");
   };
 
-  const logInBtnHandler = () => {
-    navigate("/sign");
-  };
+  useEffect(() => {
+    setM_id(window.localStorage.getItem("session"));
+  }, [login]);
 
   return (
     <Container>
@@ -80,13 +80,13 @@ const Nav = () => {
           </form>
         </Col>
         <Col md={3} className={`${styles.login_wrap} text-center`}>
-          {m_id !== null ? (
-            <div>
-              {m_id}님, 반갑습니다.
+          {login.current !== null ? (
+            <>
+              <Link to="/signup">{login.current}</Link>님, 반갑습니다
               <input type="button" value="Logout" onClick={logoutBtnHandler} />
-            </div>
+            </>
           ) : (
-            <div></div>
+            <Link to="/signin">로그인/회원가입</Link>
           )}
         </Col>
       </Row>

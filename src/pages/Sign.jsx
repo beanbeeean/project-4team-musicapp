@@ -5,6 +5,7 @@ import { Container } from "react-bootstrap";
 
 const Sign = ({login}) => {
   const [option, setOption] = useState(0);
+
   if (option == 0) {
     return (
       <Container>
@@ -21,3 +22,4 @@ const Sign = ({login}) => {
 };
 
 export default Sign;
+
