@@ -59,10 +59,6 @@ const Nav = ({ login }) => {
     navigate("/");
   };
 
-  const logInBtnHandler = () => {
-    navigate("/sign");
-  };
-
   useEffect(() => {
     setM_id(window.localStorage.getItem("session"));
   }, [login]);
@@ -86,13 +82,11 @@ const Nav = ({ login }) => {
         <Col md={3} className={`${styles.login_wrap} text-center`}>
           {login.current !== null ? (
             <>
-              {login.current}님, 반갑습니다
+              <Link to="/signup">{login.current}</Link>님, 반갑습니다
               <input type="button" value="Logout" onClick={logoutBtnHandler} />
             </>
           ) : (
-            <a href="#none" onClick={logInBtnHandler}>
-              로그인/회원가입
-            </a>
+            <Link to="/signin">로그인/회원가입</Link>
           )}
         </Col>
       </Row>

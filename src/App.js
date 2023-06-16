@@ -9,6 +9,8 @@ import Playlists from "./playlist_components/Playlists";
 import Sign from "./pages/Sign";
 import { useRef } from "react";
 import PlaylistItem from "./playlist_components/PlaylistItem";
+import SignIn from "./sign_components/SignIn";
+import SignUp from "./sign_components/SignUp";
 
 function App() {
   let login = useRef(window.localStorage.getItem("session"));
@@ -20,7 +22,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
         <Route path="/playlist" element={<Playlists />} />
-        <Route path="/sign" element={<Sign login={login} />} />
+        <Route path="/signin" element={<SignIn login={login} />} />
+        <Route path="/signup" element={<SignUp login={login} />} />
         <Route path="/playlistitem" element={<PlaylistItem />} />
       </Routes>
       <Footer />
