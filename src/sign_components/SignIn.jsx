@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./css/sign_in.module.css";
 
 const SIGN_IN_BUTTON = "1";
 
-const SignIn = ({ setOption, login }) => {
+const SignIn = ({ login }) => {
   const [m_id, setM_id] = useState("");
   const [m_pw, setM_pw] = useState("");
 
@@ -64,7 +64,7 @@ const SignIn = ({ setOption, login }) => {
           onClick={loginBtnHandler}
         />
         <div className={styles.go_sign_up}>
-          아직 회원이 아니신가요? <a onClick={() => setOption(1)}>회원가입</a>
+          아직 회원이 아니신가요? <Link to="/signup">회원가입</Link>
         </div>
       </div>
     </section>
