@@ -1,8 +1,11 @@
+import deepmerge from "deepmerge";
+
 let initialState = {
   allCharts: {},
   allChartsImg: [],
   loading: true,
 };
+
 function chartsReducer(state = initialState, action) {
   let { type, payload } = action;
   switch (type) {
@@ -14,7 +17,7 @@ function chartsReducer(state = initialState, action) {
       console.log("this ", state.allCharts);
       return {
         ...state,
-        allCharts: payload.allCharts,
+        allCharts: deepmerge(state.allCharts, payload.allCharts),
         loading: false,
       };
     case "GET_ALL_CHARTS_IMG_SUCCESS":
