@@ -33,13 +33,17 @@ const TracksItem = ({ num, item, test, setTest }) => {
     console.log("title", title);
     console.log("playlist명", title.playlist_title);
 
-    playlist = JSON.parse(window.localStorage.getItem(title));
+    let mergePly = mergeObj(test, title);
+    console.log(mergePly);
+    let stringmergePly = JSON.stringify(mergePly);
+    // title.push(test) != null
+    //   ? playlist[test2].push(test)
+    //   : (playlist[test2] = test);
+    // console.log("playlist:", playlist);
 
-    console.log(playlist);
+    window.localStorage.setItem(title.playlist_title, stringmergePly);
 
-    window.localStorage.setItem(title.playlist_title, JSON.stringify(playlist));
-    // playlist = [{ ...playlist, ...test }];
-    // playlist[test2].push(test);
+    // playlist = [{ ...playlist, ...test2 }];
     // setTest([]);
     // console.log("내가 담은 곡", playlist);
     // console.log(playlist[0]);
@@ -54,6 +58,20 @@ const TracksItem = ({ num, item, test, setTest }) => {
 
     // setTest([]);
   };
+
+  // merge object 함수
+  function mergeObj(title, test) {
+    const newObj = {};
+    for (let att in test) {
+      newObj[att] = test[att];
+    }
+
+    for (let att in title) {
+      newObj[att] = title[att];
+    }
+
+    return newObj;
+  }
 
   return (
     <>

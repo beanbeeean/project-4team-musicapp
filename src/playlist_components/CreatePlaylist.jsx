@@ -40,13 +40,20 @@ const CreatePlaylist = () => {
       playlist_title: playlist_title,
       about_playlist: about_playlist,
     });
-    temp = test1.slice();
-    setTest1(temp);
+
+    setTest1(test1);
+    playlist_list = { ...playlist_list, ...test1 };
 
     // playlist_list = JSON.parse(window.localStorage.getItem(m_id));
-    playlist_list = { ...playlist_list, ...test1 };
     console.log(test1);
     console.log("내 플레이리스트", playlist_list);
+    // if (window.localStorage.getItem(m_id).length < 50) {
+    //   window.localStorage.setItem(m_id, JSON.stringify(playlist_list));
+    // } else {
+    //   JSON.parse(localStorage.getItem(m_id)).push(
+    //     JSON.stringify(playlist_list)
+    //   );
+    // }
 
     window.localStorage.setItem(m_id, JSON.stringify(playlist_list));
 
