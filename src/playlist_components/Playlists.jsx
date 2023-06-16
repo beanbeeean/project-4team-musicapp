@@ -23,32 +23,6 @@ const Playlists = () => {
             <div className={styles.song_cnt}>총 127곡</div>
           </li>
         </ul>
-        <ul className={styles.playlist_item_wrap}>
-          <li className={styles.playlist_pic}>
-            <img src="./imgs/default.jpg" />
-          </li>
-          <li>
-            <div className={styles.playlist_name}>
-              This is my first playlist
-            </div>
-            <br />
-            <div className={styles.create_date}>생성일&nbsp;</div>
-            <div className={styles.song_cnt}>총 127곡</div>
-          </li>
-        </ul>
-        <ul className={styles.playlist_item_wrap}>
-          <li className={styles.playlist_pic}>
-            <img src="./imgs/default.jpg" />
-          </li>
-          <li>
-            <div className={styles.playlist_name}>
-              This is my first playlist
-            </div>
-            <br />
-            <div className={styles.create_date}>생성일&nbsp;</div>
-            <div className={styles.song_cnt}>총 127곡</div>
-          </li>
-        </ul>
       </div>
     </div>
   );

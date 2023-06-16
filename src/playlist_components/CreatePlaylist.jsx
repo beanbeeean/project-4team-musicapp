@@ -27,35 +27,19 @@ const CreatePlaylist = () => {
 
   const [playlist_title, setPlaylist_title] = useState("");
   const [about_playlist, setAbout_playlist] = useState("");
-
-  const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
-  const [test1, setTest1] = useState([]);
-  let temp;
-  let playlist_list = {};
+  let userid = window.localStorage.getItem("session");
 
   const btnClickedHandler = () => {
     console.log("[CreatePlaylist] CREATE CLICKED!!");
 
-    test1.push({
-      playlist_title: playlist_title,
-      about_playlist: about_playlist,
-    });
+    let playlist = [
+      { playlist_title: playlist_title, about_playlist: about_playlist },
+    ];
+    let user = JSON.parse(window.localStorage.getItem(userid));
 
-    setTest1(test1);
-    playlist_list = { ...playlist_list, ...test1 };
+    user = [...user, ...playlist];
 
-    // playlist_list = JSON.parse(window.localStorage.getItem(m_id));
-    console.log(test1);
-    console.log("내 플레이리스트", playlist_list);
-    // if (window.localStorage.getItem(m_id).length < 50) {
-    //   window.localStorage.setItem(m_id, JSON.stringify(playlist_list));
-    // } else {
-    //   JSON.parse(localStorage.getItem(m_id)).push(
-    //     JSON.stringify(playlist_list)
-    //   );
-    // }
-
-    window.localStorage.setItem(m_id, JSON.stringify(playlist_list));
+    window.localStorage.setItem(userid, JSON.stringify(user));
 
     alert("플레이리스트 생성이 완료되었습니다!!");
   };

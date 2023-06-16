@@ -8,7 +8,6 @@ const TracksItem = ({ num, item, test, setTest }) => {
 
   let temp;
   let title;
-  let playlist;
 
   const testing = (e) => {
     if (e.target.checked) {
@@ -33,22 +32,19 @@ const TracksItem = ({ num, item, test, setTest }) => {
     console.log("title", title);
     console.log("playlist명", title.playlist_title);
 
-    let mergePly = mergeObj(test, title);
-    console.log(mergePly);
-    let stringmergePly = JSON.stringify(mergePly);
-    // title.push(test) != null
-    //   ? playlist[test2].push(test)
-    //   : (playlist[test2] = test);
-    // console.log("playlist:", playlist);
+    let playlist = JSON.parse(
+      window.localStorage.getItem(title.playlist_title)
+    );
 
-    window.localStorage.setItem(title.playlist_title, stringmergePly);
-
-    // playlist = [{ ...playlist, ...test2 }];
-    // setTest([]);
-    // console.log("내가 담은 곡", playlist);
-    // console.log(playlist[0]);
-
-    // window.localStorage.setItem(m_id, JSON.stringify(playlist));
+    if (playlist !== null) {
+      playlist = [...playlist, ...test];
+      window.localStorage.setItem(
+        title.playlist_title,
+        JSON.stringify(playlist)
+      );
+    } else {
+      window.localStorage.setItem(title.playlist_title, JSON.stringify(test));
+    }
 
     const checkboxes = document.querySelectorAll(".chkbox"); // .chkbox 클래스를 가진 모든 체크박스 선택
 
@@ -56,7 +52,7 @@ const TracksItem = ({ num, item, test, setTest }) => {
       checkbox.checked = false; // 체크박스 선택 해제
     });
 
-    // setTest([]);
+    setTest([]);
   };
 
   // merge object 함수
