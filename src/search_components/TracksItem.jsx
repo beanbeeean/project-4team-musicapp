@@ -8,7 +8,7 @@ const TracksItem = ({ num, item, test, setTest }) => {
 
   let temp;
   let title;
-  let playlist;
+  
 
   const testing = (e) => {
     if (e.target.checked) {
@@ -33,18 +33,16 @@ const TracksItem = ({ num, item, test, setTest }) => {
     console.log("title", title);
     console.log("playlist명", title.playlist_title);
 
-    playlist = JSON.parse(window.localStorage.getItem(title));
+    let playlist=JSON.parse(window.localStorage.getItem(title.playlist_title));
 
-    console.log(playlist);
+    if(playlist!==null){
+      playlist=[...playlist,...test];
+      window.localStorage.setItem(title.playlist_title, JSON.stringify(playlist));
+    }
+    else {
+      window.localStorage.setItem(title.playlist_title, JSON.stringify(test));
+    }
 
-    window.localStorage.setItem(title.playlist_title, JSON.stringify(playlist));
-    // playlist = [{ ...playlist, ...test }];
-    // playlist[test2].push(test);
-    // setTest([]);
-    // console.log("내가 담은 곡", playlist);
-    // console.log(playlist[0]);
-
-    // window.localStorage.setItem(m_id, JSON.stringify(playlist));
 
     const checkboxes = document.querySelectorAll(".chkbox"); // .chkbox 클래스를 가진 모든 체크박스 선택
 
@@ -52,7 +50,7 @@ const TracksItem = ({ num, item, test, setTest }) => {
       checkbox.checked = false; // 체크박스 선택 해제
     });
 
-    // setTest([]);
+    setTest([]);
   };
 
   return (
