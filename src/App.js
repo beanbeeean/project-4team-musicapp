@@ -9,6 +9,7 @@ import Playlists from "./playlist_components/Playlists";
 import Sign from "./pages/Sign";
 import { useRef } from "react";
 import PlaylistItem from "./playlist_components/PlaylistItem";
+import CreatePlaylist from "./playlist_components/CreatePlaylist";
 
 function App() {
   let login = useRef(window.localStorage.getItem("session"));
@@ -22,6 +23,7 @@ function App() {
         <Route path="/playlist" element={<Playlists />} />
         <Route path="/sign" element={<Sign login={login} />} />
         <Route path="/playlistitem" element={<PlaylistItem />} />
+        <Route path="/playlist/create_playlist" element={<CreatePlaylist />} />
       </Routes>
       <Footer />
     </div>

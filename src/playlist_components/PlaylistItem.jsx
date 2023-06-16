@@ -1,25 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import styles from "./playlists.module.css";
+import styles from "./css/playlist_item.module.css";
 import { Container, Row, Col } from "react-bootstrap";
 
 const Playlistplaylist = () => {
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
   const [idx, setIdx] = useState(0);
+  const [curidx, setCurIdx] = useState(0);
 
   let playlist = JSON.parse(window.localStorage.getItem(m_id));
-  console.log(playlist);
+  console.log("playlist", playlist);
+  // console.log("playlist[0]", playlist[curidx]);
 
   return (
     <Container>
-      {playlist.map((item, idx) =>
-        idx == 0 ? (
+      <h5>내가 담은 곡</h5>
+      {/* {playlist.map((item, idx) =>
+        idx == 5 ? (
           ""
         ) : (
           <Row className={styles.tracks_wrap}>
             <Col md={5} className={styles.tracks_title}>
+              <div className={styles.tracks_img}>
+                <img src={item.item.album.images[2].url} alt="" />
+              </div>
               <div className={styles.tracks_info}>
-                <div className={styles.tracks_track}>{item.name}</div>
+                <div className={styles.tracks_track}>{item.item.name}</div>
                 <span>{item.item.artists[0].name}</span>
               </div>
             </Col>
@@ -36,7 +42,7 @@ const Playlistplaylist = () => {
             </Col>
           </Row>
         )
-      )}
+      )} */}
     </Container>
   );
 };

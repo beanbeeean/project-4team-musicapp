@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import styles from "./css/search_tracks.module.css";
-import PlaylistItem from "../playlist_components/PlaylistItem";
 
 const TracksItem = ({ num, item, test, setTest }) => {
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
+  const [idx, setIdx] = useState(0);
+
   let temp;
-  let playlist = [];
+  let title;
+  let playlist;
 
   const testing = (e) => {
     if (e.target.checked) {
@@ -25,12 +27,24 @@ const TracksItem = ({ num, item, test, setTest }) => {
   };
 
   const saveBtnHandler = () => {
-    playlist = JSON.parse(window.localStorage.getItem(m_id));
-    playlist = [...playlist, ...test];
+    let test2 = prompt("번호입력");
+    title = JSON.parse(window.localStorage.getItem(m_id))[test2];
 
-    console.log("ppp", playlist);
+    console.log("title", title);
+    console.log("playlist명", title.playlist_title);
 
-    window.localStorage.setItem(m_id, JSON.stringify(playlist));
+    playlist = JSON.parse(window.localStorage.getItem(title));
+
+    console.log(playlist);
+
+    window.localStorage.setItem(title.playlist_title, JSON.stringify(playlist));
+    // playlist = [{ ...playlist, ...test }];
+    // playlist[test2].push(test);
+    // setTest([]);
+    // console.log("내가 담은 곡", playlist);
+    // console.log(playlist[0]);
+
+    // window.localStorage.setItem(m_id, JSON.stringify(playlist));
 
     const checkboxes = document.querySelectorAll(".chkbox"); // .chkbox 클래스를 가진 모든 체크박스 선택
 
@@ -38,7 +52,7 @@ const TracksItem = ({ num, item, test, setTest }) => {
       checkbox.checked = false; // 체크박스 선택 해제
     });
 
-    setTest([]);
+    // setTest([]);
   };
 
   return (

@@ -1,0 +1,23 @@
+li {
+  float: none;
+}
+.wrap {
+  width: 500px;
+  height: 100%;
+  text-align: center;
+  margin: 30px auto;
+}
+
+.wrap ul.data li {
+  float: left;
+  width: 100%;
+}
+
+.wrap div ul li input,
+.wrap div ul li textarea {
+  width: 50%;
+}
+
+.wrap div ul li textarea {
+  height: 100px;
+}
