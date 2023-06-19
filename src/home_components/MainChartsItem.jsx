@@ -9,7 +9,7 @@ const MainChartsItem = ({ item, img, idx, num }) => {
 
   const saveBtnHandler = () => {
     let playlistnum = prompt("플레이 리스트 번호");
-    let m_id = window.localStorage.getItem("session");  
+    let m_id = window.localStorage.getItem("session");
     let title = JSON.parse(window.localStorage.getItem(m_id))[playlistnum];
     let playlist = JSON.parse(
       window.localStorage.getItem(title.playlist_title)
@@ -30,7 +30,7 @@ const MainChartsItem = ({ item, img, idx, num }) => {
     } else {
       window.localStorage.setItem(title.playlist_title, JSON.stringify(Obj));
     }
-  }
+  };
   const ListWrap = styled.div`
     &:hover .song_img::before {
       content: url("${img[num]}");
@@ -43,7 +43,9 @@ const MainChartsItem = ({ item, img, idx, num }) => {
         {idx + 1}
       </Col>
       <Col className={`song_img ${styles.main_charts_song}`} md={5} sm={4}>
-        <a href="#none" onClick={saveBtnHandler}>{item.name}</a>
+        <a href="#none" onClick={saveBtnHandler}>
+          {item.name}
+        </a>
       </Col>
       <Col className={`text-center ${styles.main_charts_singer}`} md={2} sm={2}>
         {item.artist.name}

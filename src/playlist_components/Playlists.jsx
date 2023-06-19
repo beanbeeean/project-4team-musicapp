@@ -10,19 +10,24 @@ const Playlists = () => {
   let playlist = JSON.parse(window.localStorage.getItem(m_id));
   console.log(playlist[curidx]);
 
-  let curPlaylist = JSON.parse(
-    window.localStorage.getItem(playlist[curidx].playlist_title)
-  );
+  let curPlaylist = !playlist[curidx]
+    ? ""
+    : JSON.parse(window.localStorage.getItem(playlist[curidx].playlist_title));
 
   console.log("curPlaylist:", curPlaylist);
 
   return (
     <>
       <div className={styles.wrap}>
-        <h5>My Playlist</h5>
-        <Link to="/playlist/create_playlist" className={styles.create_playlist}>
-          + 플레이리스트 생성
-        </Link>
+        <div className={styles.header}>
+          <h5>My Playlist</h5>
+          <Link
+            to="/playlist/create_playlist"
+            className={styles.create_playlist}
+          >
+            + 플레이리스트 생성
+          </Link>
+        </div>
         {playlist.map((item, idx) =>
           idx == 0 ? (
             ""
@@ -30,7 +35,7 @@ const Playlists = () => {
             <div className={styles.playlists_item}>
               <ul className={styles.playlist_item_wrap}>
                 <li className={styles.playlist_pic}>
-                  <img src={curPlaylist[0].item.album.images[2].url} />
+                  {/* <img src={curPlaylist[idx].item.album.images[2].url} /> */}
                 </li>
                 <li>
                   <div className={styles.playlist_name}>

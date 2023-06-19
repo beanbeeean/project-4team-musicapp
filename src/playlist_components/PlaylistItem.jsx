@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import styles from "./css/playlist_item.module.css";
 import { Container, Row, Col, Placeholder } from "react-bootstrap";
 
-const Playlistplaylist = () => {
+const PlaylistItem = () => {
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
   const [idx, setIdx] = useState(0);
   const [curidx, setCurIdx] = useState(1);
@@ -31,7 +31,7 @@ const Playlistplaylist = () => {
         ? ""
         : curPlaylist.map((item, idx) => (
             <Row className={styles.tracks_wrap}>
-              <Col md={5} className={styles.tracks_title}>
+              <Col md={4} className={styles.tracks_title}>
                 <div className={styles.tracks_img}>
                   <img src={curPlaylist[idx].item.album.images[2].url} alt="" />
                 </div>
@@ -57,10 +57,14 @@ const Playlistplaylist = () => {
                   : parseInt((curPlaylist[idx].item.duration_ms / 1000) % 60) +
                     1}
               </Col>
+              <Col md={1} className="text-center">
+                <input className="chkbox" type="checkbox" />
+                {/* 로컬 스토리지에 보관해야할지 리듀서에 보관해야할지 */}
+              </Col>
             </Row>
           ))}
     </Container>
   );
 };
 
-export default Playlistplaylist;
+export default PlaylistItem;

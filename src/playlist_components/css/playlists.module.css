@@ -8,7 +8,11 @@ h5 {
   font-weight: bold;
 }
 
-a.create_playlist {
+div.header {
+  margin-bottom: 50px;
+}
+
+.create_playlist {
   float: right;
   margin-bottom: 10px;
 }
