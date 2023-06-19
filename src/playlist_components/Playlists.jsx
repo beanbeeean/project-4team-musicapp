@@ -10,11 +10,11 @@ const Playlists = () => {
   let playlist = JSON.parse(window.localStorage.getItem(m_id));
   console.log(playlist[curidx]);
 
-  let curPlaylist = JSON.parse(
-    window.localStorage.getItem(playlist[curidx].playlist_title)
-  );
+  // let curPlaylist = JSON.parse(
+  //   window.localStorage.getItem(playlist[curidx].playlist_title)
+  // );
 
-  console.log("curPlaylist:", curPlaylist);
+  // console.log("curPlaylist:", curPlaylist);
 
   return (
     <>
@@ -30,7 +30,7 @@ const Playlists = () => {
             <div className={styles.playlists_item}>
               <ul className={styles.playlist_item_wrap}>
                 <li className={styles.playlist_pic}>
-                  <img src={curPlaylist[0].item.album.images[2].url} />
+                  {/* <img src={curPlaylist[0].item.album.images[2].url} /> */}
                 </li>
                 <li>
                   <div className={styles.playlist_name}>

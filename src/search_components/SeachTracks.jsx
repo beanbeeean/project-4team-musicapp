@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 const SearchTracks = () => {
   const { searchTracks } = useSelector((state) => state.search);
   const [test, setTest] = useState([]);
+  const [cnt, setCnt] = useState(0);
   useEffect(() => {
     console.log("Parent ", test);
   }, [test]);
@@ -29,7 +30,7 @@ const SearchTracks = () => {
       </Row>
       {searchTracks.length > 0
         ? searchTracks.map((item, key) => (
-            <TracksItem num={key} item={item} test={test} setTest={setTest} />
+            <TracksItem num={key} item={item} test={test} cnt={cnt} setCnt={setCnt} setTest={setTest} />
           ))
         : ""}
     </div>

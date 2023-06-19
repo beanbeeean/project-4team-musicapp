@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import styles from "./css/search_tracks.module.css";
 
-const TracksItem = ({ num, item, test, setTest }) => {
+const TracksItem = ({ num, item, test, cnt, setCnt, setTest }) => {
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
-  const [idx, setIdx] = useState(0);
+  
 
   let temp;
   let title;
@@ -13,6 +13,7 @@ const TracksItem = ({ num, item, test, setTest }) => {
     if (e.target.checked) {
       test.push({ num: num, item: item });
       temp = test.slice();
+      setCnt(e => e+1);
       setTest(temp);
     } else if (!e.target.checked) {
       test.forEach((item, index) => {
@@ -21,13 +22,16 @@ const TracksItem = ({ num, item, test, setTest }) => {
         }
       });
       temp = test.slice();
+      setCnt(e => e-1);
       setTest(temp);
     }
+    console.log(cnt);
   };
 
   const saveBtnHandler = () => {
     let test2 = prompt("번호입력");
     title = JSON.parse(window.localStorage.getItem(m_id))[test2];
+    let member = JSON.parse(window.localStorage.getItem(m_id));
 
     console.log("title", title);
     console.log("playlist명", title.playlist_title);
@@ -35,6 +39,17 @@ const TracksItem = ({ num, item, test, setTest }) => {
     let playlist = JSON.parse(
       window.localStorage.getItem(title.playlist_title)
     );
+
+    let playlistcnt =
+      {
+        playlist_title: title.playlist_title,
+        about_playlist: title.about_playlist,
+        create_date: title.create_date,
+        music_cnt: title.music_cnt + cnt
+     };
+    
+    member[test2]=playlistcnt;
+    window.localStorage.setItem(m_id, JSON.stringify(member));
 
     if (playlist !== null) {
       playlist = [...playlist, ...test];
@@ -49,7 +64,10 @@ const TracksItem = ({ num, item, test, setTest }) => {
     const checkboxes = document.querySelectorAll(".chkbox"); // .chkbox 클래스를 가진 모든 체크박스 선택
 
     checkboxes.forEach((checkbox) => {
-      checkbox.checked = false; // 체크박스 선택 해제
+      if(checkbox.checked){
+        checkbox.checked = false; // 체크박스 선택 해제
+        setCnt(e => e-1);
+      }
     });
 
     setTest([]);
@@ -71,7 +89,8 @@ const TracksItem = ({ num, item, test, setTest }) => {
 
   return (
     <>
-      <button onClick={saveBtnHandler}>save</button>
+    
+    <button onClick={saveBtnHandler}>save</button>
       <Row className={styles.tracks_wrap}>
         <Col md={1} className={styles.tracks_num}>
           {num + 1}
