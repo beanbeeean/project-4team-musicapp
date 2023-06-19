@@ -8,11 +8,11 @@ import { useSelector } from "react-redux";
 
 const SearchTracks = () => {
   const { searchTracks } = useSelector((state) => state.search);
-  const [test, setTest] = useState([]);
+  const [select, setSelect] = useState([]);
   const [cnt, setCnt] = useState(0);
   useEffect(() => {
-    console.log("Parent ", test);
-  }, [test]);
+    console.log("Parent ", select);
+  }, [select]);
   return (
     <div>
       <Row className={`${styles.tracks_header} pt-2 pb-1`}>
@@ -30,7 +30,7 @@ const SearchTracks = () => {
       </Row>
       {searchTracks.length > 0
         ? searchTracks.map((item, key) => (
-            <TracksItem num={key} item={item} test={test} cnt={cnt} setCnt={setCnt} setTest={setTest} />
+            <TracksItem num={key} item={item} select={select} nt={cnt} setCnt={setCnt} setSelect={setSelect} />
           ))
         : ""}
     </div>

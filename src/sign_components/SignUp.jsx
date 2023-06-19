@@ -72,10 +72,7 @@ const SignUp = ({ login }) => {
               alert("회원가입이 완료되었습니다!!") :
               alert("정보수정이 완료되었습니다!!")
             }
-            {
-              login.current === null ?
-              navigate("/signin") : navigate("/")
-            }
+            navigate("/");
           } else alert("아이디 중복 확인하세요!!");
         }
         break;

@@ -2,35 +2,35 @@ import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import styles from "./css/search_tracks.module.css";
 
-const TracksItem = ({ num, item, test, cnt, setCnt, setTest }) => {
+const TracksItem = ({ num, item, select, cnt, setCnt, setSelect }) => {
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
   
 
   let temp;
   let title;
 
-  const testing = (e) => {
+  const selecting = (e) => {
     if (e.target.checked) {
-      test.push({ num: num, item: item });
-      temp = test.slice();
+      select.push({ num: num, item: item });
+      temp = select.slice();
       setCnt(e => e+1);
-      setTest(temp);
+      setSelect(temp);
     } else if (!e.target.checked) {
-      test.forEach((item, index) => {
+      select.forEach((item, index) => {
         if (item.num === num) {
-          test.splice(index, 1);
+          select.splice(index, 1);
         }
       });
-      temp = test.slice();
+      temp = select.slice();
       setCnt(e => e-1);
-      setTest(temp);
+      setSelect(temp);
     }
     console.log(cnt);
   };
 
   const saveBtnHandler = () => {
-    let test2 = prompt("번호입력");
-    title = JSON.parse(window.localStorage.getItem(m_id))[test2];
+    let selectnum = prompt("번호입력");
+    title = JSON.parse(window.localStorage.getItem(m_id))[selectnum];
     let member = JSON.parse(window.localStorage.getItem(m_id));
 
     console.log("title", title);
@@ -48,17 +48,17 @@ const TracksItem = ({ num, item, test, cnt, setCnt, setTest }) => {
         music_cnt: title.music_cnt + cnt
      };
     
-    member[test2]=playlistcnt;
+    member[selectnum]=playlistcnt;
     window.localStorage.setItem(m_id, JSON.stringify(member));
 
     if (playlist !== null) {
-      playlist = [...playlist, ...test];
+      playlist = [...playlist, ...select];
       window.localStorage.setItem(
         title.playlist_title,
         JSON.stringify(playlist)
       );
     } else {
-      window.localStorage.setItem(title.playlist_title, JSON.stringify(test));
+      window.localStorage.setItem(title.playlist_title, JSON.stringify(select));
     }
 
     const checkboxes = document.querySelectorAll(".chkbox"); // .chkbox 클래스를 가진 모든 체크박스 선택
@@ -70,14 +70,14 @@ const TracksItem = ({ num, item, test, cnt, setCnt, setTest }) => {
       }
     });
 
-    setTest([]);
+    setSelect([]);
   };
 
   // merge object 함수
-  function mergeObj(title, test) {
+  function mergeObj(title, select) {
     const newObj = {};
-    for (let att in test) {
-      newObj[att] = test[att];
+    for (let att in select) {
+      newObj[att] = select[att];
     }
 
     for (let att in title) {
@@ -114,7 +114,7 @@ const TracksItem = ({ num, item, test, cnt, setCnt, setTest }) => {
             : parseInt((item.duration_ms / 1000) % 60) + 1}
         </Col>
         <Col md={1} className="text-center">
-          <input className="chkbox" type="checkbox" onChange={testing} />
+          <input className="chkbox" type="checkbox" onChange={selecting} />
           {/* 로컬 스토리지에 보관해야할지 리듀서에 보관해야할지 */}
         </Col>
       </Row>

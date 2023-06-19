@@ -22,7 +22,6 @@ const Nav = ({ login }) => {
 
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
-  const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -58,10 +57,6 @@ const Nav = ({ login }) => {
     login.current = null;
     navigate("/");
   };
-
-  useEffect(() => {
-    setM_id(window.localStorage.getItem("session"));
-  }, [login]);
 
   return (
     <Container>
@@ -104,7 +99,7 @@ const Nav = ({ login }) => {
           <a href="#">All Playlist</a>
         </Col>
         <Col className={`${styles.list} text-center`}>
-          { m_id === null ?  <Link to="/signin">Playlist</Link> :
+          { login.current === null ?  <Link to="/signin">Playlist</Link> :
           <Link to="/playlist">Playlist</Link>
           }
         </Col>
