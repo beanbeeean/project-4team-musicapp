@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "./css/create_playlist.module.css";
+import { useNavigate } from "react-router-dom";
 
 const CreatePlaylist = () => {
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [date, setDate] = useState("");
+  const navigate = useNavigate();
 
   const getNowDate = () => {
     let today = new Date();
@@ -39,6 +41,7 @@ const CreatePlaylist = () => {
         playlist_title: playlist_title,
         about_playlist: about_playlist,
         create_date: create_date,
+        music_cnt: 0
      },
     ];
     let user = JSON.parse(window.localStorage.getItem(userid));
@@ -48,6 +51,7 @@ const CreatePlaylist = () => {
     window.localStorage.setItem(userid, JSON.stringify(user));
 
     alert("플레이리스트 생성이 완료되었습니다!!");
+    navigate("/playlist");
   };
 
   return (
