@@ -33,7 +33,7 @@ const CreatePlaylist = () => {
     console.log("[CreatePlaylist] CREATE CLICKED!!");
 
     let playlist = [
-      { playlist_title: playlist_title, about_playlist: about_playlist },
+      { playlist_title: playlist_title, about_playlist: about_playlist},
     ];
     let user = JSON.parse(window.localStorage.getItem(userid));
 
