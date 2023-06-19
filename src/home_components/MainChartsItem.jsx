@@ -3,12 +3,12 @@ import { Col } from "react-bootstrap";
 import styled from "styled-components";
 import styles from "./css/main_charts.module.css";
 
-const MainChartsItem = ({ item, img, idx }) => {
+const MainChartsItem = ({ item, img, idx, num }) => {
   // console.log("key", key);
   // console.log("key", key);
   const ListWrap = styled.div`
     &:hover .song_img::before {
-      content: url("${img[idx]}");
+      content: url("${img[num]}");
       margin-right: 10px;
     }
   `;

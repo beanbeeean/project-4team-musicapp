@@ -3,7 +3,7 @@ import deepmerge from "deepmerge";
 let initialState = {
   allCharts: {},
   allChartsImg: [],
-  loading: true,
+  loading: false,
 };
 
 function chartsReducer(state = initialState, action) {
@@ -17,11 +17,16 @@ function chartsReducer(state = initialState, action) {
       console.log("this ", state.allCharts);
       return {
         ...state,
-        allCharts: deepmerge(state.allCharts, payload.allCharts),
+        // allCharts: deepmerge(state.allCharts, payload.allCharts),
+        allCharts: payload.allCharts,
         loading: false,
       };
     case "GET_ALL_CHARTS_IMG_SUCCESS":
-      return { ...state, allChartsImg: payload.allChartsImg };
+      return {
+        ...state,
+        allChartsImg: payload.allChartsImg,
+        // allChartsImg: deepmerge(state.allChartsImg, payload.allChartsImg),
+      };
     default:
       return { ...state };
   }

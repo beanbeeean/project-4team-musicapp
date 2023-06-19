@@ -1,11 +1,40 @@
 .artists_wrap {
-  display: flex;
-  flex-wrap: wrap;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
 }
 
+@media screen and (max-width: 1200px) {
+  .artists_wrap {
+    grid-template-columns: auto auto auto auto;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .artists_wrap {
+    grid-template-columns: auto auto auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .artists_wrap {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .artists_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
 .item_wrap {
+  position: relative;
   margin-right: 10px;
   padding: 10px;
+  width: 220px;
+  height: 300px;
 }
 
 .item_wrap:hover {
@@ -17,24 +46,27 @@
 }
 
 .img_wrap {
-  position: relative;
+  height: 200px;
+  border-radius: 100%;
+  overflow: hidden;
 }
 
 .artists_img {
-  border-radius: 50%;
-  min-width: 100px;
+  min-width: 200px;
   max-width: 200px;
+  min-height: 200px;
 }
 
 .artists_play {
   position: absolute;
   opacity: 0;
-  bottom: 5px;
-  right: 5px;
+  bottom: 33%;
+  right: 10px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   background-color: #1ed760;
+  z-index: 100;
 }
 
 .play_icon {
@@ -42,4 +74,10 @@
   position: absolute;
   top: 30%;
   left: 38%;
+}
+
+.artist_info > p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

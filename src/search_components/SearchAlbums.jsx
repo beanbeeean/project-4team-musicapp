@@ -9,7 +9,7 @@ const SearchAlbums = () => {
     <div className={styles.albums_wrap}>
       {searchAlbums.length > 0
         ? searchAlbums.map((item) => <AlbumsItem item={item} />)
-        : ""}
+        : "검색 결과가 없습니다."}
     </div>
   );
 };

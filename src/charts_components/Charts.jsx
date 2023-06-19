@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "./css/charts.module.css";
 import MainChartsItem from "../home_components/MainChartsItem";
+
 const Charts = () => {
   const dispatch = useDispatch();
   const { allCharts, allChartsImg, loading } = useSelector(
@@ -14,8 +15,8 @@ const Charts = () => {
   const [date, setDate] = useState("");
   const [hour, setHour] = useState("");
   const [minute, setMinute] = useState("");
+  const [cnt, setCnt] = useState(1);
 
-  let page = useRef(1);
   const getNowDate = () => {
     let today = new Date();
     let year = today.getFullYear();
@@ -41,17 +42,14 @@ const Charts = () => {
     setMinute(minute);
   };
 
-  const getMoreCharts = () => {
-    if (page.current < 4) {
-      dispatch(chartsAction.getAllCharts(++page.current));
-      console.log("page", page.current);
-    } else {
-      return;
-    }
+  const chartsChangeHandler = (page) => {
+    dispatch(chartsAction.getAllCharts(page));
+    setCnt(page);
+    window.scrollTo(0, 0);
   };
 
   useEffect(() => {
-    dispatch(chartsAction.getAllCharts());
+    dispatch(chartsAction.getAllCharts(1));
     getNowDate();
   }, []);
 
@@ -81,15 +79,65 @@ const Charts = () => {
         </Col>
       </Row>
       {allCharts?.tracks?.track.map((item, idx) => (
-        <MainChartsItem item={item} img={allChartsImg} idx={idx} />
+        <MainChartsItem
+          item={item}
+          img={allChartsImg}
+          idx={
+            cnt == 1
+              ? idx
+              : cnt == 2
+              ? idx + 50
+              : cnt == 3
+              ? idx + 100
+              : cnt == 4
+              ? idx + 150
+              : idx
+          }
+          num={idx}
+        />
       ))}
-      {page.current < 4 ? (
-        <div className={styles.more_charts_btn}>
-          <button onClick={getMoreCharts}>차트 더보기</button>
-        </div>
-      ) : (
-        <div className={styles.more_charts_btn}>차트 끝</div>
-      )}
+      <div className={styles.btn_wrap}>
+        <button
+          className={
+            cnt == 1
+              ? `${styles.charts_change_btn} ${styles.on}`
+              : styles.charts_change_btn
+          }
+          onClick={() => chartsChangeHandler(1)}
+        >
+          1~50위
+        </button>
+        <button
+          className={
+            cnt == 2
+              ? `${styles.charts_change_btn} ${styles.on}`
+              : styles.charts_change_btn
+          }
+          onClick={() => chartsChangeHandler(2)}
+        >
+          51~100위
+        </button>
+        <button
+          className={
+            cnt == 3
+              ? `${styles.charts_change_btn} ${styles.on}`
+              : styles.charts_change_btn
+          }
+          onClick={() => chartsChangeHandler(3)}
+        >
+          101~150위
+        </button>
+        <button
+          className={
+            cnt == 4
+              ? `${styles.charts_change_btn} ${styles.on}`
+              : styles.charts_change_btn
+          }
+          onClick={() => chartsChangeHandler(4)}
+        >
+          151~200위
+        </button>
+      </div>
     </Container>
   );
 };

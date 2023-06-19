@@ -9,7 +9,7 @@ const SearchArtists = () => {
     <div className={styles.artists_wrap}>
       {searchArtists.length > 0
         ? searchArtists.map((item) => <ArtistsItem item={item} />)
-        : ""}
+        : "검색 결과가 없습니다."}
     </div>
   );
 };

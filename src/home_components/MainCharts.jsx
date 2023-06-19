@@ -75,7 +75,7 @@ const Charts = () => {
       </Row>
       {chartsImg.length > 0
         ? charts.tracks.track.map((item, idx) => (
-            <MainChartsItem item={item} img={chartsImg} idx={idx} />
+            <MainChartsItem item={item} img={chartsImg} idx={idx} num={idx} />
           ))
         : ""}
     </Container>
