@@ -104,7 +104,9 @@ const Nav = ({ login }) => {
           <a href="#">All Playlist</a>
         </Col>
         <Col className={`${styles.list} text-center`}>
+          { m_id === null ?  <Link to="/signin">Playlist</Link> :
           <Link to="/playlist">Playlist</Link>
+          }
         </Col>
       </Row>
     </Container>

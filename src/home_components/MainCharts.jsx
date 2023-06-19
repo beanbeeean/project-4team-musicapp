@@ -69,9 +69,9 @@ const Charts = () => {
         <Col className={styles.main_charts_header} md={2} sm={2}>
           재생 횟수
         </Col>
-        <Col className={styles.main_charts_header} md={2} sm={2}>
+        {/* <Col className={styles.main_charts_header} md={2} sm={2}>
           temp
-        </Col>
+        </Col> */}
       </Row>
       {chartsImg.length > 0
         ? charts.tracks.track.map((item, idx) => (

@@ -7,6 +7,7 @@ const Playlistplaylist = () => {
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
   const [idx, setIdx] = useState(0);
   const [curidx, setCurIdx] = useState(1);
+  const [len_list, setLen_list] = useState(0);
 
   let playlist = JSON.parse(window.localStorage.getItem(m_id));
 
@@ -19,6 +20,9 @@ const Playlistplaylist = () => {
     window.localStorage.getItem(playlist[curidx].playlist_title)
   );
   console.log("curPlaylist:", curPlaylist);
+
+  setLen_list(curPlaylist.length);
+  console.log(len_list);
 
   return (
     <Container>

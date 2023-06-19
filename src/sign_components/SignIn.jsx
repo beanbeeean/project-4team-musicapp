@@ -17,9 +17,9 @@ const SignIn = ({ login }) => {
   // Handler START
 
   const loginBtnHandler = () => {
-    let chk = JSON.parse(window.localStorage.getItem(m_id))[0];
+    let chk = JSON.parse(window.localStorage.getItem(m_id));
 
-    if (chk !== null && m_pw === chk.m_pw) {
+    if (chk !== null && m_pw === chk[0].m_pw) {
       console.log(m_id);
       window.localStorage.setItem("session", m_id);
       alert("로그인 되었습니다!!");
