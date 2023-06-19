@@ -20,10 +20,16 @@ const Playlists = () => {
   return (
     <>
       <div className={styles.wrap}>
-        <h5>My Playlist</h5>
-        <Link to="/playlist/create_playlist" className={styles.create_playlist}>
-          + 플레이리스트 생성
-        </Link>
+        <div className={styles.header}>
+          <h5>My Playlist</h5>
+          <Link
+            to="/playlist/create_playlist"
+            className={styles.create_playlist}
+          >
+            + 플레이리스트 생성
+          </Link>
+        </div>
+
         {playlist.map((item, idx) =>
           idx == 0 ? (
             ""
