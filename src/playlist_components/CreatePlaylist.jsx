@@ -19,6 +19,7 @@ const CreatePlaylist = () => {
     setYear(year);
     setMonth(month);
     setDate(date);
+    setCreate_date(`${year}.${month}.${date}`);
   };
 
   useEffect(() => {
@@ -27,13 +28,18 @@ const CreatePlaylist = () => {
 
   const [playlist_title, setPlaylist_title] = useState("");
   const [about_playlist, setAbout_playlist] = useState("");
+  const [create_date, setCreate_date] = useState();
   let userid = window.localStorage.getItem("session");
 
   const btnClickedHandler = () => {
     console.log("[CreatePlaylist] CREATE CLICKED!!");
 
     let playlist = [
-      { playlist_title: playlist_title, about_playlist: about_playlist},
+      {
+        playlist_title: playlist_title,
+        about_playlist: about_playlist,
+        create_date: create_date,
+     },
     ];
     let user = JSON.parse(window.localStorage.getItem(userid));
 
@@ -69,8 +75,8 @@ const CreatePlaylist = () => {
             ></textarea>
           </li>
         </ul>
-        <div>
-          생성날짜: {year},{month},{date}
+        <div name="create_date">
+          생성날짜: {year}.{month}.{date}
         </div>
         <br />
         <button onClick={btnClickedHandler}>생성하기</button>

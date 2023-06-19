@@ -1,0 +1,118 @@
+div.container li {
+  float: none;
+}
+
+div.header {
+  display: flex;
+}
+
+div.album_img img {
+  width: 250px;
+  height: 250px;
+}
+
+div.album_name {
+  margin-top: 150px;
+}
+
+div.album_name h2 {
+  font-size: 3em;
+  font-weight: bold;
+  color: rgb(76, 144, 121);
+}
+
+div.button_img {
+  display: flex;
+  margin: 30px auto;
+}
+
+.play_button {
+  background-color: rgb(76, 144, 121);
+  width: 50px;
+  height: 50px;
+  color: #fff;
+  border-radius: 125px;
+  line-height: 47px;
+  text-align: center;
+  padding-left: 3px;
+  font-size: 1.5em;
+  margin-right: 20px;
+}
+
+.pick_button {
+  color: rgb(76, 144, 121);
+  font-weight: bold;
+  width: 50px;
+  height: 50px;
+  line-height: 47px;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.song_num,
+.song_title,
+.running_time {
+  line-height: 50px;
+}
+
+.song_title ul {
+  padding-left: 0px;
+  padding-top: 10px;
+  line-height: 20px;
+}
+
+.song_title ul li:nth-child(2) {
+  color: #8a8a8a;
+  font-size: 0.9em;
+}
+
+.list_wrap:hover {
+  background-color: #f8f8f8;
+}
+
+.albums {
+  margin-top: 70px;
+}
+
+h5 {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-weight: bold;
+  color: rgb(76, 144, 121);
+}
+h5 a {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: rgb(76, 144, 121);
+}
+
+.album_wrap {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.album_wrap div {
+  margin: 0 10px 0 10px;
+}
+
+.artists_wrap div {
+  margin: 0 10px 0 10px;
+}
+
+.album_wrap img {
+  border-radius: 7px;
+  max-width: 150px;
+  min-width: auto;
+  max-height: 150px;
+}
+
+.album_wrap div ul li:nth-child(2) {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+.album_wrap div ul li:nth-child(3) {
+  font-size: 0.8em;
+}
