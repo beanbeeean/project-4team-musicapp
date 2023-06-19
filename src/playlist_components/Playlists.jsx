@@ -5,8 +5,16 @@ import { useNavigate, Link } from "react-router-dom";
 const Playlists = () => {
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
   const [curidx, setCurIdx] = useState(1);
+  const [aidx, setaIdx] = useState(0);
 
   let playlist = JSON.parse(window.localStorage.getItem(m_id));
+  console.log(playlist[curidx]);
+
+  let curPlaylist = JSON.parse(
+    window.localStorage.getItem(playlist[curidx].playlist_title)
+  );
+
+  console.log("curPlaylist:", curPlaylist);
 
   return (
     <>
@@ -22,15 +30,16 @@ const Playlists = () => {
             <div className={styles.playlists_item}>
               <ul className={styles.playlist_item_wrap}>
                 <li className={styles.playlist_pic}>
-                  <img src="./imgs/default.jpg" />
+                  <img src={curPlaylist[0].item.album.images[2].url} />
                 </li>
                 <li>
                   <div className={styles.playlist_name}>
                     {playlist[idx].playlist_title}
                   </div>
                   <br />
-                  <div className={styles.create_date}>생성일&nbsp;</div>
-                  <div className={styles.song_cnt}>총 127곡</div>
+                  <div className={styles.create_date}>
+                    {playlist[idx].create_date}&nbsp;
+                  </div>
                 </li>
               </ul>
             </div>
