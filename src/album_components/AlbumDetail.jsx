@@ -63,7 +63,7 @@ const AlbumDetail = () => {
         <div className={styles.play_button}>▶</div>
         <div className={styles.pick_button}>♡</div>
       </div>
-      <h2>트랙</h2>
+      <h3>트랙</h3>
       <Row className={styles.tracks_header}>
         <Col md={1} className={styles.tracks_num}>
           #

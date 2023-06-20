@@ -39,32 +39,6 @@ const NewMusic = () => {
     }
   };
 
-  const loginBtnHandler = () => {
-    let chk = JSON.parse(window.localStorage.getItem(m_id));
-
-    if (chk !== null && m_pw === chk.m_pw) {
-      console.log(m_id);
-      window.localStorage.setItem("session", m_id);
-      setLogin(true);
-    } else {
-      alert("아이디 또는 비밀번호를 확인하세요!!");
-    }
-  };
-
-  const logoutBtnHandler = () => {
-    alert("로그아웃 되었습니다!!");
-    setLogin(false);
-    window.localStorage.removeItem("session");
-    setM_id();
-  };
-
-  const deleteBtnHandler = () => {
-    alert("회원삭제 되었습니다!!");
-    setLogin(false);
-    window.localStorage.removeItem("session");
-    window.localStorage.removeItem(m_id);
-    setM_id();
-  };
   const domesticBtnHandler = () => {
     setPage(1);
     setOffset(0);

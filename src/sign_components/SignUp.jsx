@@ -7,28 +7,31 @@ import { useNavigate } from "react-router-dom";
 const SIGN_UP_BUTTON = "1";
 
 const SignUp = ({ login }) => {
-  const navigate = useNavigate()
-  let session=window.localStorage.getItem('session');
+  const navigate = useNavigate();
+  let session = window.localStorage.getItem("session");
   let log;
 
-  
   console.log("session");
-  if(session!==null){
-    log=JSON.parse(window.localStorage.getItem(session));
+  if (session !== null) {
+    log = JSON.parse(window.localStorage.getItem(session));
   }
 
-  const [m_id, setM_id] = useState(session===null? "":session);
-  const [m_pw, setM_pw] = useState(session===null? "":log[0].m_pw);
-  const [m_mail, setM_mail] = useState(session===null? "":log[0].m_mail);
-  const [m_email, setM_email] = useState(session===null? "":log[0].m_email);
-  const [m_phone, setM_phone] = useState(session===null? "":log[0].m_phone);
+  const [m_id, setM_id] = useState(session === null ? "" : session);
+  const [m_pw, setM_pw] = useState(session === null ? "" : log[0].m_pw);
+  const [m_mail, setM_mail] = useState(session === null ? "" : log[0].m_mail);
+  const [m_email, setM_email] = useState(
+    session === null ? "" : log[0].m_email
+  );
+  const [m_phone, setM_phone] = useState(
+    session === null ? "" : log[0].m_phone
+  );
 
   $(document).ready(function () {
     var selectedOption = localStorage.getItem("selectedOption");
-  
+
     $("#select_email").change(function () {
       var selectedOption = $(this).val();
-  
+
       if (selectedOption === "1") {
         // 직접입력일 경우
         // $("#str_email").val(""); // 값 초기화
@@ -64,13 +67,20 @@ const SignUp = ({ login }) => {
           let Obj;
 
           if (chk === null || login.current !== null) {
-            Obj = [{ m_pw: m_pw, m_mail: m_mail,m_email: m_email ,m_phone: m_phone }];
+            Obj = [
+              {
+                m_pw: m_pw,
+                m_mail: m_mail,
+                m_email: m_email,
+                m_phone: m_phone,
+              },
+            ];
             console.log(JSON.stringify(Obj), m_pw, m_mail, m_email, m_phone);
             window.localStorage.setItem(m_id, JSON.stringify(Obj));
             {
-              login.current === null ?
-              alert("회원가입이 완료되었습니다!!") :
-              alert("정보수정이 완료되었습니다!!")
+              login.current === null
+                ? alert("회원가입이 완료되었습니다!!")
+                : alert("정보수정이 완료되었습니다!!");
             }
             navigate("/");
           } else alert("아이디 중복 확인하세요!!");
@@ -82,7 +92,7 @@ const SignUp = ({ login }) => {
   const deleteBtnHandler = () => {
     let result = window.confirm("정말 삭제하시겠습니까?");
 
-    if(result){
+    if (result) {
       alert("회원 삭제 되었습니다!!");
       window.localStorage.removeItem("session");
       window.localStorage.removeItem(m_id);
@@ -118,11 +128,9 @@ const SignUp = ({ login }) => {
     let chk = JSON.parse(window.localStorage.getItem(m_id));
     if (m_id === "" || m_id === null) {
       alert("아이디를 입력하세요!!");
-    } 
-    else if (chk === null) {
+    } else if (chk === null) {
       alert("사용 가능한 아이디입니다!!");
-    } 
-    else alert("이미 존재하는 아이디입니다!!");
+    } else alert("이미 존재하는 아이디입니다!!");
   };
   // Validate END
 
@@ -133,17 +141,17 @@ const SignUp = ({ login }) => {
         <div className={styles.title}>아이디</div>
         <input
           type="text"
-          name={
-            login.current === null ? "m_id" : ""
-          }
+          name={login.current === null ? "m_id" : ""}
           placeholder="Input ID"
           value={m_id}
           onChange={(e) => setM_id(e.target.value)}
           readOnly={login.current === null ? false : true}
         />
-        {login.current === null ? 
-        <button onClick={ValidateUserId}>중복확인</button>:<></>
-        }
+        {login.current === null ? (
+          <button onClick={ValidateUserId}>중복확인</button>
+        ) : (
+          <></>
+        )}
         <br />
         <div className={styles.title}>비밀번호</div>
         <input
@@ -163,10 +171,15 @@ const SignUp = ({ login }) => {
           onChange={(e) => setM_mail(e.target.value)}
         />
         @
-        <input type="text" name="m_mail2" id="str_email" value={m_email}
-          onChange={(e) => setM_email(e.target.value)}/>
+        <input
+          type="text"
+          name="m_mail2"
+          id="str_email"
+          value={m_email}
+          onChange={(e) => setM_email(e.target.value)}
+        />
         <br />
-        <select id="select_email" >
+        <select id="select_email">
           <option selected disabled>
             선택
           </option>
@@ -191,7 +204,11 @@ const SignUp = ({ login }) => {
           name={SIGN_UP_BUTTON}
           onClick={btnClickedHandler}
         />
-        {login.current === null ? <></> : <button onClick={deleteBtnHandler}>회원탈퇴</button>}
+        {login.current === null ? (
+          <></>
+        ) : (
+          <button onClick={deleteBtnHandler}>회원탈퇴</button>
+        )}
       </div>
     </section>
   );

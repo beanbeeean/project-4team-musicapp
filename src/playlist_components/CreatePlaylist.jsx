@@ -41,8 +41,8 @@ const CreatePlaylist = () => {
         playlist_title: playlist_title,
         about_playlist: about_playlist,
         create_date: create_date,
-        music_cnt: 0
-     },
+        music_cnt: 0,
+      },
     ];
     let user = JSON.parse(window.localStorage.getItem(userid));
 

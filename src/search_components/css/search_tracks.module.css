@@ -9,10 +9,11 @@
   border-bottom: 1px solid #dadada;
 }
 .tracks_wrap:hover {
-  background-color: rgba(108, 208, 255, 0.4);
+  background-color: rgba(108, 208, 255, 0.1);
 }
 .tracks_wrap:hover .tracks_info span,
-.tracks_wrap:hover .tracks_album {
+.tracks_wrap:hover .tracks_album,
+.tracks_wrap:hover .tracks_time {
   color: #242424;
 }
 
@@ -24,6 +25,8 @@
 .tracks_num {
   display: flex;
   justify-content: center;
+  color: rgb(26, 153, 211);
+  font-weight: bold;
 }
 
 .tracks_img {
@@ -54,4 +57,8 @@
 
 .tracks_album:hover {
   text-decoration: underline;
+}
+
+.tracks_time {
+  color: #b3b3b3;
 }

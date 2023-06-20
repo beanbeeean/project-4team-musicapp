@@ -17,8 +17,6 @@ const Charts = () => {
   const [hour, setHour] = useState("");
   const [minute, setMinute] = useState("");
 
-  // console.log(charts);
-
   const getNowDate = () => {
     let today = new Date();
     let year = today.getFullYear();

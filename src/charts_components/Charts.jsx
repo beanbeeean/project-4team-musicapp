@@ -77,7 +77,7 @@ const Charts = () => {
           재생 횟수
         </Col>
         <Col className={styles.main_charts_header} md={1} sm={1}>
-          담기
+          선택
         </Col>
       </Row>
       {allCharts?.tracks?.track.map((item, idx) => (
