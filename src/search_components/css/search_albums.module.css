@@ -6,6 +6,7 @@
 .item_wrap {
   padding: 20px;
   width: 250px;
+  cursor: pointer;
 }
 
 .item_wrap:hover {
@@ -41,4 +42,18 @@
   position: absolute;
   top: 30%;
   left: 38%;
+}
+
+.album_title {
+  margin-top: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.album_date {
+  margin: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }

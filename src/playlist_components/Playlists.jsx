@@ -8,7 +8,6 @@ const Playlists = () => {
   const [aidx, setaIdx] = useState(0);
 
   let playlist = JSON.parse(window.localStorage.getItem(m_id));
-  console.log(playlist[curidx]);
 
   let curPlaylist = JSON.parse(
     window.localStorage.getItem(playlist[curidx].playlist_title)

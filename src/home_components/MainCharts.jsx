@@ -4,6 +4,7 @@ import styles from "./css/main_charts.module.css";
 import MainChartsItem from "./MainChartsItem";
 import { useDispatch, useSelector } from "react-redux";
 import { homeAction } from "../redux/actions/homeAction";
+import { playlistsAction } from "../redux/actions/playlistsAction";
 
 const Charts = () => {
   const dispatch = useDispatch();
@@ -43,10 +44,6 @@ const Charts = () => {
     getNowDate();
     dispatch(homeAction.getChartsTopTen());
   }, []);
-
-  useEffect(() => {
-    console.log("charts", charts);
-  }, [charts]);
 
   return (
     <Container className="pb-3">

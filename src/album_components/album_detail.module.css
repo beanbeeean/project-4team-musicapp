@@ -4,6 +4,7 @@ div.container li {
 
 div.header {
   display: flex;
+  margin-top: 30px;
 }
 
 div.album_img img {
@@ -51,8 +52,21 @@ div.button_img {
 
 .song_num,
 .song_title,
-.running_time {
+.players,
+.running_time,
+.input_playlist {
   line-height: 50px;
+}
+
+.song_num {
+  text-align: center;
+}
+
+.song_title,
+.players {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .song_title ul {
@@ -115,4 +129,16 @@ h5 a {
 }
 .album_wrap div ul li:nth-child(3) {
   font-size: 0.8em;
+}
+
+.tracks_num {
+  text-align: center;
+}
+.tracks_title,
+.tracks_artist,
+.tracks_icon,
+.tracks_input,
+.running_time,
+.input_playlist {
+  text-align: center;
 }

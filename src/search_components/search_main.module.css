@@ -92,3 +92,7 @@ div.list_wrap:hover {
 .artists_wrap div ul li:nth-child(3) {
   font-size: 0.8em;
 }
+.album_wrap > div,
+.artists_wrap > div {
+  cursor: pointer;
+}
