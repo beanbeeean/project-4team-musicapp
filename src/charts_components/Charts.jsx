@@ -67,17 +67,17 @@ const Charts = () => {
         <Col className={styles.main_charts_header} md={1} sm={2}>
           순위
         </Col>
-        <Col className={styles.main_charts_header} md={5} sm={4}>
+        <Col className={styles.main_charts_header} md={5} sm={5}>
           제목
         </Col>
-        <Col className={styles.main_charts_header} md={2} sm={2}>
+        <Col className={styles.main_charts_header} md={3} sm={3}>
           가수
         </Col>
         <Col className={styles.main_charts_header} md={2} sm={2}>
           재생 횟수
         </Col>
-        <Col className={styles.main_charts_header} md={2} sm={2}>
-          temp
+        <Col className={styles.main_charts_header} md={1} sm={1}>
+          담기
         </Col>
       </Row>
       {allCharts?.tracks?.track.map((item, idx) => (

@@ -4,9 +4,10 @@ import styles from "./css/newMusic.module.css";
 import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import loginStyles from "./css/login.module.css";
+
 import { useDispatch, useSelector } from "react-redux";
 import { homeAction } from "../redux/actions/homeAction";
+import BannerSlider from "./BannerSlider";
 
 const NewMusic = () => {
   const { newRelease } = useSelector((state) => state.home);
@@ -83,48 +84,40 @@ const NewMusic = () => {
   return (
     <Container>
       <Row>
-        <div className={styles.wrap}>
-          <Col md={8} className={styles.colum1}>
-            <div className={styles.albumbox}>
-              <ul className={styles.titleBox}>
-                <li>최신앨범</li>
-                <li className={styles.menu} onClick={domesticBtnHandler}>
-                  국내
-                </li>
-                <li className={styles.menu} onClick={abroadBtnHandler}>
-                  국외
-                </li>
-                <li
-                  className={`${styles.menuBtn} ${styles.nextBtn}`}
-                  onClick={nextBtnHandler}
-                >
-                  &#62;
-                </li>
-                <li
-                  className={`${styles.menuBtn} ${styles.prevBtn}`}
-                  onClick={prevBtnHandler}
-                >
-                  &#60;
-                </li>
-                <li className={styles.menu2}>{page}/5</li>
-              </ul>
-            </div>
-            <div className={styles.albums_list}>
-              {newRelease.length > 0
-                ? newRelease.map((item) => <Album item={item} />)
-                : ""}
-            </div>
-          </Col>
-          <Col md={4} className={styles.column2}>
-            <div class={styles.slide_banner}>
-              <div class={styles.slide_item}>
-                <a href="#">
-                  <img src="./imgs/default.jpg" alt="" />
-                </a>
-              </div>
-            </div>
-          </Col>
-        </div>
+        <Col md={8} sm={12} className={styles.colum1}>
+          <div className={styles.albumbox}>
+            <ul className={styles.titleBox}>
+              <li>최신앨범</li>
+              <li className={styles.menu} onClick={domesticBtnHandler}>
+                국내
+              </li>
+              <li className={styles.menu} onClick={abroadBtnHandler}>
+                국외
+              </li>
+              <li
+                className={`${styles.menuBtn} ${styles.nextBtn}`}
+                onClick={nextBtnHandler}
+              >
+                &#62;
+              </li>
+              <li
+                className={`${styles.menuBtn} ${styles.prevBtn}`}
+                onClick={prevBtnHandler}
+              >
+                &#60;
+              </li>
+              <li className={styles.menu2}>{page}/5</li>
+            </ul>
+          </div>
+          <div className={styles.albums_list}>
+            {newRelease.length > 0
+              ? newRelease.map((item) => <Album item={item} />)
+              : ""}
+          </div>
+        </Col>
+        <Col md={3} sm={12} className={styles.column2}>
+          <BannerSlider />
+        </Col>
       </Row>
     </Container>
   );
