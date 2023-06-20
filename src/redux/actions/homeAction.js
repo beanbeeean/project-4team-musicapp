@@ -51,7 +51,7 @@ function getChartsTopTen() {
         });
         //   console.log("dddd", data.tracks.track[i].name);
         //   console.log(tracksImg.data.tracks.items[0].album.images[0].url);
-        tracksArr.push(tracksImg.data.tracks.items[0].album.images[2].url);
+        tracksArr.push(tracksImg.data.tracks.items[0]);
       }
       // console.log("tracks : ", tracksImg);
       console.log("tracksArr : ", tracksArr);
@@ -59,7 +59,7 @@ function getChartsTopTen() {
       dispatch({ type: "GET_CHARTS_SUCCESS", payload: { charts: data } });
       dispatch({
         type: "GET_CHARTS_IMG_SUCCESS",
-        payload: { chartsImg: tracksArr },
+        payload: { chartsSpotify: tracksArr },
       });
     } catch (e) {
       console.log(e);

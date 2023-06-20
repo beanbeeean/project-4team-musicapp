@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import styles from "./css/search_tracks.module.css";
+import PlaylistsModal from "../public_components/PlaylistsModal";
+import { useNavigate } from "react-router-dom";
 
 const TracksItem = ({ num, item, select, cnt, setCnt, setSelect }) => {
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
+  const [show, setShow] = useState(false);
   
 
   let temp;
@@ -90,7 +93,9 @@ const TracksItem = ({ num, item, select, cnt, setCnt, setSelect }) => {
   return (
     <>
     
-    <button onClick={saveBtnHandler}>save</button>
+    <button className={styles.input_btn} onClick={() => setShow(true)}>
+            담기
+          </button>
       <Row className={styles.tracks_wrap}>
         <Col md={1} className={styles.tracks_num}>
           {num + 1}
@@ -118,6 +123,7 @@ const TracksItem = ({ num, item, select, cnt, setCnt, setSelect }) => {
           {/* 로컬 스토리지에 보관해야할지 리듀서에 보관해야할지 */}
         </Col>
       </Row>
+      <PlaylistsModal show={show} setShow={setShow}/>
     </>
   );
 };

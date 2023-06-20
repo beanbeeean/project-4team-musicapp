@@ -7,15 +7,17 @@ import MainChartsItem from "../home_components/MainChartsItem";
 
 const Charts = () => {
   const dispatch = useDispatch();
-  const { allCharts, allChartsImg, loading } = useSelector(
+  const { allCharts, allChartsSpotify, loading } = useSelector(
     (state) => state.charts
   );
+  const [select, setSelect] = useState([]);
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [date, setDate] = useState("");
   const [hour, setHour] = useState("");
   const [minute, setMinute] = useState("");
   const [cnt, setCnt] = useState(1);
+  const [count, setCount] = useState(0);
 
   const getNowDate = () => {
     let today = new Date();
@@ -81,7 +83,7 @@ const Charts = () => {
       {allCharts?.tracks?.track.map((item, idx) => (
         <MainChartsItem
           item={item}
-          img={allChartsImg}
+          spoItem={allChartsSpotify}
           idx={
             cnt == 1
               ? idx
@@ -94,6 +96,11 @@ const Charts = () => {
               : idx
           }
           num={idx}
+          select={select}
+          setSelect={setSelect}
+          count={count}
+          setCount={setCount}
+          flag={true}
         />
       ))}
       <div className={styles.btn_wrap}>

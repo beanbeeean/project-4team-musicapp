@@ -2,7 +2,7 @@ import deepmerge from "deepmerge";
 
 let initialState = {
   allCharts: {},
-  allChartsImg: [],
+  allChartsSpotify: [],
   loading: false,
 };
 
@@ -24,7 +24,7 @@ function chartsReducer(state = initialState, action) {
     case "GET_ALL_CHARTS_IMG_SUCCESS":
       return {
         ...state,
-        allChartsImg: payload.allChartsImg,
+        allChartsSpotify: payload.allChartsSpotify,
         // allChartsImg: deepmerge(state.allChartsImg, payload.allChartsImg),
       };
     default:

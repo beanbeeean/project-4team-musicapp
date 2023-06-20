@@ -8,12 +8,15 @@ import RecommandPlaylist from "./RecommendPlaylist";
 
 const Charts = () => {
   const dispatch = useDispatch();
-  const { charts, chartsImg } = useSelector((state) => state.home);
+  const { charts, chartsSpotify } = useSelector((state) => state.home);
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [date, setDate] = useState("");
   const [hour, setHour] = useState("");
   const [minute, setMinute] = useState("");
+
+
+  console.log(charts);
 
   const getNowDate = () => {
     let today = new Date();
@@ -75,9 +78,9 @@ const Charts = () => {
           temp
         </Col> */}
         </Row>
-        {chartsImg.length > 0
+        {chartsSpotify.length > 0
           ? charts.tracks.track.map((item, idx) => (
-              <MainChartsItem item={item} img={chartsImg} idx={idx} num={idx} />
+              <MainChartsItem item={item} spoItem={chartsSpotify} idx={idx} num={idx} flag={false}/>
             ))
           : ""}
       </div>
