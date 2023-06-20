@@ -86,7 +86,11 @@ const MainChartsItem = ({ item, spoItem, idx, num, select, flag, show, setShow})
             : parseInt((spoItem[num].duration_ms / 1000) % 60) + 1}
         </Col>
       )}
-        <PlaylistsModal show={show} setShow={setShow} setSelectnum={setSelectnum}/>
+      {
+        num ==0 ?
+
+        <PlaylistsModal show={show} setShow={setShow} setSelectnum={setSelectnum}/>:null
+      }
     </ListWrap>
    
   );

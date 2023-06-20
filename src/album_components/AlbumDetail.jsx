@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
@@ -7,13 +7,45 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { detailsAction } from "../redux/actions/detailsAction";
 import { ClipLoader } from "react-spinners";
+import PlaylistsModal from "../modal_component/PlaylistsModal";
 
 const AlbumDetail = () => {
   const dispatch = useDispatch();
   let { id } = useParams();
+  const [show, setShow] = useState(false);
+  const [selectnum, setSelectnum] = useState(0);
+  const [select, setSelect] = useState([]);
+  const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
   const { albums, albumsTracks, loading } = useSelector(
     (state) => state.details
   );
+
+  const selecting = (e, num, spoItem) => {
+    if (e.target.checked) {
+      select.push({ num: num, item: spoItem });
+    } else if (!e.target.checked) {
+      select.forEach((item, index) => {
+        if (item.num === num) {
+          select.splice(index, 1);
+        }
+      });
+    }
+    console.log(select);
+  };
+
+  useEffect(() => {
+    if(show===false && selectnum!==0){
+      saveBtnHandler();
+    }
+    setSelectnum(0);
+  }, [selectnum]);  
+
+  const saveBtnHandler = () => {
+    let member = JSON.parse(window.localStorage.getItem(m_id));
+    let playlist = JSON.parse(
+      window.localStorage.getItem(member[selectnum].playlist_title)
+    );
+  }
 
   useEffect(() => {
     dispatch(detailsAction.getAlbumsDetail(id));
@@ -66,6 +98,9 @@ const AlbumDetail = () => {
         <div className={styles.pick_button}>♡</div>
       </div>
       <h3>트랙</h3>
+      <button className={styles.input_btn} onClick={() => setShow(true)}>
+          담기
+        </button>
       <Row className={styles.tracks_header}>
         <Col md={1} className={styles.tracks_num}>
           #
@@ -102,10 +137,11 @@ const AlbumDetail = () => {
               : parseInt((item.duration_ms / 1000) % 60) + 1}
           </Col>
           <Col className={styles.input_playlist} md={1}>
-            <input type="checkbox" />
+            <input type="checkbox" onChange={(e) => selecting(e, idx, item)} />
           </Col>
         </Row>
       ))}
+        <PlaylistsModal show={show} setShow={setShow} setSelectnum={setSelectnum}/>
     </Container>
   );
 };

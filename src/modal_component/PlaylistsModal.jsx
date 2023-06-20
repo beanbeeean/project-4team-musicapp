@@ -29,28 +29,42 @@ function PlaylistsModal({ show, setShow, setSelectnum }) {
       <Modal
         show={show}
         onHide={() => setShow(false)}
-        dialogClassName="modal-90w"
-        aria-labelledby="example-custom-modal-styling-title"
-        className={styles.container}
+        dialogClassName={`modal-90w ${styles.container}`}
       >
         <Modal.Header closeButton style={{ border: "none" }}>
           <div className={styles.modal_header}>PLI PLAYLISTS</div>
         </Modal.Header>
         <Modal.Body>
           <div className={styles.modal_body}>
+            <Row className={styles.modal_header_wrap}>
+              <Col md={8} className={styles.modal_list_header}>
+                플레이리스트 명
+              </Col>
+              <Col md={4} className={styles.modal_list_header}>
+                수록곡 수
+              </Col>
+            </Row>
             {playlist.map((item, idx) =>
               idx == 0 ? (
                 ""
               ) : (
                 <a href="#none" onClick={(e) => numBtnHandler(e, idx)}>
-                  <Row className={`${styles.charts_header_wrap} pb-3 pt-3`}>
-                    <Col className={styles.main_charts_header} md={6} sm={6}>
+                  <Row className={`${styles.modal_pl} pb-3 pt-3`}>
+                    <Col className={styles.modal_pl_name} md={8} sm={6}>
                       {playlist[idx].playlist_title}
                     </Col>
-                    <Col className={styles.main_charts_header} md={2} sm={2}>
-                      {
-                        JSON.parse(window.localStorage.getItem(playlist[idx].playlist_title)).length
-                      }
+                    <Col className={styles.modal_pl_cnt} md={4} sm={1}>
+                      {JSON.parse(
+                        window.localStorage.getItem(
+                          playlist[idx].playlist_title
+                        )
+                      )
+                        ? JSON.parse(
+                            window.localStorage.getItem(
+                              playlist[idx].playlist_title
+                            )
+                          ).length
+                        : 0}
                     </Col>
                   </Row>
                 </a>
