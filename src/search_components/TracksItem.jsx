@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import React, { useEffect, useRef, useState } from "react";
+import { Col, Row, ToggleButton } from "react-bootstrap";
 import styles from "./css/search_tracks.module.css";
 import PlaylistsModal from "../modal_component/PlaylistsModal";
 
 const TracksItem = ({ num, item, select, setSelect, show, setShow }) => {
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
   const [selectnum, setSelectnum] = useState(0);
-  
+  const [isPlaying, setIsPlaying] = useState(false);
+  let ply = useRef(new Audio(item.preview_url));
   let temp;
 
   const selecting = (e) => {
@@ -26,23 +27,21 @@ const TracksItem = ({ num, item, select, setSelect, show, setShow }) => {
   };
 
   useEffect(() => {
-    console.log('[MainChartsItem]asd useEffect!!');
-    if(show===false && selectnum!==0){
+    console.log("[MainChartsItem]asd useEffect!!");
+    if (show === false && selectnum !== 0) {
       saveBtnHandler();
       alert("플레이 리스트에 저장되었습니다!!");
     }
     setSelectnum(0);
-  },[selectnum]);
+  }, [selectnum]);
 
   const saveBtnHandler = () => {
     let member = JSON.parse(window.localStorage.getItem(m_id));
     let playlist = JSON.parse(
       window.localStorage.getItem(member[selectnum].playlist_title)
     );
-    let allplaylist =  JSON.parse(
-      window.localStorage.getItem("playlist")
-    );
-    
+    let allplaylist = JSON.parse(window.localStorage.getItem("playlist"));
+
     window.localStorage.setItem(m_id, JSON.stringify(member));
 
     window.localStorage.setItem("playlist", JSON.stringify(allplaylist));
@@ -54,14 +53,16 @@ const TracksItem = ({ num, item, select, setSelect, show, setShow }) => {
         JSON.stringify(playlist)
       );
     } else {
-      window.localStorage.setItem(member[selectnum].playlist_title, JSON.stringify(select));
-    
+      window.localStorage.setItem(
+        member[selectnum].playlist_title,
+        JSON.stringify(select)
+      );
     }
 
     const checkboxes = document.querySelectorAll(".chkbox"); // .chkbox 클래스를 가진 모든 체크박스 선택
 
     checkboxes.forEach((checkbox) => {
-      if(checkbox.checked){
+      if (checkbox.checked) {
         checkbox.checked = false; // 체크박스 선택 해제
       }
     });
@@ -83,6 +84,10 @@ const TracksItem = ({ num, item, select, setSelect, show, setShow }) => {
     return newObj;
   }
 
+  const togglePlaying = () => {
+    ply.current.play();
+  };
+
   return (
     <>
       <Row className={styles.tracks_wrap}>
@@ -94,7 +99,9 @@ const TracksItem = ({ num, item, select, setSelect, show, setShow }) => {
             <img src={item.album.images[2].url} alt="" />
           </div>
           <div className={styles.tracks_info}>
-            <div className={styles.tracks_track}>{item.name}</div>
+            <div className={styles.tracks_track} onClick={togglePlaying}>
+              {item.name}
+            </div>
             <span>{item.artists[0].name}</span>
           </div>
         </Col>
@@ -112,7 +119,11 @@ const TracksItem = ({ num, item, select, setSelect, show, setShow }) => {
           {/* 로컬 스토리지에 보관해야할지 리듀서에 보관해야할지 */}
         </Col>
       </Row>
-      <PlaylistsModal show={show} setShow={setShow} setSelectnum={setSelectnum}/>
+      <PlaylistsModal
+        show={show}
+        setShow={setShow}
+        setSelectnum={setSelectnum}
+      />
     </>
   );
 };
