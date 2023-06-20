@@ -83,69 +83,48 @@ const NewMusic = () => {
   return (
     <Container>
       <Row>
-        <Col>
-          <div className={styles.albumbox}>
-            <ul className={styles.titleBox}>
-              <li>최신앨범</li>
-              <li className={styles.menu} onClick={domesticBtnHandler}>
-                국내
-              </li>
-              <li className={styles.menu} onClick={abroadBtnHandler}>
-                국외
-              </li>
-              <li
-                className={`${styles.menuBtn} ${styles.nextBtn}`}
-                onClick={nextBtnHandler}
-              >
-                &#62;
-              </li>
-              <li
-                className={`${styles.menuBtn} ${styles.prevBtn}`}
-                onClick={prevBtnHandler}
-              >
-                &#60;
-              </li>
-              <li className={styles.menu2}>{page}/5</li>
-            </ul>
-          </div>
-          <div className={styles.albums_list}>
-            {newRelease.length > 0
-              ? newRelease.map((item) => <Album item={item} />)
-              : ""}
-          </div>
-        </Col>
-        <Col>
-          {m_login !== null || m_login === "" ? (
-            <div className={loginStyles.section_wrap}>
-              <div>{m_id}님, 반갑습니다.</div>
-              <input type="button" value="Logout" onClick={logoutBtnHandler} />
-              <input type="button" value="delete" onClick={deleteBtnHandler} />
+        <div className={styles.wrap}>
+          <Col md={8} className={styles.colum1}>
+            <div className={styles.albumbox}>
+              <ul className={styles.titleBox}>
+                <li>최신앨범</li>
+                <li className={styles.menu} onClick={domesticBtnHandler}>
+                  국내
+                </li>
+                <li className={styles.menu} onClick={abroadBtnHandler}>
+                  국외
+                </li>
+                <li
+                  className={`${styles.menuBtn} ${styles.nextBtn}`}
+                  onClick={nextBtnHandler}
+                >
+                  &#62;
+                </li>
+                <li
+                  className={`${styles.menuBtn} ${styles.prevBtn}`}
+                  onClick={prevBtnHandler}
+                >
+                  &#60;
+                </li>
+                <li className={styles.menu2}>{page}/5</li>
+              </ul>
             </div>
-          ) : (
-            <div className={loginStyles.section_wrap}>
-              <div className={loginStyles.info}>
-                서비스를 더 안전하게 이용하세요
+            <div className={styles.albums_list}>
+              {newRelease.length > 0
+                ? newRelease.map((item) => <Album item={item} />)
+                : ""}
+            </div>
+          </Col>
+          <Col md={4} className={styles.column2}>
+            <div class={styles.slide_banner}>
+              <div class={styles.slide_item}>
+                <a href="#">
+                  <img src="./imgs/default.jpg" alt="" />
+                </a>
               </div>
-              <br />
-              <input
-                type="text"
-                placeholder="Input ID"
-                value={m_id}
-                onChange={(e) => setM_id(e.target.value)}
-              />
-              <br />
-              <input
-                type="password"
-                placeholder="Input PW"
-                value={m_pw}
-                onChange={(e) => setM_pw(e.target.value)}
-              />
-              <br />
-              <input type="button" value="Login" onClick={loginBtnHandler} />
-              <br />
             </div>
-          )}
-        </Col>
+          </Col>
+        </div>
       </Row>
     </Container>
   );

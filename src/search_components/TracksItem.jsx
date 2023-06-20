@@ -1,33 +1,40 @@
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import styles from "./css/search_tracks.module.css";
+import PlaylistsModal from "../public_components/PlaylistsModal";
+import { useNavigate } from "react-router-dom";
 
-const TracksItem = ({ num, item, test, setTest }) => {
+const TracksItem = ({ num, item, select, cnt, setCnt, setSelect }) => {
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
-  const [idx, setIdx] = useState(0);
+  const [show, setShow] = useState(false);
+  
 
   let temp;
   let title;
 
-  const testing = (e) => {
+  const selecting = (e) => {
     if (e.target.checked) {
-      test.push({ num: num, item: item });
-      temp = test.slice();
-      setTest(temp);
+      select.push({ num: num, item: item });
+      temp = select.slice();
+      setCnt(e => e+1);
+      setSelect(temp);
     } else if (!e.target.checked) {
-      test.forEach((item, index) => {
+      select.forEach((item, index) => {
         if (item.num === num) {
-          test.splice(index, 1);
+          select.splice(index, 1);
         }
       });
-      temp = test.slice();
-      setTest(temp);
+      temp = select.slice();
+      setCnt(e => e-1);
+      setSelect(temp);
     }
+    console.log(cnt);
   };
 
   const saveBtnHandler = () => {
-    let test2 = prompt("번호입력");
-    title = JSON.parse(window.localStorage.getItem(m_id))[test2];
+    let selectnum = prompt("번호입력");
+    title = JSON.parse(window.localStorage.getItem(m_id))[selectnum];
+    let member = JSON.parse(window.localStorage.getItem(m_id));
 
     console.log("title", title);
     console.log("playlist명", title.playlist_title);
@@ -36,30 +43,44 @@ const TracksItem = ({ num, item, test, setTest }) => {
       window.localStorage.getItem(title.playlist_title)
     );
 
+    let playlistcnt =
+      {
+        playlist_title: title.playlist_title,
+        about_playlist: title.about_playlist,
+        create_date: title.create_date,
+        music_cnt: title.music_cnt + cnt
+     };
+    
+    member[selectnum]=playlistcnt;
+    window.localStorage.setItem(m_id, JSON.stringify(member));
+
     if (playlist !== null) {
-      playlist = [...playlist, ...test];
+      playlist = [...playlist, ...select];
       window.localStorage.setItem(
         title.playlist_title,
         JSON.stringify(playlist)
       );
     } else {
-      window.localStorage.setItem(title.playlist_title, JSON.stringify(test));
+      window.localStorage.setItem(title.playlist_title, JSON.stringify(select));
     }
 
     const checkboxes = document.querySelectorAll(".chkbox"); // .chkbox 클래스를 가진 모든 체크박스 선택
 
     checkboxes.forEach((checkbox) => {
-      checkbox.checked = false; // 체크박스 선택 해제
+      if(checkbox.checked){
+        checkbox.checked = false; // 체크박스 선택 해제
+        setCnt(e => e-1);
+      }
     });
 
-    setTest([]);
+    setSelect([]);
   };
 
   // merge object 함수
-  function mergeObj(title, test) {
+  function mergeObj(title, select) {
     const newObj = {};
-    for (let att in test) {
-      newObj[att] = test[att];
+    for (let att in select) {
+      newObj[att] = select[att];
     }
 
     for (let att in title) {
@@ -71,7 +92,10 @@ const TracksItem = ({ num, item, test, setTest }) => {
 
   return (
     <>
-      <button onClick={saveBtnHandler}>save</button>
+    
+    <button className={styles.input_btn} onClick={() => setShow(true)}>
+            담기
+          </button>
       <Row className={styles.tracks_wrap}>
         <Col md={1} className={styles.tracks_num}>
           {num + 1}
@@ -95,10 +119,11 @@ const TracksItem = ({ num, item, test, setTest }) => {
             : parseInt((item.duration_ms / 1000) % 60) + 1}
         </Col>
         <Col md={1} className="text-center">
-          <input className="chkbox" type="checkbox" onChange={testing} />
+          <input className="chkbox" type="checkbox" onChange={selecting} />
           {/* 로컬 스토리지에 보관해야할지 리듀서에 보관해야할지 */}
         </Col>
       </Row>
+      <PlaylistsModal show={show} setShow={setShow}/>
     </>
   );
 };

@@ -22,7 +22,6 @@ const Nav = ({ login }) => {
 
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
-  const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -59,10 +58,6 @@ const Nav = ({ login }) => {
     navigate("/");
   };
 
-  useEffect(() => {
-    setM_id(window.localStorage.getItem("session"));
-  }, [login]);
-
   return (
     <Container>
       <Row className={styles.search_wrap}>
@@ -95,18 +90,14 @@ const Nav = ({ login }) => {
           <Link to="/charts">Music Chart</Link>
         </Col>
         <Col className={`${styles.list} text-center`}>
-          <a href="#">Gongju</a>
+          <Link to="/allplaylist">Playlist</Link>
         </Col>
         <Col className={`${styles.list} text-center`}>
-          <a href="#">is Me</a>
-        </Col>
-        <Col className={`${styles.list} text-center`}>
-          <a href="#">All Playlist</a>
-        </Col>
-        <Col className={`${styles.list} text-center`}>
-          { m_id === null ?  <Link to="/signin">Playlist</Link> :
-          <Link to="/playlist">Playlist</Link>
-          }
+          {login.current === null ? (
+            <Link to="/signin">My Page</Link>
+          ) : (
+            <Link to="/playlist">My Page</Link>
+          )}
         </Col>
       </Row>
     </Container>

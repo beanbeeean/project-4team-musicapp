@@ -2,27 +2,23 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styles from "./css/playlist_item.module.css";
 import { Container, Row, Col, Placeholder } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 
-const Playlistplaylist = () => {
+const PlaylistItem = () => {
+  const location = useLocation();
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
-  const [idx, setIdx] = useState(0);
-  const [curidx, setCurIdx] = useState(1);
-  const [len_list, setLen_list] = useState(0);
 
   let playlist = JSON.parse(window.localStorage.getItem(m_id));
 
   console.log("playlist", playlist);
-  console.log("playlist[curidx]", playlist[curidx]);
+  console.log("playlist[curidx]", playlist[location.state.cnt]);
 
-  console.log("title1:", playlist[curidx].playlist_title);
+  console.log("title1:", playlist[location.state.cnt].playlist_title);
 
   let curPlaylist = JSON.parse(
-    window.localStorage.getItem(playlist[curidx].playlist_title)
+    window.localStorage.getItem(playlist[location.state.cnt].playlist_title)
   );
   console.log("curPlaylist:", curPlaylist);
-
-  setLen_list(curPlaylist.length);
-  console.log(len_list);
 
   return (
     <Container>
@@ -63,4 +59,4 @@ const Playlistplaylist = () => {
   );
 };
 
-export default Playlistplaylist;
+export default PlaylistItem;

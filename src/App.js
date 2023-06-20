@@ -14,6 +14,7 @@ import SignIn from "./sign_components/SignIn";
 import SignUp from "./sign_components/SignUp";
 import ArtistDetail from "./artist_components/ArtistDetail";
 import AlbumDetail from "./album_components/AlbumDetail";
+import AllPlaylist from "./playlist_components/AllPlaylist";
 
 function App() {
   let login = useRef(window.localStorage.getItem("session"));
@@ -29,6 +30,7 @@ function App() {
         <Route path="/signin" element={<SignIn login={login} />} />
         <Route path="/signup" element={<SignUp login={login} />} />
         <Route path="/playlistitem" element={<PlaylistItem />} />
+        <Route path="/allplaylist" element={<AllPlaylist />} />
         <Route path="/playlist/create_playlist" element={<CreatePlaylist />} />
         <Route path="/artists/:id" element={<ArtistDetail />} />
         <Route path="/albums/:id" element={<AlbumDetail />} />

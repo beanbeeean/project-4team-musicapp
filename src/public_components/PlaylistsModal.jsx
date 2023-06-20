@@ -1,44 +1,48 @@
-import React, { useEffect, useState } from "react";
-import styles from "./css/playlists.module.css";
-import { useNavigate, Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import styles from "./modal.module.css";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-const Playlists = () => {
+function PlaylistsModal({ show, setShow }) {
+  const navigate = useNavigate();
+
+  const nav = () => {
+    navigate("/playlist/create_playlist");
+  }
+  
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
-  let cnt = 1;
   let playlist = JSON.parse(window.localStorage.getItem(m_id));
 
   let curPlaylist;
-  const curPlaylists = () => {
-    curPlaylist = !playlist[cnt]
+  const curPlaylists = (idx) => {
+    curPlaylist = !playlist[idx]
       ? null
-      : JSON.parse(window.localStorage.getItem(playlist[cnt].playlist_title));
-    cnt = cnt + 1;
+      : JSON.parse(window.localStorage.getItem(playlist[idx].playlist_title));
   };
-  console.log(playlist);
-  console.log(curPlaylist);
 
   return (
-    <>
-      <div className={styles.wrap}>
-        <div className={styles.header}>
-          <h5>My Playlist</h5>
-          <Link
-            to="/playlist/create_playlist"
-            className={styles.create_playlist}
-          >
-            + 플레이리스트 생성
-          </Link>
-        </div>
+    <Modal
+      show={show}
+      onHide={() => setShow(false)}
+      dialogClassName="modal-90w"
+      aria-labelledby="example-custom-modal-styling-title"
+      className={styles.container}
+    >
+      <Modal.Header closeButton style={{ border: "none" }}>
+        <div className={styles.modal_header}>PLI PLAYLISTS</div>
+      </Modal.Header>
+      <Modal.Body>
+        <div className={styles.modal_body}>
 
         {playlist.map((item, idx) =>
           idx == 0 ? (
             ""
           ) : (
-            <Link to="/playlistitem" state={{ cnt: idx }}>
               <div className={styles.playlists_item}>
                 <ul className={styles.playlist_item_wrap}>
                   <li className={styles.playlist_pic}>
-                    {curPlaylists()}
+                    {curPlaylists(idx)}
                     <img
                       src={
                         curPlaylist === null
@@ -61,12 +65,15 @@ const Playlists = () => {
                   </li>
                 </ul>
               </div>
-            </Link>
           )
         )}
-      </div>
-    </>
+        </div>
+      </Modal.Body>
+      <Modal.Footer className={styles.modal_footer}>
+        <button onClick={nav}>Playlists 만들기</button>
+      </Modal.Footer>
+    </Modal>
   );
-};
+}
 
-export default Playlists;
+export default PlaylistsModal;
