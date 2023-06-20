@@ -17,6 +17,7 @@ import AllPlaylist from "./playlist_components/AllPlaylist";
 
 function App() {
   let login = useRef(window.localStorage.getItem("session"));
+  let playlists = useState(window.localStorage.getItem("storage"));
 
   return (
     <div>

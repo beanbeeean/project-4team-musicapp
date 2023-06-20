@@ -9,7 +9,7 @@
 }
 
 .item_wrap:hover {
-  background-color: rgba(50, 150, 50, 0.3);
+  background-color: rgba(108, 208, 255, 0.3);
 }
 .item_wrap:hover .album_play {
   opacity: 1;

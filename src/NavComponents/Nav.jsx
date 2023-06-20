@@ -65,7 +65,7 @@ const Nav = ({ login }) => {
           <a
             href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
           >
-            <img src="./imgs/default.jpg" />
+            <img src="./imgs/logo.png" />
           </a>
           <form onSubmit={searching}>
             <input type="text" onChange={(e) => setSearchKey(e.target.value)} />

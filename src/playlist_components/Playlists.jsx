@@ -52,11 +52,13 @@ const Playlists = () => {
                       {playlist[idx].playlist_title}
                     </div>
                     <br />
+                    <br />
                     <div className={styles.create_date}>
                       {playlist[idx].create_date}&nbsp;
                     </div>
+                    <br />
                     <div className={styles.music_cnt}>
-                      {playlist[idx].music_cnt}&nbsp;
+                      {playlist[idx].music_cnt}곡&nbsp;
                     </div>
                   </li>
                 </ul>

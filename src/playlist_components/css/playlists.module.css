@@ -4,7 +4,7 @@ div.wrap {
 }
 
 h5 {
-  color: rgb(76, 144, 121);
+  color: rgb(108, 208, 255);
   font-weight: bold;
 }
 
@@ -28,7 +28,7 @@ ul.playlist_item_wrap li {
 }
 
 div.playlist_name {
-  margin-top: 60px;
+  margin-top: 40px;
 }
 
 ul.playlist_item_wrap:hover {
@@ -51,7 +51,8 @@ div.wrap ul.playlist_item_wrap li div.playlist_name {
   font-weight: bold;
 }
 
-div.wrap ul li div.create_date {
+div.wrap ul li div.create_date,
+div.wrap ul li div.music_cnt {
   font-size: 0.9em;
   color: #5a5a5a;
 }

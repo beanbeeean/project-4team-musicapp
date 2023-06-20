@@ -4,16 +4,15 @@ import styles from "./css/search_tracks.module.css";
 
 const TracksItem = ({ num, item, select, cnt, setCnt, setSelect }) => {
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
-  
 
   let temp;
   let title;
 
   const selecting = (e) => {
     if (e.target.checked) {
-      select.push({ num: num, item: item });
+      select.push({ id: m_id, num: num, item: item });
       temp = select.slice();
-      setCnt(e => e+1);
+      setCnt((e) => e + 1);
       setSelect(temp);
     } else if (!e.target.checked) {
       select.forEach((item, index) => {
@@ -22,7 +21,7 @@ const TracksItem = ({ num, item, select, cnt, setCnt, setSelect }) => {
         }
       });
       temp = select.slice();
-      setCnt(e => e-1);
+      setCnt((e) => e - 1);
       setSelect(temp);
     }
     console.log(cnt);
@@ -40,15 +39,14 @@ const TracksItem = ({ num, item, select, cnt, setCnt, setSelect }) => {
       window.localStorage.getItem(title.playlist_title)
     );
 
-    let playlistcnt =
-      {
-        playlist_title: title.playlist_title,
-        about_playlist: title.about_playlist,
-        create_date: title.create_date,
-        music_cnt: title.music_cnt + cnt
-     };
-    
-    member[selectnum]=playlistcnt;
+    let playlistcnt = {
+      playlist_title: title.playlist_title,
+      about_playlist: title.about_playlist,
+      create_date: title.create_date,
+      music_cnt: title.music_cnt + cnt,
+    };
+
+    member[selectnum] = playlistcnt;
     window.localStorage.setItem(m_id, JSON.stringify(member));
 
     if (playlist !== null) {
@@ -64,9 +62,9 @@ const TracksItem = ({ num, item, select, cnt, setCnt, setSelect }) => {
     const checkboxes = document.querySelectorAll(".chkbox"); // .chkbox 클래스를 가진 모든 체크박스 선택
 
     checkboxes.forEach((checkbox) => {
-      if(checkbox.checked){
+      if (checkbox.checked) {
         checkbox.checked = false; // 체크박스 선택 해제
-        setCnt(e => e-1);
+        setCnt((e) => e - 1);
       }
     });
 
@@ -89,8 +87,7 @@ const TracksItem = ({ num, item, select, cnt, setCnt, setSelect }) => {
 
   return (
     <>
-    
-    <button onClick={saveBtnHandler}>save</button>
+      <button onClick={saveBtnHandler}>save</button>
       <Row className={styles.tracks_wrap}>
         <Col md={1} className={styles.tracks_num}>
           {num + 1}
