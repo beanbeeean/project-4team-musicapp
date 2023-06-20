@@ -39,7 +39,6 @@ const MainChartsItem = ({ item, spoItem, idx, num, select, flag, show, setShow})
       window.localStorage.getItem("playlist")
     );
 
-    title[selectnum].music_cnt = title[selectnum].music_cnt + select.length;
     window.localStorage.setItem(m_id, JSON.stringify(title));
 
     window.localStorage.setItem("playlist", JSON.stringify(allplaylist));

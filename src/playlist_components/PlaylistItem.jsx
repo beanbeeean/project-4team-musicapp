@@ -12,10 +12,11 @@ const PlaylistItem = (flag, m_id) => {
   const [show, setShow] = useState(false);
   const [selectnum, setSelectnum] = useState(0);
   const [select, setSelect] = useState([]);
+  
+  console.log("location.state.m_id", location.state.m_id);
   let playlist = JSON.parse(window.localStorage.getItem(location.state.m_id));
   
   console.log("playlist", playlist);
-  console.log("playlist", location.state.m_id);
 
   const deleting = (e, idx) => {
     if (e.target.checked) {
@@ -35,7 +36,7 @@ const PlaylistItem = (flag, m_id) => {
     console.log(spoItem);
 
     if (e.target.checked) {
-      select.push({ num: num, item: spoItem});
+      select.push(spoItem);
       setSelectedIndexes((prevIndexes) => [...prevIndexes, num]);
     } else if (!e.target.checked) {
       select.forEach((item, index) => {
@@ -76,6 +77,37 @@ const PlaylistItem = (flag, m_id) => {
       }
     });
   };
+
+  useEffect(() => {
+    if(show===false && selectnum!==0){
+      saveBtnHandler();
+    }
+    setSelectnum(0);
+  }, [selectnum]);  
+
+  const saveBtnHandler = () => {
+    let id=window.localStorage.getItem("session");
+    console.log(id);
+    let member = JSON.parse(window.localStorage.getItem(id));
+    console.log(member);
+    let playlist2 = JSON.parse(
+      window.localStorage.getItem(member[selectnum].playlist_title)
+    );
+    console.log(member);
+    console.log(playlist2);
+    
+    if (playlist2 !== null) {
+      playlist2 = [...playlist2, ...select];
+      window.localStorage.setItem(
+        member[selectnum].playlist_title,
+        JSON.stringify(playlist2)
+      );
+    } else {
+      window.localStorage.setItem(member[selectnum].playlist_title, JSON.stringify(select));
+    }
+    
+    console.log("endddd");
+  }
 
   const selectBtnClicked = () => {
     console.log("selectBtnClicked!");
