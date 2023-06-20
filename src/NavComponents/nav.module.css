@@ -6,24 +6,38 @@
 
 .search {
   display: flex;
+  /* width: 100%; */
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0px;
+}
+
+.logo {
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .search a img {
-  margin-top: 5px;
   min-width: 90px;
   max-width: 90px;
   min-height: 55px;
   max-height: 55px;
 }
 
-.search form {
-  margin-top: 15px;
-  position: absolute;
+.search_area {
+  display: flex;
+}
+
+.search_form {
+  display: flex;
+  align-items: center;
+  padding-top: 5px;
+  position: relative;
 }
 
 .search input {
   position: relative;
-  margin-left: 100px;
   padding: 8px 8px 8px 15px;
   border-radius: 25px;
   border: 2px solid rgb(108, 208, 255);
@@ -33,8 +47,9 @@
 }
 
 .search button {
-  position: relative;
-  right: 40px;
+  position: absolute;
+  right: 5px;
+  top: 14px;
   width: 30px;
   height: 30px;
   color: rgb(108, 208, 255);
@@ -49,8 +64,8 @@
 }
 
 .login_wrap {
-  margin-top: 30px;
-  height: 60px;
+  /* margin-top: 30px; */
+  /* height: 60px; */
 }
 
 .Menubar {
@@ -66,12 +81,14 @@
   margin-top: 5px;
   color: #fff;
   text-decoration: none;
-  font-style: italic;
+  font-weight: bold;
+  /* font-style: italic; */
 }
 
 .login_wrap input[type="button"] {
   padding: 5px;
   width: 70px;
+  height: 30px;
   margin-left: 15px;
   border: 1px solid #dadada;
   text-align: center;
@@ -81,9 +98,9 @@
 
 .info_wrap {
   margin-top: 5px;
+  font-size: 1.1em;
 }
 
 .welcome_wrap {
-  float: right;
   display: flex;
 }

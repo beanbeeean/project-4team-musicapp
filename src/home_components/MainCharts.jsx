@@ -4,14 +4,14 @@ import styles from "./css/main_charts.module.css";
 import MainChartsItem from "./MainChartsItem";
 import { useDispatch, useSelector } from "react-redux";
 import { homeAction } from "../redux/actions/homeAction";
-import { playlistsAction } from "../redux/actions/playlistsAction";
 import RecommandPlaylist from "./RecommendPlaylist";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
+import { ClipLoader } from "react-spinners";
 
 const Charts = () => {
   const dispatch = useDispatch();
-  const { charts, chartsSpotify } = useSelector((state) => state.home);
+  const { charts, chartsSpotify, loading } = useSelector((state) => state.home);
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [date, setDate] = useState("");
@@ -48,6 +48,19 @@ const Charts = () => {
     dispatch(homeAction.getChartsTopTen());
   }, []);
 
+  if (loading) {
+    return (
+      <div className="spinner_wrap">
+        <ClipLoader
+          color="rgb(108, 208, 255)"
+          loading={loading}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
+  }
   return (
     <Container className={styles.container} pb-3>
       <Row>

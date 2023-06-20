@@ -1,19 +1,25 @@
 .subnav {
-  margin-top: 10px;
+  margin-top: 1rem;
+  margin-bottom: 0 !important;
 }
 .subnav li {
   margin: 5px;
   border: 1px solid #dadada;
   padding: 5px 10px;
   border-radius: 10px;
-  background-color: rgba(108, 208, 255, 0.1);
+  border: 1px solid rgb(108, 208, 255);
   color: #6e6e6e;
 }
 .subnav li:hover {
   color: #fff;
-  background-color: #dadada;
+  background-color: rgb(108, 208, 255);
 }
 .subnav li {
   float: left;
   cursor: pointer;
+}
+
+.search_nav_on {
+  background-color: rgb(108, 208, 255) !important;
+  color: #fff !important;
 }

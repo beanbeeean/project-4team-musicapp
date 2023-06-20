@@ -15,28 +15,28 @@ const Search = () => {
   if (option == 0) {
     return (
       <Container>
-        <SearchNav setOption={setOption} />
+        <SearchNav option={option} setOption={setOption} />
         <SearchMain />
       </Container>
     );
   } else if (option == 1) {
     return (
       <Container>
-        <SearchNav setOption={setOption} />
+        <SearchNav option={option} setOption={setOption} />
         <SearchArtists />
       </Container>
     );
   } else if (option == 2) {
     return (
       <Container>
-        <SearchNav setOption={setOption} />
+        <SearchNav option={option} setOption={setOption} />
         <SearchTracks />
       </Container>
     );
   } else if (option == 3) {
     return (
       <Container>
-        <SearchNav setOption={setOption} />
+        <SearchNav option={option} setOption={setOption} />
         <SearchAlbums />
       </Container>
     );

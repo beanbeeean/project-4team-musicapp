@@ -123,18 +123,33 @@ h5 {
 
 .album_list {
   width: 180px;
+  cursor: pointer;
+  margin: 10px;
+  padding: 10px;
 }
 
+.album_list ul {
+  padding: 0;
+  margin: 0;
+}
 .artists_wrap div {
   margin: 0 10px 0 10px;
 }
 
-.album_wrap img,
-.join_album_wrap img {
+.album_name {
+  margin-top: 5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.album_wrap img {
   border-radius: 7px;
-  max-width: 150px;
+  max-width: 160px;
   min-width: auto;
-  max-height: 150px;
+  max-height: 160px;
+}
+.album_list:hover {
+  box-shadow: 2px 2px 2px 2px rgba(150, 150, 150, 0.5);
 }
 
 .artists li {
@@ -142,8 +157,8 @@ h5 {
 }
 
 .artists_wrap img {
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
   border-radius: 125px;
 }
 
@@ -168,4 +183,24 @@ h5 {
 .song_num {
   color: rgb(26, 153, 211);
   font-weight: bold;
+}
+
+.related_list {
+  cursor: pointer;
+  width: 180px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.related_list ul {
+  padding: 0;
+  margin: 0;
+}
+
+.related_name {
+  margin-top: 5px;
+}
+
+.related_list:hover {
+  box-shadow: 2px 2px 2px 2px rgba(150, 150, 150, 0.5);
 }

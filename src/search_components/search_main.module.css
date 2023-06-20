@@ -10,7 +10,7 @@ h3 {
 }
 
 .info {
-  margin-top: 180px;
+  /* margin-top: 180px; */
   color: #6e6e6e;
 }
 
@@ -82,23 +82,62 @@ div.list_wrap:hover {
 
 .album_wrap img {
   border-radius: 7px;
-  max-width: 150px;
+  max-width: 160px;
   min-width: auto;
-  max-height: 150px;
+  max-height: 160px;
 }
 
-.album_wrap > div {
+.album_wrap > .album_list {
   width: 180px;
+  overflow: hidden;
+  margin: 10px;
+  padding: 10px;
+}
+.album_list ul {
+  padding: 0;
+  margin: 0;
 }
 
-.artists li {
-  float: none;
+.album_list:hover {
+  box-shadow: 2px 2px 2px 2px rgba(150, 150, 150, 0.5);
+}
+
+.album_wrap > .album_list .album_name {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+.artist_list {
+  width: 180px;
+  margin: 10px;
+  padding: 10px;
+}
+.artist_list ul {
+  padding: 0;
+  margin: 0;
+}
+
+.artist_img {
+  display: flex;
+  justify-content: center;
 }
 
 .artists_wrap img {
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
   border-radius: 125px;
+}
+
+.artist_list:hover {
+  box-shadow: 2px 2px 2px 2px rgba(150, 150, 150, 0.5);
+}
+.artist_list .artist_name {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: 5px;
 }
 
 .album_wrap div ul li:nth-child(2),

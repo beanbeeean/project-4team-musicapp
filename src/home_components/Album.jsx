@@ -10,14 +10,13 @@ const Album = ({ item }) => {
 
   return (
     <div onClick={() => navigateAlbums(item.id)}>
-      <a
+      <div
         className={styles.album}
-        href="#none"
-        onClick={(e) => e.preventDefault()}
+        style={{ backgroundImage: "url(" + `${item.images[1].url}` + ")" }}
       >
-        <span>{item.name}</span>
-        <img src={item.images[1].url} />
-      </a>
+        {/* <img src={item.images[1].url} /> */}
+        <div className={styles.album_name}>{item.name}</div>
+      </div>
     </div>
   );
 };
