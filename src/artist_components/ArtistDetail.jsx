@@ -5,10 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { ClipLoader } from "react-spinners";
 import { useNavigate, useParams } from "react-router-dom";
 import { detailsAction } from "../redux/actions/detailsAction";
+import PlaylistsModal from "../modal_component/PlaylistsModal";
 const ArtistDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let { id } = useParams();
+
+  const [show, setShow] = useState(false);
+  const [selectnum, setSelectnum] = useState(0);
+  const [select, setSelect] = useState([]);
+  const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
+
+
   const { artist, artistAlbums, artistTopTracks, artistRelated, loading } =
     useSelector((state) => state.details);
 
@@ -19,12 +27,53 @@ const ArtistDetail = () => {
   const changeArtistDetail = (id) => {
     navigate(`/artists/${id}`);
   };
+
+  const selecting = (e, num, spoItem) => {
+    if (e.target.checked) {
+      select.push({ num: num, item: spoItem });
+    } else if (!e.target.checked) {
+      select.forEach((item, index) => {
+        if (item.num === num) {
+          select.splice(index, 1);
+        }
+      });
+    }
+    console.log(select);
+  };
+  useEffect(() => {
+    if(show===false && selectnum!==0){
+      saveBtnHandler();
+    }
+    setSelectnum(0);
+  }, [selectnum]);  
+
+  const saveBtnHandler = () => {
+    let member = JSON.parse(window.localStorage.getItem(m_id));
+    let playlist = JSON.parse(
+      window.localStorage.getItem(member[selectnum].playlist_title)
+    );
+
+    console.log(playlist);
+    
+    if (playlist !== null) {
+      playlist = [...playlist, ...select];
+      window.localStorage.setItem(
+        member[selectnum].playlist_title,
+        JSON.stringify(playlist)
+      );
+    } else {
+      window.localStorage.setItem(member[selectnum].playlist_title, JSON.stringify(select));
+    }
+
+  }
+
   useEffect(() => {
     dispatch(detailsAction.getArtistDetail(id));
   }, []);
 
   useEffect(() => {
     dispatch(detailsAction.getArtistDetail(id));
+    console.log("11",artistTopTracks)
   }, [id]);
 
   if (loading) {
@@ -57,7 +106,9 @@ const ArtistDetail = () => {
         <div className={styles.popular_header}>
           <h5>인기</h5>
         </div>
-
+        <button className={styles.input_btn} onClick={() => setShow(true)}>
+          담기
+        </button>
         {artistTopTracks?.tracks?.map((item, idx) => (
           <Row className={styles.list_wrap}>
             <Col className={styles.song_num} md={1}>
@@ -79,7 +130,7 @@ const ArtistDetail = () => {
                 : parseInt((item.duration_ms / 1000) % 60) + 1}
             </Col>
             <Col className={styles.input_playlist} md={1}>
-              <input type="checkbox" />
+              <input type="checkbox" onChange={(e) => selecting(e, idx, item)}/>
             </Col>
           </Row>
         ))}
@@ -128,6 +179,7 @@ const ArtistDetail = () => {
           )}
         </div>
       </div>
+      <PlaylistsModal show={show} setShow={setShow} setSelectnum={setSelectnum}/>
     </Container>
   );
 };

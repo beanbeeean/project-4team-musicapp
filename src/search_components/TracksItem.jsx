@@ -29,7 +29,6 @@ const TracksItem = ({ num, item, select, setSelect, show, setShow }) => {
     console.log('[MainChartsItem]asd useEffect!!');
     if(show===false && selectnum!==0){
       saveBtnHandler();
-      alert("플레이 리스트에 저장되었습니다!!");
     }
     setSelectnum(0);
   },[selectnum]);
@@ -112,7 +111,11 @@ const TracksItem = ({ num, item, select, setSelect, show, setShow }) => {
           {/* 로컬 스토리지에 보관해야할지 리듀서에 보관해야할지 */}
         </Col>
       </Row>
-      <PlaylistsModal show={show} setShow={setShow} setSelectnum={setSelectnum}/>
+      {
+        num ==0 ?
+
+      <PlaylistsModal show={show} setShow={setShow} setSelectnum={setSelectnum}/>:null
+    }
     </>
   );
 };
