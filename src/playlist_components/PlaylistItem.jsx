@@ -4,11 +4,14 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PlaylistsModal from "../modal_component/PlaylistsModal";
 
 const PlaylistItem = (flag, m_id) => {
   const location = useLocation();
   const [selectedIndexes, setSelectedIndexes] = useState([]);
-  const [count, setCount] = useState(0);
+  const [show, setShow] = useState(false);
+  const [selectnum, setSelectnum] = useState(0);
+  const [select, setSelect] = useState([]);
   let playlist = JSON.parse(window.localStorage.getItem(location.state.m_id));
   
   console.log("playlist", playlist);
@@ -17,16 +20,34 @@ const PlaylistItem = (flag, m_id) => {
   const deleting = (e, idx) => {
     if (e.target.checked) {
       console.log("idx: ", idx);
-      setCount(count + 1);
       setSelectedIndexes((prevIndexes) => [...prevIndexes, idx]);
     } else {
       console.log("yeah");
       setSelectedIndexes((prevIndexes) =>
         prevIndexes.filter((index) => index !== idx)
       );
-      setCount(count - 1);
     }
-    console.log("count:", count);
+  };
+  const selecting = (e, num, spoItem) => {
+    
+    console.log(e.target.checked);
+    console.log(num);
+    console.log(spoItem);
+
+    if (e.target.checked) {
+      select.push({ num: num, item: spoItem});
+      setSelectedIndexes((prevIndexes) => [...prevIndexes, num]);
+    } else if (!e.target.checked) {
+      select.forEach((item, index) => {
+        if (item.num === num) {
+          select.splice(index, 1);
+        }
+      });
+      setSelectedIndexes((prevIndexes) =>
+        prevIndexes.filter((index) => index !== num)
+      );
+    }
+    console.log(select);
   };
 
   const selectedDeleteClicked = () => {
@@ -44,8 +65,16 @@ const PlaylistItem = (flag, m_id) => {
     console.log("playlist: ", playlist);
     setSelectedIndexes([]);
     document.getElementById("chkbox").checked = false;
-
+    alert("삭제 되었습니다!!");
     console.log(playlist);
+    
+    const checkboxes = document.querySelectorAll(".chkbox"); // .chkbox 클래스를 가진 모든 체크박스 선택
+
+    checkboxes.forEach((checkbox) => {
+      if(checkbox.checked){
+        checkbox.checked = false; // 체크박스 선택 해제
+      }
+    });
   };
 
   const selectBtnClicked = () => {
@@ -69,7 +98,7 @@ const PlaylistItem = (flag, m_id) => {
             선택삭제
           </button> : <button
             className={styles.selected_delete}
-            // onClick={selectedDeleteClicked}
+            onClick={() => setShow(true)}
             disabled={selectedIndexes.length === 0}
           >
             선택추가
@@ -116,14 +145,23 @@ const PlaylistItem = (flag, m_id) => {
                     1}
               </Col>
               <Col md={1}>
+                {location.state.flag ?
                 <input
-                  id="chkbox"
-                  type="checkbox"
-                  onChange={(e) => deleting(e, idx)}
-                />
+                id="chkbox"
+                className="chkbox"
+                type="checkbox"
+                onChange={(e) => deleting(e, idx)}
+              /> :
+                 <input
+                 id="chkbox"
+                 className="chkbox"
+                 type="checkbox"
+                 onChange={(e) => selecting(e, idx, item)}
+               /> }
               </Col>
             </Row>
-          ))}
+          ))} 
+          <PlaylistsModal show={show} setShow={setShow} setSelectnum={setSelectnum}/>
     </Container>
   );
 };

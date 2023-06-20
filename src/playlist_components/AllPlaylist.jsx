@@ -35,7 +35,7 @@ const AllPlaylist = () => {
               <div className={styles.item_wrap}>
                 <div className={styles.img_wrap}>
                   <img className={styles.album_img} src={
-                    window.localStorage.getItem(playlist[idx].playlist_title)===null ? "./imgs/default.jpg" : 
+                    window.localStorage.getItem(playlist[idx].playlist_title)==null ? "./imgs/default.jpg" : 
                     JSON.parse(window.localStorage.getItem(playlist[idx].playlist_title))[0].item.album.images[1].url 
                     
                   } />

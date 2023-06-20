@@ -12,7 +12,7 @@ const Playlists = () => {
       ? null
       : JSON.parse(window.localStorage.getItem(playlist[idx].playlist_title));
     
-  console.log(playlist);
+  console.log("playlist",playlist);
   console.log(curPlaylist);
   };
 
