@@ -41,7 +41,6 @@ const CreatePlaylist = () => {
         playlist_title: playlist_title,
         about_playlist: about_playlist,
         create_date: create_date,
-        music_cnt: 0,
       },
     ];
     let user = JSON.parse(window.localStorage.getItem(userid));
@@ -53,11 +52,11 @@ const CreatePlaylist = () => {
     console.log(allplaylist);
 
     if(allplaylist===null){
-      allplaylist=[{playlist_title: playlist_title, player: userid, music_cnt: 0}];
+      allplaylist=[{playlist_title: playlist_title, player: userid}];
       window.localStorage.setItem("playlist", JSON.stringify(allplaylist));
     }
     else{
-      let allplay = { playlist_title: playlist_title, player: userid, music_cnt: 0};
+      let allplay = { playlist_title: playlist_title, player: userid};
       allplaylist.push(allplay);
       window.localStorage.setItem("playlist", JSON.stringify(allplaylist));
     }

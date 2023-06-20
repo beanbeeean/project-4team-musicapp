@@ -9,6 +9,17 @@ import { Link, useLocation } from "react-router-dom";
 const AllPlaylist = () => {
 
   let playlist = JSON.parse(window.localStorage.getItem('playlist'));
+
+  let curPlaylist;
+  const curPlaylists = (idx) => {
+    curPlaylist = !playlist[idx]
+      ? null
+      : JSON.parse(window.localStorage.getItem(playlist[idx].playlist_title));
+    
+  console.log(playlist);
+  console.log(curPlaylist);
+  };
+
   
   console.log("playlist:", playlist[0].playlist_title);
   // console.log(curPlaylist);
@@ -19,7 +30,7 @@ const AllPlaylist = () => {
       <div className={styles.playlist_wrap}>
         {
         playlist.map((item, idx) =>
-          <Link to="/playlistitem" state={{ cnt: idx , flag: false, m_id: playlist[idx].playlist_title}}>
+          <Link to="/playlistitem" state={{flag: false, m_id: playlist[idx].playlist_title}}>
             <div className={styles.albums_wrap}>
               <div className={styles.item_wrap}>
                 <div className={styles.img_wrap}>
@@ -45,7 +56,8 @@ const AllPlaylist = () => {
                     </span>
                     <br />
                     <span className={styles.createDate}>
-                      {playlist[idx].create_date} • {playlist[idx].music_cnt}곡
+                      {curPlaylists(idx)}
+                      {playlist[idx].create_date} • {curPlaylist ===null ? 0: curPlaylist.length}곡&nbsp;
                     </span>
                   </div>
                 </div>

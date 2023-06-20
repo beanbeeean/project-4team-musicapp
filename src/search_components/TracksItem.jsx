@@ -3,18 +3,16 @@ import { Col, Row } from "react-bootstrap";
 import styles from "./css/search_tracks.module.css";
 import PlaylistsModal from "../modal_component/PlaylistsModal";
 
-const TracksItem = ({ num, item, select, cnt, setCnt, setSelect, show, setShow }) => {
+const TracksItem = ({ num, item, select, setSelect, show, setShow }) => {
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
   const [selectnum, setSelectnum] = useState(0);
   
-
   let temp;
 
   const selecting = (e) => {
     if (e.target.checked) {
       select.push({ num: num, item: item });
       temp = select.slice();
-      setCnt(e => e+1);
       setSelect(temp);
     } else if (!e.target.checked) {
       select.forEach((item, index) => {
@@ -23,7 +21,6 @@ const TracksItem = ({ num, item, select, cnt, setCnt, setSelect, show, setShow }
         }
       });
       temp = select.slice();
-      setCnt(e => e-1);
       setSelect(temp);
     }
   };
@@ -46,16 +43,7 @@ const TracksItem = ({ num, item, select, cnt, setCnt, setSelect, show, setShow }
       window.localStorage.getItem("playlist")
     );
     
-    member[selectnum].music_cnt = member[selectnum].music_cnt + cnt;
     window.localStorage.setItem(m_id, JSON.stringify(member));
-
-    allplaylist.map((item, idx) => {
-      if(allplaylist[idx].playlist_title==member[selectnum].playlist_title)
-      {
-        allplaylist[idx].music_cnt = member[selectnum].music_cnt;
-      }
-      }
-    );
 
     window.localStorage.setItem("playlist", JSON.stringify(allplaylist));
 
@@ -75,7 +63,6 @@ const TracksItem = ({ num, item, select, cnt, setCnt, setSelect, show, setShow }
     checkboxes.forEach((checkbox) => {
       if(checkbox.checked){
         checkbox.checked = false; // 체크박스 선택 해제
-        setCnt(e => e-1);
       }
     });
 

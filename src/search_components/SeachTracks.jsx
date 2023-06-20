@@ -10,7 +10,6 @@ const SearchTracks = () => {
   const { searchTracks } = useSelector((state) => state.search);
   const [select, setSelect] = useState([]);
   const [show, setShow] = useState(false);
-  const [cnt, setCnt] = useState(0);
 
   useEffect(() => {
     console.log("Parent ", select);
@@ -39,8 +38,6 @@ const SearchTracks = () => {
               num={key}
               item={item}
               select={select}
-              cnt={cnt}
-              setCnt={setCnt}
               setSelect={setSelect}
               show={show}
               setShow={setShow}

@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const PlaylistItem = (cnt, flag, m_id) => {
+const PlaylistItem = (flag, m_id) => {
   const location = useLocation();
   const [selectedIndexes, setSelectedIndexes] = useState([]);
   const [count, setCount] = useState(0);
@@ -45,7 +45,6 @@ const PlaylistItem = (cnt, flag, m_id) => {
     setSelectedIndexes([]);
     document.getElementById("chkbox").checked = false;
 
-    console.log(location.state.cnt);
     console.log(playlist);
   };
 
