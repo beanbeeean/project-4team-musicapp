@@ -17,7 +17,7 @@ const Charts = () => {
   const [hour, setHour] = useState("");
   const [minute, setMinute] = useState("");
   const [cnt, setCnt] = useState(1);
-  const [count, setCount] = useState(0);
+  const [show, setShow] = useState(false);
 
   const getNowDate = () => {
     let today = new Date();
@@ -62,6 +62,9 @@ const Charts = () => {
         <p>
           {year}.{month}.{date} {hour}:{minute}
         </p>
+        <button className={styles.input_btn} onClick={() => setShow(true)}>
+          담기
+        </button>
       </div>
       <Row className={`${styles.charts_header_wrap} pb-3 pt-3`}>
         <Col className={styles.main_charts_header} md={1} sm={2}>
@@ -97,10 +100,9 @@ const Charts = () => {
           }
           num={idx}
           select={select}
-          setSelect={setSelect}
-          count={count}
-          setCount={setCount}
           flag={true}
+          show={show}
+          setShow={setShow}
         />
       ))}
       <div className={styles.btn_wrap}>

@@ -4,15 +4,13 @@ import { useNavigate, Link } from "react-router-dom";
 
 const Playlists = () => {
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
-  let cnt = 1;
   let playlist = JSON.parse(window.localStorage.getItem(m_id));
 
   let curPlaylist;
-  const curPlaylists = () => {
-    curPlaylist = !playlist[cnt]
+  const curPlaylists = (idx) => {
+    curPlaylist = !playlist[idx]
       ? null
-      : JSON.parse(window.localStorage.getItem(playlist[cnt].playlist_title));
-    cnt = cnt + 1;
+      : JSON.parse(window.localStorage.getItem(playlist[idx].playlist_title));
     
   console.log(playlist);
   console.log(curPlaylist);
@@ -35,11 +33,11 @@ const Playlists = () => {
           idx == 0 ? (
             ""
           ) : (
-            <Link to="/playlistitem" state={{ cnt: idx }}>
+            <Link to="/playlistitem" state={{ cnt: idx, flag: true, m_id: playlist[idx].playlist_title}}>
               <div className={styles.playlists_item}>
                 <ul className={styles.playlist_item_wrap}>
                   <li className={styles.playlist_pic}>
-                    {curPlaylists()}
+                    {curPlaylists(idx)}
                     <img
                       src={
                         curPlaylist === null
@@ -59,7 +57,7 @@ const Playlists = () => {
                     </div>
                     <br />
                     <div className={styles.music_cnt}>
-                      {playlist[idx].music_cnt}곡&nbsp;
+                      {curPlaylist ===null ? 0: curPlaylist.length}곡&nbsp;
                     </div>
                   </li>
                 </ul>

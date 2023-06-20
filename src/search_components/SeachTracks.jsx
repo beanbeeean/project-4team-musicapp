@@ -9,12 +9,17 @@ import { useSelector } from "react-redux";
 const SearchTracks = () => {
   const { searchTracks } = useSelector((state) => state.search);
   const [select, setSelect] = useState([]);
+  const [show, setShow] = useState(false);
   const [cnt, setCnt] = useState(0);
+
   useEffect(() => {
     console.log("Parent ", select);
   }, [select]);
   return (
     <div>
+      <button className={styles.input_btn} onClick={() => setShow(true)}>
+          담기
+        </button>
       <Row className={`${styles.tracks_header} pt-2 pb-1`}>
         <Col md={1} className={styles.tracks_num}>
           #
@@ -37,6 +42,8 @@ const SearchTracks = () => {
               cnt={cnt}
               setCnt={setCnt}
               setSelect={setSelect}
+              show={show}
+              setShow={setShow}
             />
           ))
         : ""}

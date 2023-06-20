@@ -1,14 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Col } from "react-bootstrap";
 import styled from "styled-components";
 import styles from "./css/main_charts.module.css";
+import PlaylistsModal from "../modal_component/PlaylistsModal";
 
-const MainChartsItem = ({ item, spoItem, idx, num, select,flag}) => {
+const MainChartsItem = ({ item, spoItem, idx, num, select, flag, show, setShow}) => {
   // console.log("key", key);
-  
+
+  const [selectnum, setSelectnum] = useState(0);
+
   useEffect(() => {
     console.log('[MainChartsItem] useEffect!!');
-  });
+    if(show===false && selectnum!==0){
+      saveBtnHandler();
+      alert("플레이 리스트에 저장되었습니다!!");
+    }
+    setSelectnum(0);
+  },[selectnum]);
 
   const selecting = (e) => {
     if (e.target.checked) {
@@ -22,26 +30,36 @@ const MainChartsItem = ({ item, spoItem, idx, num, select,flag}) => {
     }
   };
 
-  const saveBtnHandler = () => {
-    let playlistnum = prompt("플레이 리스트 번호");
+  const saveBtnHandler = (idx) => {
     let m_id = window.localStorage.getItem("session");
     let title = JSON.parse(window.localStorage.getItem(m_id));
     let playlist = JSON.parse(
-      window.localStorage.getItem(title[playlistnum].playlist_title)
+      window.localStorage.getItem(title[selectnum].playlist_title)
     );
-
-    title[playlistnum].music_cnt = title[playlistnum].music_cnt + select.length;
-
+    let allplaylist =  JSON.parse(
+      window.localStorage.getItem("playlist")
+    );
+    
+    title[selectnum].music_cnt = title[selectnum].music_cnt + select.length;
     window.localStorage.setItem(m_id, JSON.stringify(title));
 
+    allplaylist.map((item, idx) => {
+      if(allplaylist[idx].playlist_title==title[selectnum].playlist_title)
+      {
+        allplaylist[idx].music_cnt = title[selectnum].music_cnt;
+      }
+      }
+    );
+
+    window.localStorage.setItem("playlist", JSON.stringify(allplaylist));
     if (playlist !== null) {
       playlist = [...playlist, ...select];
       window.localStorage.setItem(
-        title[playlistnum].playlist_title,
+        title[selectnum].playlist_title,
         JSON.stringify(playlist)
       );
     } else {
-      window.localStorage.setItem(title[playlistnum].playlist_title, JSON.stringify(select));
+      window.localStorage.setItem(title[selectnum].playlist_title, JSON.stringify(select));
     }
   };
 
@@ -57,9 +75,7 @@ const MainChartsItem = ({ item, spoItem, idx, num, select,flag}) => {
         {idx + 1}
       </Col>
       <Col className={`song_img ${styles.main_charts_song}`} md={5} sm={5}>
-        <a href="#none" onClick={saveBtnHandler}>
           {item.name}
-        </a>
       </Col>
       <Col className={`text-center ${styles.main_charts_singer}`} md={3} sm={3}>
         {item.artist.name}
@@ -79,7 +95,9 @@ const MainChartsItem = ({ item, spoItem, idx, num, select,flag}) => {
             : parseInt((spoItem[num].duration_ms / 1000) % 60) + 1}
         </Col>
       )}
+        <PlaylistsModal show={show} setShow={setShow} setSelectnum={setSelectnum}/>
     </ListWrap>
+   
   );
 };
 

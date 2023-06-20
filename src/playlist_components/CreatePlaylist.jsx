@@ -45,10 +45,22 @@ const CreatePlaylist = () => {
       },
     ];
     let user = JSON.parse(window.localStorage.getItem(userid));
-
     user = [...user, ...playlist];
-
     window.localStorage.setItem(userid, JSON.stringify(user));
+
+    let allplaylist=JSON.parse(window.localStorage.getItem("playlist"));
+
+    console.log(allplaylist);
+
+    if(allplaylist===null){
+      allplaylist=[{playlist_title: playlist_title, player: userid, music_cnt: 0}];
+      window.localStorage.setItem("playlist", JSON.stringify(allplaylist));
+    }
+    else{
+      let allplay = { playlist_title: playlist_title, player: userid, music_cnt: 0};
+      allplaylist.push(allplay);
+      window.localStorage.setItem("playlist", JSON.stringify(allplaylist));
+    }
 
     alert("플레이리스트 생성이 완료되었습니다!!");
     navigate("/playlist");
