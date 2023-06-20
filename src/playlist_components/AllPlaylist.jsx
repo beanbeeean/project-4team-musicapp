@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import AllPlaylistItem from "./AllPlaylistItem";
 import styles from "./css/all_playlist.module.css";
 import { Col, Container, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

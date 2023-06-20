@@ -26,7 +26,7 @@ const SearchMain = () => {
       <Row className={styles.artist_name}>
         {searchArtists.length > 0 ? (
           <Col>
-            <h5>검색결과</h5>
+            <h3>검색결과</h3>
             <ul>
               <li>
                 <img src={searchArtists[0]?.images[1].url} />

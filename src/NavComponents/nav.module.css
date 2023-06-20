@@ -49,7 +49,7 @@
 }
 
 .login_wrap {
-  margin-top: 40px;
+  margin-top: 30px;
   height: 60px;
 }
 
@@ -67,4 +67,23 @@
   color: #fff;
   text-decoration: none;
   font-style: italic;
+}
+
+.login_wrap input[type="button"] {
+  padding: 5px;
+  width: 70px;
+  margin-left: 15px;
+  border: 1px solid #dadada;
+  text-align: center;
+  line-height: 20px;
+  border-radius: 5px;
+}
+
+.info_wrap {
+  margin-top: 5px;
+}
+
+.welcome_wrap {
+  float: right;
+  display: flex;
 }

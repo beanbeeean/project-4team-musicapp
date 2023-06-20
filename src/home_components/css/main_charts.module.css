@@ -11,9 +11,11 @@ div.main_charts > h5 {
 
 div.main_charts > p {
   font-size: 0.9em;
-  color: #000;
+  color: #6e6e6e;
   width: 150px;
   float: right;
+  padding-top: 25px;
+  padding-left: 25px;
 }
 
 .charts_header_wrap {
@@ -67,11 +69,19 @@ div.chart {
 }
 
 div.recommand_playlist {
-  margin-left: 80px;
+  margin-left: 50px;
   width: 20%;
 }
 
 div.recommand_playlist > h5 {
   padding-bottom: 20px;
   border-bottom: 1px solid #000;
+}
+
+.charts_header_wrap {
+  background-color: rgba(193, 235, 255, 0.2);
+}
+
+.main_charts_number {
+  color: rgb(26, 153, 211);
 }

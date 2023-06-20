@@ -4,13 +4,14 @@
 .subnav li {
   margin: 5px;
   border: 1px solid #dadada;
-  padding: 5px;
+  padding: 5px 10px;
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: rgba(108, 208, 255, 0.1);
+  color: #6e6e6e;
 }
 .subnav li:hover {
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: #dadada;
 }
 .subnav li {
   float: left;

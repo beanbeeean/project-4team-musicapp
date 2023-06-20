@@ -76,10 +76,15 @@ const Nav = ({ login }) => {
         </Col>
         <Col md={3} className={`${styles.login_wrap} text-center`}>
           {login.current !== null ? (
-            <>
-              <Link to="/signup">{login.current}</Link>님, 반갑습니다
+            <div className={styles.welcome_wrap}>
+              <div className={styles.info_wrap}>
+                <Link to="/signup" className={styles.welcome}>
+                  {login.current}
+                </Link>
+                님, 반갑습니다
+              </div>
               <input type="button" value="Logout" onClick={logoutBtnHandler} />
-            </>
+            </div>
           ) : (
             <Link to="/signin">로그인/회원가입</Link>
           )}

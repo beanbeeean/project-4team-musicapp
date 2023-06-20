@@ -4,11 +4,7 @@ import styles from "./css/main_charts.module.css";
 import MainChartsItem from "./MainChartsItem";
 import { useDispatch, useSelector } from "react-redux";
 import { homeAction } from "../redux/actions/homeAction";
-<<<<<<< HEAD
-import { playlistsAction } from "../redux/actions/playlistsAction";
-=======
 import RecommandPlaylist from "./RecommendPlaylist";
->>>>>>> 9a0c73a92d949e9956aea626e513540c862fb3a4
 
 const Charts = () => {
   const dispatch = useDispatch();
@@ -18,7 +14,6 @@ const Charts = () => {
   const [date, setDate] = useState("");
   const [hour, setHour] = useState("");
   const [minute, setMinute] = useState("");
-
 
   console.log(charts);
 
@@ -74,13 +69,19 @@ const Charts = () => {
           <Col className={styles.main_charts_header} md={2} sm={2}>
             재생 횟수
           </Col>
-          {/* <Col className={styles.main_charts_header} md={2} sm={2}>
-          temp
-        </Col> */}
+          <Col className={styles.main_charts_header} md={2} sm={2}>
+            temp
+          </Col>
         </Row>
         {chartsSpotify.length > 0
           ? charts.tracks.track.map((item, idx) => (
-              <MainChartsItem item={item} spoItem={chartsSpotify} idx={idx} num={idx} flag={false}/>
+              <MainChartsItem
+                item={item}
+                spoItem={chartsSpotify}
+                idx={idx}
+                num={idx}
+                flag={false}
+              />
             ))
           : ""}
       </div>

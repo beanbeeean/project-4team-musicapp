@@ -40,7 +40,7 @@ section h4 {
 }
 
 .section_wrap input[name="m_phone"] {
-  margin-bottom: 130px;
+  margin-bottom: 80px;
 }
 
 .section_wrap input {
@@ -50,6 +50,7 @@ section h4 {
 }
 
 .section_wrap button {
+  width: 100%;
   padding: 9px 25px 9px 25px;
   border: 0px;
   border-radius: 7px;

@@ -92,7 +92,7 @@ h5 {
 }
 
 .list_wrap:hover {
-  background-color: #f8f8f8;
+  background-color: rgba(108, 208, 255, 0.1);
 }
 
 .popular .list_wrap {
@@ -163,4 +163,9 @@ h5 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.song_num {
+  color: rgb(26, 153, 211);
+  font-weight: bold;
 }

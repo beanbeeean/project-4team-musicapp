@@ -2,6 +2,12 @@ div.container li {
   float: none;
 }
 
+h3 {
+  margin-top: 50px;
+  color: rgb(108, 208, 255);
+  font-weight: bold;
+}
+
 div.header {
   display: flex;
   margin-top: 30px;
@@ -10,6 +16,7 @@ div.header {
 div.album_img img {
   width: 250px;
   height: 250px;
+  border-radius: 10px;
 }
 
 div.album_name {
@@ -81,7 +88,7 @@ div.button_img {
 }
 
 .list_wrap:hover {
-  background-color: #f8f8f8;
+  background-color: rgba(108, 208, 255, 0.1);
 }
 
 .albums {
@@ -141,4 +148,18 @@ h5 a {
 .running_time,
 .input_playlist {
   text-align: center;
+}
+
+.tracks_header {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.list_wrap {
+  text-align: center;
+}
+
+.song_num {
+  color: rgb(26, 153, 211);
+  font-weight: bold;
 }

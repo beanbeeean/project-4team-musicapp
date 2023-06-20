@@ -17,11 +17,11 @@
 }
 .menu {
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .menu2 {
-  padding: 6px;
+  padding-right: 5px;
 }
 
 .menuBtn {
@@ -163,4 +163,13 @@ div.column2 {
 .dots__dot--active {
   background-color: #efefef;
   opacity: 1;
+}
+
+.titleBox li:nth-child(1) {
+  color: rgb(108, 208, 255);
+}
+
+.titleBox li:nth-child(2),
+.titleBox li:nth-child(3) {
+  color: #6e6e6e;
 }
