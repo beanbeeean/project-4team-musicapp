@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "./css/charts.module.css";
 import MainChartsItem from "../home_components/MainChartsItem";
+import { ClipLoader } from "react-spinners";
 
 const Charts = () => {
   const dispatch = useDispatch();
@@ -55,6 +56,19 @@ const Charts = () => {
     getNowDate();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="spinner_wrap">
+        <ClipLoader
+          color="rgb(108, 208, 255)"
+          loading={loading}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
+  }
   return (
     <Container className="pb-3">
       <div className={styles.main_charts}>

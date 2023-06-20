@@ -18,6 +18,7 @@ const NewMusic = () => {
   const [m_pw, setM_pw] = useState("");
   const [selection, setSelection] = useState("KR");
   const [offset, setOffset] = useState(0);
+  const [onBtn, setOnBtn] = useState(true);
   const prevBtnHandler = () => {
     if (page > 1) setPage((c) => c - 1);
     else setPage((c) => (c = 5));
@@ -43,12 +44,14 @@ const NewMusic = () => {
     setPage(1);
     setOffset(0);
     setSelection("KR");
+    setOnBtn(true);
   };
 
   const abroadBtnHandler = () => {
     setPage(1);
     setOffset(0);
     setSelection("ES");
+    setOnBtn(false);
   };
 
   useEffect(() => {
@@ -62,10 +65,16 @@ const NewMusic = () => {
           <div className={styles.albumbox}>
             <ul className={styles.titleBox}>
               <li>최신앨범</li>
-              <li className={styles.menu} onClick={domesticBtnHandler}>
+              <li
+                className={onBtn ? `${styles.menu} ${styles.on}` : styles.menu}
+                onClick={domesticBtnHandler}
+              >
                 국내
               </li>
-              <li className={styles.menu} onClick={abroadBtnHandler}>
+              <li
+                className={!onBtn ? `${styles.menu} ${styles.on}` : styles.menu}
+                onClick={abroadBtnHandler}
+              >
                 국외
               </li>
               <li
@@ -80,7 +89,7 @@ const NewMusic = () => {
               >
                 &#60;
               </li>
-              <li className={styles.menu2}>{page}/5</li>
+              <li className={styles.menu2}>{page} / 5</li>
             </ul>
           </div>
           <div className={styles.albums_list}>
@@ -89,8 +98,10 @@ const NewMusic = () => {
               : ""}
           </div>
         </Col>
-        <Col md={3} sm={12} className={styles.column2}>
-          <BannerSlider />
+        <Col md={4}>
+          <div className={styles.column2}>
+            <BannerSlider />
+          </div>
         </Col>
       </Row>
     </Container>

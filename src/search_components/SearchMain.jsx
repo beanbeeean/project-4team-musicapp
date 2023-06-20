@@ -34,9 +34,9 @@ const SearchMain = () => {
               <li className={styles.info}>
                 <h4>{searchArtists[0]?.name}</h4>
                 <span>{searchArtists[0]?.type}</span>
-                <div>{searchArtists[0]?.genres[0]}</div>
+                <div className="mb-2 mt-2">{searchArtists[0]?.genres[0]}</div>
                 <div>
-                  followers :
+                  followers :&nbsp;
                   {searchArtists[0]?.followers.total
                     .toString()
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -111,17 +111,22 @@ const SearchMain = () => {
             ) : null
           )
         ) : (
-          <Row>검색 결과가 없습니다.</Row>
+          <Row>
+            <div className="cannot_wrap">검색 결과가 없습니다.</div>
+          </Row>
         )}
       </div>
       <hr />
       <div className="albums">
         <h5>앨범</h5>
-        <div className={styles.album_wrap}>
+        <div className={searchAlbums.length > 0 ? styles.album_wrap : ""}>
           {searchAlbums.length > 0 ? (
             searchAlbums.map((album, idx) =>
               idx <= 5 ? (
-                <div onClick={() => navigateAlbum(album.id)}>
+                <div
+                  className={styles.album_list}
+                  onClick={() => navigateAlbum(album.id)}
+                >
                   <ul>
                     <li>
                       <img
@@ -132,7 +137,7 @@ const SearchMain = () => {
                         }
                       />
                     </li>
-                    <li>{album.name}</li>
+                    <li className={styles.album_name}>{album.name}</li>
                     <li>
                       {album.artists[0].name} ({album.release_date})
                     </li>
@@ -141,20 +146,23 @@ const SearchMain = () => {
               ) : null
             )
           ) : (
-            <Row>검색 결과가 없습니다.</Row>
+            <div className="cannot_wrap">검색 결과가 없습니다.</div>
           )}
         </div>
       </div>
       <hr />
       <div className={styles.artists}>
         <h5>아티스트</h5>
-        <div className={styles.artists_wrap}>
+        <div className={searchArtists.length > 0 ? styles.artists_wrap : ""}>
           {searchArtists.length > 0 ? (
             searchArtists.map((artist, idx) =>
               idx <= 5 ? (
-                <div onClick={() => navigateArtist(artist.id)}>
+                <div
+                  className={styles.artist_list}
+                  onClick={() => navigateArtist(artist.id)}
+                >
                   <ul>
-                    <li>
+                    <li className={styles.artist_img}>
                       <img
                         src={
                           artist.images.length == 0
@@ -163,14 +171,16 @@ const SearchMain = () => {
                         }
                       />
                     </li>
-                    <li>{artist.name}</li>
+                    <li className={styles.artist_name}>{artist.name}</li>
                     <li>{artist.type}</li>
                   </ul>
                 </div>
               ) : null
             )
           ) : (
-            <Row>검색 결과가 없습니다.</Row>
+            <Row>
+              <div className="cannot_wrap">검색 결과가 없습니다.</div>
+            </Row>
           )}
         </div>
       </div>

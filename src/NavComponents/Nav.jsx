@@ -19,7 +19,7 @@ const Nav = ({ login }) => {
   const REDIRECT_URI = "http://localhost:3000";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
-
+  const [value, setValue] = useState("");
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
 
@@ -49,6 +49,7 @@ const Nav = ({ login }) => {
     // console.log("search Key ", searchKey);
     dispatch(searchAction.searchByKeyword(searchKey));
     navigate("/search");
+    setSearchKey("");
   };
 
   const logoutBtnHandler = () => {
@@ -60,36 +61,45 @@ const Nav = ({ login }) => {
 
   return (
     <Container>
-      <Row className={styles.search_wrap}>
-        <Col className={styles.search} md={9}>
-          <a
-            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
-          >
-            <img src="./imgs/logo.png" />
-          </a>
-          <form onSubmit={searching}>
-            <input type="text" onChange={(e) => setSearchKey(e.target.value)} />
-            <button type="submit">
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </button>
-          </form>
-        </Col>
-        <Col md={3} className={`${styles.login_wrap} text-center`}>
+      <div className={styles.search}>
+        <div className={styles.search_area}>
+          <div className={styles.logo}>
+            <a
+              href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+            >
+              <img src="./imgs/logo.png" />
+            </a>
+          </div>
+          <div className={styles.search_form}>
+            <form onSubmit={searching}>
+              <input
+                type="text"
+                onChange={(e) => setSearchKey(e.target.value)}
+                value={searchKey}
+              />
+              <button type="submit">
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
+              </button>
+            </form>
+          </div>
+        </div>
+        <div className={`${styles.login_wrap} text-center`}>
           {login.current !== null ? (
             <div className={styles.welcome_wrap}>
               <div className={styles.info_wrap}>
                 <Link to="/signup" className={styles.welcome}>
                   {login.current}
                 </Link>
-                님, 반갑습니다
+                님, ㅎㅇ
+                <FontAwesomeIcon />
               </div>
               <input type="button" value="Logout" onClick={logoutBtnHandler} />
             </div>
           ) : (
             <Link to="/signin">로그인/회원가입</Link>
           )}
-        </Col>
-      </Row>
+        </div>
+      </div>
       <Row className={styles.Menubar}>
         <Col className={`${styles.list} text-center`}>
           <Link to="/charts">Music Chart</Link>

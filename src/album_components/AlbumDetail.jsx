@@ -32,13 +32,15 @@ const AlbumDetail = () => {
 
   if (loading) {
     return (
-      <ClipLoader
-        color="red"
-        loading={loading}
-        size={150}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      />
+      <div className="spinner_wrap">
+        <ClipLoader
+          color="rgb(108, 208, 255)"
+          loading={loading}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
     );
   }
   return (

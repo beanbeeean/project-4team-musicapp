@@ -3,14 +3,22 @@ import { Container, Row, Col } from "react-bootstrap";
 import styles from "./artist_detail.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { ClipLoader } from "react-spinners";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { detailsAction } from "../redux/actions/detailsAction";
 const ArtistDetail = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   let { id } = useParams();
   const { artist, artistAlbums, artistTopTracks, artistRelated, loading } =
     useSelector((state) => state.details);
 
+  const changeAlbumDetail = (id) => {
+    navigate(`/albums/${id}`);
+  };
+
+  const changeArtistDetail = (id) => {
+    navigate(`/artists/${id}`);
+  };
   useEffect(() => {
     dispatch(detailsAction.getArtistDetail(id));
   }, []);
@@ -21,13 +29,15 @@ const ArtistDetail = () => {
 
   if (loading) {
     return (
-      <ClipLoader
-        color="red"
-        loading={loading}
-        size={150}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      />
+      <div className="spinner_wrap">
+        <ClipLoader
+          color="rgb(108, 208, 255)"
+          loading={loading}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
     );
   }
   return (
@@ -78,12 +88,15 @@ const ArtistDetail = () => {
         <h5>앨범</h5>
         <div className={styles.album_wrap}>
           {artistAlbums?.items?.map((item, idx) => (
-            <div className={styles.album_list}>
+            <div
+              className={styles.album_list}
+              onClick={() => changeAlbumDetail(item.id)}
+            >
               <ul>
                 <li>
                   <img src={item.images[1].url} />
                 </li>
-                <li>{item.name}</li>
+                <li className={styles.album_name}>{item.name}</li>
                 <li>
                   {item.release_date} • {item.album_type}
                 </li>
@@ -95,17 +108,24 @@ const ArtistDetail = () => {
       <div className={styles.artists}>
         <h5>관련 아티스트</h5>
         <div className={styles.artists_wrap}>
-          {artistRelated?.artists?.map((item, idx) => (
-            <div>
-              <ul>
-                <li>
-                  <img src={item.images[2].url} />
-                </li>
-                <li>{item.name}</li>
-                <li>{item.type}</li>
-              </ul>
-            </div>
-          ))}
+          {artistRelated?.artists?.map((item, idx) =>
+            item.images[2] ? (
+              <div
+                className={styles.related_list}
+                onClick={() => changeArtistDetail(item.id)}
+              >
+                <ul>
+                  <li>
+                    <img src={item.images[2].url} />
+                  </li>
+                  <li className={styles.related_name}>{item.name}</li>
+                  <li>{item.type}</li>
+                </ul>
+              </div>
+            ) : (
+              ""
+            )
+          )}
         </div>
       </div>
     </Container>

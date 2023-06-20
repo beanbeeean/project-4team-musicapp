@@ -9,15 +9,21 @@ export default function BannerSlider() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 1500,
+    autoplaySpeed: 5000,
   };
   return (
     <Slider {...settings}>
-      <div className={styles.slider_item}>
-        <img src="./imgs/default.jpg" alt="" />
+      <div className={`${styles.slider_item} ${styles.slider_item1}`}>
+        <img
+          src="https://cdnimg.melon.co.kr/svc/images/main/imgUrl20230619040202.png/melon/quality/80"
+          alt=""
+        />
       </div>
-      <div>
-        <img src="./imgs/logo.png" alt="" />
+      <div className={`${styles.slider_item} ${styles.slider_item2}`}>
+        <img
+          src="https://cdnimg.melon.co.kr/svc/images/main/imgUrl20230619040303.png/melon/quality/80"
+          alt=""
+        />
       </div>
     </Slider>
   );
