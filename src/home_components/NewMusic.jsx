@@ -4,9 +4,10 @@ import styles from "./css/newMusic.module.css";
 import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import loginStyles from "./css/login.module.css";
+
 import { useDispatch, useSelector } from "react-redux";
 import { homeAction } from "../redux/actions/homeAction";
+import BannerSlider from "./BannerSlider";
 
 const NewMusic = () => {
   const { newRelease } = useSelector((state) => state.home);
@@ -38,32 +39,6 @@ const NewMusic = () => {
     }
   };
 
-  const loginBtnHandler = () => {
-    let chk = JSON.parse(window.localStorage.getItem(m_id));
-
-    if (chk !== null && m_pw === chk.m_pw) {
-      console.log(m_id);
-      window.localStorage.setItem("session", m_id);
-      setLogin(true);
-    } else {
-      alert("아이디 또는 비밀번호를 확인하세요!!");
-    }
-  };
-
-  const logoutBtnHandler = () => {
-    alert("로그아웃 되었습니다!!");
-    setLogin(false);
-    window.localStorage.removeItem("session");
-    setM_id();
-  };
-
-  const deleteBtnHandler = () => {
-    alert("회원삭제 되었습니다!!");
-    setLogin(false);
-    window.localStorage.removeItem("session");
-    window.localStorage.removeItem(m_id);
-    setM_id();
-  };
   const domesticBtnHandler = () => {
     setPage(1);
     setOffset(0);
@@ -83,48 +58,40 @@ const NewMusic = () => {
   return (
     <Container>
       <Row>
-        <div className={styles.wrap}>
-          <Col md={8} className={styles.colum1}>
-            <div className={styles.albumbox}>
-              <ul className={styles.titleBox}>
-                <li>최신앨범</li>
-                <li className={styles.menu} onClick={domesticBtnHandler}>
-                  국내
-                </li>
-                <li className={styles.menu} onClick={abroadBtnHandler}>
-                  국외
-                </li>
-                <li
-                  className={`${styles.menuBtn} ${styles.nextBtn}`}
-                  onClick={nextBtnHandler}
-                >
-                  &#62;
-                </li>
-                <li
-                  className={`${styles.menuBtn} ${styles.prevBtn}`}
-                  onClick={prevBtnHandler}
-                >
-                  &#60;
-                </li>
-                <li className={styles.menu2}>{page}/5</li>
-              </ul>
-            </div>
-            <div className={styles.albums_list}>
-              {newRelease.length > 0
-                ? newRelease.map((item) => <Album item={item} />)
-                : ""}
-            </div>
-          </Col>
-          <Col md={4} className={styles.column2}>
-            <div class={styles.slide_banner}>
-              <div class={styles.slide_item}>
-                <a href="#">
-                  <img src="./imgs/default.jpg" alt="" />
-                </a>
-              </div>
-            </div>
-          </Col>
-        </div>
+        <Col md={8} sm={12} className={styles.colum1}>
+          <div className={styles.albumbox}>
+            <ul className={styles.titleBox}>
+              <li>최신앨범</li>
+              <li className={styles.menu} onClick={domesticBtnHandler}>
+                국내
+              </li>
+              <li className={styles.menu} onClick={abroadBtnHandler}>
+                국외
+              </li>
+              <li
+                className={`${styles.menuBtn} ${styles.nextBtn}`}
+                onClick={nextBtnHandler}
+              >
+                &#62;
+              </li>
+              <li
+                className={`${styles.menuBtn} ${styles.prevBtn}`}
+                onClick={prevBtnHandler}
+              >
+                &#60;
+              </li>
+              <li className={styles.menu2}>{page}/5</li>
+            </ul>
+          </div>
+          <div className={styles.albums_list}>
+            {newRelease.length > 0
+              ? newRelease.map((item) => <Album item={item} />)
+              : ""}
+          </div>
+        </Col>
+        <Col md={3} sm={12} className={styles.column2}>
+          <BannerSlider />
+        </Col>
       </Row>
     </Container>
   );

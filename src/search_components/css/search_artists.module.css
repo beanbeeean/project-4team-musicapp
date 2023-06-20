@@ -81,3 +81,11 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.artist_info p {
+  font-weight: bold;
+}
+
+.artist_info span {
+  color: #6e6e6e;
+}

@@ -13,8 +13,7 @@ const MainChartsItem = ({ item, spoItem, idx, num, select,flag}) => {
   const selecting = (e) => {
     if (e.target.checked) {
       select.push({ num: num, item: spoItem[num] });
-    } 
-    else if (!e.target.checked) {
+    } else if (!e.target.checked) {
       select.forEach((item, index) => {
         if (item.num === num) {
           select.splice(index, 1);
@@ -45,35 +44,41 @@ const MainChartsItem = ({ item, spoItem, idx, num, select,flag}) => {
       window.localStorage.setItem(title[playlistnum].playlist_title, JSON.stringify(select));
     }
   };
-  
+
   const ListWrap = styled.div`
     &:hover .song_img::before {
       content: url("${spoItem[num].album.images[2].url}");
       margin-right: 10px;
     }
-    `;
+  `;
   return (
     <ListWrap className={`${styles.charts_list_wrap} row pb-3 pt-3`}>
       <Col className={`text-center ${styles.main_charts_number}`} md={1} sm={2}>
         {idx + 1}
       </Col>
-      <Col className={`song_img ${styles.main_charts_song}`} md={5} sm={4}>
+      <Col className={`song_img ${styles.main_charts_song}`} md={5} sm={5}>
         <a href="#none" onClick={saveBtnHandler}>
           {item.name}
         </a>
       </Col>
-      <Col className={`text-center ${styles.main_charts_singer}`} md={2} sm={2}>
+      <Col className={`text-center ${styles.main_charts_singer}`} md={3} sm={3}>
         {item.artist.name}
       </Col>
       <Col className={`text-center ${styles.main_charts_temp}`} md={2} sm={2}>
         {item.playcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
       </Col>
-      {
-        flag ?<Col className={`text-center ${styles.main_charts_temp}`} md={2} sm={2}>
-        <input className="chkbox" type="checkbox"  onChange={selecting}/>
-        </Col>:""
-      }
-      
+      {flag ? (
+        <Col className={`text-center ${styles.main_charts_temp}`} md={1} sm={1}>
+          <input className="chkbox" type="checkbox" onChange={selecting} />
+        </Col>
+      ) : (
+        <Col className={`text-center ${styles.main_charts_temp}`} md={1} sm={1}>
+          {parseInt(spoItem[num].duration_ms / 1000 / 60)}:
+          {parseInt((spoItem[num].duration_ms / 1000) % 60) + 1 < 10
+            ? "0" + (parseInt((spoItem[num].duration_ms / 1000) % 60) + 1)
+            : parseInt((spoItem[num].duration_ms / 1000) % 60) + 1}
+        </Col>
+      )}
     </ListWrap>
   );
 };

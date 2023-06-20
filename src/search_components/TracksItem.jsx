@@ -30,8 +30,13 @@ const TracksItem = ({ num, item, select, cnt, setCnt, setSelect }) => {
   };
 
   useEffect(() => {
-    console.log('[MainChartsItem] useEffect!!');
-    saveBtnHandler();
+    console.log('[MainChartsItem]asd useEffect!!');
+    console.log(show);
+    console.log(selectnum);
+    if(show===false && selectnum!==0){
+      saveBtnHandler();
+    }
+    setSelectnum(0);
   },[selectnum]);
 
   const saveBtnHandler = () => {
