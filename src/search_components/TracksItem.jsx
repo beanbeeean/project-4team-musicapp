@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import styles from "./css/search_tracks.module.css";
-import PlaylistsModal from "../public_components/PlaylistsModal";
-import { useNavigate } from "react-router-dom";
+import PlaylistsModal from "../modal_component/PlaylistsModal";
 
 const TracksItem = ({ num, item, select, cnt, setCnt, setSelect }) => {
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
   const [show, setShow] = useState(false);
+  const [selectnum, setSelectnum] = useState(0);
+  
 
   let temp;
-  let title;
 
   const selecting = (e) => {
     if (e.target.checked) {
-      select.push({ id: m_id, num: num, item: item });
+      select.push({ num: num, item: item });
       temp = select.slice();
-      setCnt((e) => e + 1);
+      setCnt(e => e+1);
       setSelect(temp);
     } else if (!e.target.checked) {
       select.forEach((item, index) => {
@@ -24,15 +24,18 @@ const TracksItem = ({ num, item, select, cnt, setCnt, setSelect }) => {
         }
       });
       temp = select.slice();
-      setCnt((e) => e - 1);
+      setCnt(e => e-1);
       setSelect(temp);
     }
-    console.log(cnt);
   };
 
+  useEffect(() => {
+    console.log('[MainChartsItem] useEffect!!');
+    saveBtnHandler();
+  },[selectnum]);
+
   const saveBtnHandler = () => {
-    let selectnum = prompt("번호입력");
-    title = JSON.parse(window.localStorage.getItem(m_id))[selectnum];
+    let title = JSON.parse(window.localStorage.getItem(m_id))[selectnum];
     let member = JSON.parse(window.localStorage.getItem(m_id));
 
     console.log("title", title);
@@ -41,15 +44,8 @@ const TracksItem = ({ num, item, select, cnt, setCnt, setSelect }) => {
     let playlist = JSON.parse(
       window.localStorage.getItem(title.playlist_title)
     );
-
-    let playlistcnt = {
-      playlist_title: title.playlist_title,
-      about_playlist: title.about_playlist,
-      create_date: title.create_date,
-      music_cnt: title.music_cnt + cnt,
-    };
-
-    member[selectnum] = playlistcnt;
+    
+    member[selectnum].music_cnt = member[selectnum].music_cnt + cnt;
     window.localStorage.setItem(m_id, JSON.stringify(member));
 
     if (playlist !== null) {
@@ -65,9 +61,9 @@ const TracksItem = ({ num, item, select, cnt, setCnt, setSelect }) => {
     const checkboxes = document.querySelectorAll(".chkbox"); // .chkbox 클래스를 가진 모든 체크박스 선택
 
     checkboxes.forEach((checkbox) => {
-      if (checkbox.checked) {
+      if(checkbox.checked){
         checkbox.checked = false; // 체크박스 선택 해제
-        setCnt((e) => e - 1);
+        setCnt(e => e-1);
       }
     });
 
@@ -90,9 +86,10 @@ const TracksItem = ({ num, item, select, cnt, setCnt, setSelect }) => {
 
   return (
     <>
-      <button className={styles.input_btn} onClick={() => setShow(true)}>
-        담기
-      </button>
+    
+    <button className={styles.input_btn} onClick={() => setShow(true)}>
+            담기
+          </button>
       <Row className={styles.tracks_wrap}>
         <Col md={1} className={styles.tracks_num}>
           {num + 1}
@@ -120,7 +117,7 @@ const TracksItem = ({ num, item, select, cnt, setCnt, setSelect }) => {
           {/* 로컬 스토리지에 보관해야할지 리듀서에 보관해야할지 */}
         </Col>
       </Row>
-      <PlaylistsModal show={show} setShow={setShow} />
+      <PlaylistsModal show={show} setShow={setShow} setSelectnum={setSelectnum}/>
     </>
   );
 };

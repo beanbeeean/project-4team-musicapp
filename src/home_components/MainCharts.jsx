@@ -4,11 +4,8 @@ import styles from "./css/main_charts.module.css";
 import MainChartsItem from "./MainChartsItem";
 import { useDispatch, useSelector } from "react-redux";
 import { homeAction } from "../redux/actions/homeAction";
-<<<<<<< HEAD
 import { playlistsAction } from "../redux/actions/playlistsAction";
-=======
 import RecommandPlaylist from "./RecommendPlaylist";
->>>>>>> 9a0c73a92d949e9956aea626e513540c862fb3a4
 
 const Charts = () => {
   const dispatch = useDispatch();

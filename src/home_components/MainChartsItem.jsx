@@ -3,21 +3,16 @@ import { Col } from "react-bootstrap";
 import styled from "styled-components";
 import styles from "./css/main_charts.module.css";
 
-const MainChartsItem = ({ item, spoItem, idx, num, select, setSelect, count, setCount,flag}) => {
+const MainChartsItem = ({ item, spoItem, idx, num, select,flag}) => {
   // console.log("key", key);
-
-  let temp;
-  let leng;
+  
   useEffect(() => {
     console.log('[MainChartsItem] useEffect!!');
   });
 
   const selecting = (e) => {
-    console.log(e.target.checked);
-    console.log(select);
     if (e.target.checked) {
       select.push({ num: num, item: spoItem[num] });
-      temp = select.slice();
     } 
     else if (!e.target.checked) {
       select.forEach((item, index) => {
@@ -25,27 +20,29 @@ const MainChartsItem = ({ item, spoItem, idx, num, select, setSelect, count, set
           select.splice(index, 1);
         }
       });
-      temp = select.slice();
     }
-    leng=select.length;
   };
 
   const saveBtnHandler = () => {
     let playlistnum = prompt("플레이 리스트 번호");
     let m_id = window.localStorage.getItem("session");
-    let title = JSON.parse(window.localStorage.getItem(m_id))[playlistnum];
+    let title = JSON.parse(window.localStorage.getItem(m_id));
     let playlist = JSON.parse(
-      window.localStorage.getItem(title.playlist_title)
+      window.localStorage.getItem(title[playlistnum].playlist_title)
     );
 
+    title[playlistnum].music_cnt = title[playlistnum].music_cnt + select.length;
+
+    window.localStorage.setItem(m_id, JSON.stringify(title));
+
     if (playlist !== null) {
-      playlist = [...playlist, ...temp];
+      playlist = [...playlist, ...select];
       window.localStorage.setItem(
-        title.playlist_title,
+        title[playlistnum].playlist_title,
         JSON.stringify(playlist)
       );
     } else {
-      window.localStorage.setItem(title.playlist_title, JSON.stringify(select));
+      window.localStorage.setItem(title[playlistnum].playlist_title, JSON.stringify(select));
     }
   };
   
