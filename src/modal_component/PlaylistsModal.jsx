@@ -42,29 +42,15 @@ function PlaylistsModal({ show, setShow, setSelectnum }) {
               idx == 0 ? (
                 ""
               ) : (
-                // <div className={styles.playlists_item}>
-                //   <ul className={styles.playlist_item_wrap}>
-
-                //     <li>
-                //       <div className={styles.playlist_name}>
-                //         {playlist[idx].playlist_title}
-                //       </div>
-                //       <br />
-                //     </li>
-                //     <li>
-                //       <div className={styles.music_cnt}>
-                //         {playlist[idx].music_cnt}&nbsp;
-                //       </div>
-                //     </li>
-                //   </ul>
-                // </div>
                 <a href="#none" onClick={(e) => numBtnHandler(e, idx)}>
                   <Row className={`${styles.charts_header_wrap} pb-3 pt-3`}>
                     <Col className={styles.main_charts_header} md={6} sm={6}>
                       {playlist[idx].playlist_title}
                     </Col>
                     <Col className={styles.main_charts_header} md={2} sm={2}>
-                      {playlist[idx].music_cnt}
+                      {
+                        JSON.parse(window.localStorage.getItem(playlist[idx].playlist_title)).length
+                      }
                     </Col>
                   </Row>
                 </a>

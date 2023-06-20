@@ -13,7 +13,6 @@ const MainChartsItem = ({ item, spoItem, idx, num, select, flag, show, setShow})
     console.log('[MainChartsItem] useEffect!!');
     if(show===false && selectnum!==0){
       saveBtnHandler();
-      alert("플레이 리스트에 저장되었습니다!!");
     }
     setSelectnum(0);
   },[selectnum]);
@@ -39,17 +38,9 @@ const MainChartsItem = ({ item, spoItem, idx, num, select, flag, show, setShow})
     let allplaylist =  JSON.parse(
       window.localStorage.getItem("playlist")
     );
-    
+
     title[selectnum].music_cnt = title[selectnum].music_cnt + select.length;
     window.localStorage.setItem(m_id, JSON.stringify(title));
-
-    allplaylist.map((item, idx) => {
-      if(allplaylist[idx].playlist_title==title[selectnum].playlist_title)
-      {
-        allplaylist[idx].music_cnt = title[selectnum].music_cnt;
-      }
-      }
-    );
 
     window.localStorage.setItem("playlist", JSON.stringify(allplaylist));
     if (playlist !== null) {

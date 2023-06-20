@@ -41,7 +41,7 @@ const Playlists = () => {
                     <img
                       src={
                         curPlaylist === null
-                          ? ""
+                          ? "./imgs/default.jpg"
                           : curPlaylist[0].item.album.images[2].url
                       }
                     />
