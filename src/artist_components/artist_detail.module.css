@@ -2,8 +2,25 @@ div.container li {
   float: none;
 }
 
+.header_wrap {
+  display: flex;
+  margin-top: 30px;
+}
+
+.header_img {
+  margin-right: 30px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.header_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 h1 {
-  margin-top: 100px;
+  /* margin-top: 100px; */
   font-size: 5em;
   font-weight: bold;
   color: rgb(108, 208, 255);
@@ -40,6 +57,13 @@ h5 {
   color: rgb(108, 208, 255);
 }
 
+.song_title,
+.players {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .song_num,
 .song_title,
 .players,
@@ -49,6 +73,22 @@ h5 {
 
 .popular {
   margin: 0 20px 0 20px;
+}
+
+.popular_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input_btn {
+  width: 50px;
+  height: 40px;
+  font-size: 0.9em;
+  margin-right: 20px;
+  border: 1px solid #dadada;
+  background-color: #fff;
+  border-radius: 8px;
 }
 
 .list_wrap:hover {
@@ -65,8 +105,8 @@ h5 {
   height: 50px;
 }
 
-.popular .running_time {
-  text-align: right;
+.running_time {
+  text-align: center;
 }
 
 .album_wrap,
@@ -79,6 +119,10 @@ h5 {
 
 .album_wrap div {
   margin: 0 10px 0 10px;
+}
+
+.album_list {
+  width: 180px;
 }
 
 .artists_wrap div {
@@ -113,4 +157,10 @@ h5 {
 .artists_wrap div ul li:nth-child(3),
 .join_album_wrap div ul li:nth-child(3) {
   font-size: 0.8em;
+}
+
+.input_playlist {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

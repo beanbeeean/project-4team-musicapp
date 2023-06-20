@@ -4,16 +4,23 @@ import styles from "./css/main_charts.module.css";
 import MainChartsItem from "./MainChartsItem";
 import { useDispatch, useSelector } from "react-redux";
 import { homeAction } from "../redux/actions/homeAction";
+<<<<<<< HEAD
+import { playlistsAction } from "../redux/actions/playlistsAction";
+=======
 import RecommandPlaylist from "./RecommendPlaylist";
+>>>>>>> 9a0c73a92d949e9956aea626e513540c862fb3a4
 
 const Charts = () => {
   const dispatch = useDispatch();
-  const { charts, chartsImg } = useSelector((state) => state.home);
+  const { charts, chartsSpotify } = useSelector((state) => state.home);
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [date, setDate] = useState("");
   const [hour, setHour] = useState("");
   const [minute, setMinute] = useState("");
+
+
+  console.log(charts);
 
   const getNowDate = () => {
     let today = new Date();
@@ -45,10 +52,6 @@ const Charts = () => {
     dispatch(homeAction.getChartsTopTen());
   }, []);
 
-  useEffect(() => {
-    console.log("charts", charts);
-  }, [charts]);
-
   return (
     <Container className={styles.container} pb-3>
       <div className={`${styles.chart} ${styles.item1}`}>
@@ -75,9 +78,9 @@ const Charts = () => {
           temp
         </Col> */}
         </Row>
-        {chartsImg.length > 0
+        {chartsSpotify.length > 0
           ? charts.tracks.track.map((item, idx) => (
-              <MainChartsItem item={item} img={chartsImg} idx={idx} num={idx} />
+              <MainChartsItem item={item} spoItem={chartsSpotify} idx={idx} num={idx} flag={false}/>
             ))
           : ""}
       </div>

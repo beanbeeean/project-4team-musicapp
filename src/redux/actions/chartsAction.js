@@ -16,11 +16,11 @@ function getAllCharts(page) {
       console.log("data : ", data);
       //   chartsArr.push(data);
       //   console.log("sdsd", chartsArr);
-      let tracksImg;
+      let tracksSpotify;
       let tracksArr = [];
 
       for (let i = 0; i < data.tracks.track.length; i++) {
-        tracksImg = await api.get("/search", {
+        tracksSpotify = await api.get("/search", {
           params: {
             q: data.tracks.track[i].name,
             type: "track",
@@ -28,16 +28,17 @@ function getAllCharts(page) {
           },
         });
 
-        tracksArr.push(tracksImg.data.tracks.items[0].album.images[2].url);
+        // tracksArr.push(tracksImg.data.tracks.items[0].album.images[2].url);
+        tracksArr.push(tracksSpotify.data.tracks.items[0]);
       }
-
+      
       dispatch({
         type: "GET_ALL_CHARTS_SUCCESS",
         payload: { allCharts: data },
       });
       dispatch({
         type: "GET_ALL_CHARTS_IMG_SUCCESS",
-        payload: { allChartsImg: tracksArr },
+        payload: { allChartsSpotify: tracksArr },
       });
     } catch (e) {
       dispatch({ type: "GET_ALL_CHARTS_FAILED" });

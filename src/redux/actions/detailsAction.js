@@ -3,6 +3,7 @@ import api from "../api";
 function getArtistDetail(id) {
   return async (dispatch) => {
     try {
+      dispatch({ type: "GET_REQUEST_SUCCESS" });
       const artist = await api.get(`/artists/${id}`);
       const artistAlbums = await api.get(`/artists/${id}/albums`);
       const artistTopTracks = await api.get(`/artists/${id}/top-tracks`, {
@@ -32,6 +33,7 @@ function getArtistDetail(id) {
         payload: { artistRelated: artistRelated.data },
       });
     } catch (e) {
+      dispatch({ type: "GET_DETAIL_FAILED" });
       console.log(e);
     }
   };
@@ -40,6 +42,7 @@ function getArtistDetail(id) {
 function getAlbumsDetail(id) {
   return async (dispatch) => {
     try {
+      dispatch({ type: "GET_REQUEST_SUCCESS" });
       const albums = await api.get(`/albums/${id}`);
       const albumsTracks = await api.get(`/albums/${id}/tracks`);
 
@@ -52,6 +55,7 @@ function getAlbumsDetail(id) {
         payload: { albumsTracks: albumsTracks.data },
       });
     } catch (e) {
+      dispatch({ type: "GET_DETAIL_FAILED" });
       console.log(e);
     }
   };

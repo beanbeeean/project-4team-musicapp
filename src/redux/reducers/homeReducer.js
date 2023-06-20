@@ -1,7 +1,7 @@
 let initialState = {
   newRelease: {},
   charts: {},
-  chartsImg: [],
+  chartsSpotify: [],
 };
 function homeReducer(state = initialState, action) {
   let { type, payload } = action;
@@ -11,7 +11,7 @@ function homeReducer(state = initialState, action) {
     case "GET_CHARTS_SUCCESS":
       return { ...state, charts: payload.charts };
     case "GET_CHARTS_IMG_SUCCESS":
-      return { ...state, chartsImg: payload.chartsImg };
+      return { ...state, chartsSpotify: payload.chartsSpotify };
     default:
       return { ...state };
   }

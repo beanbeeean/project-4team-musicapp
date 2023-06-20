@@ -11,6 +11,8 @@ root.render(
   <Provider store={store}>
     <BrowserRouter>
       <App />
+      {/* <AlbumDetail /> */}
+      {/* <ArtistDetail /> */}
     </BrowserRouter>
   </Provider>
 );

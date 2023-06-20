@@ -2,12 +2,25 @@ import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import styles from "./search_main.module.css";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const SearchMain = () => {
+  const navigate = useNavigate();
   const { searchArtists, searchTracks, searchAlbums } = useSelector(
     (state) => state.search
   );
-  useEffect(() => {}, [searchArtists]);
+
+  console.log("Albums", searchAlbums);
+  console.log("Tracks", searchTracks);
+  console.log("Artists", searchArtists);
+
+  const navigateAlbum = (id) => {
+    navigate(`/albums/${id}`);
+  };
+
+  const navigateArtist = (id) => {
+    navigate(`/artists/${id}`);
+  };
   return (
     <Container>
       <Row className={styles.artist_name}>
@@ -108,7 +121,7 @@ const SearchMain = () => {
           {searchAlbums.length > 0 ? (
             searchAlbums.map((album, idx) =>
               idx <= 5 ? (
-                <div>
+                <div onClick={() => navigateAlbum(album.id)}>
                   <ul>
                     <li>
                       <img
@@ -139,7 +152,7 @@ const SearchMain = () => {
           {searchArtists.length > 0 ? (
             searchArtists.map((artist, idx) =>
               idx <= 5 ? (
-                <div>
+                <div onClick={() => navigateArtist(artist.id)}>
                   <ul>
                     <li>
                       <img

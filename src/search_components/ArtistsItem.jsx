@@ -4,24 +4,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { detailsAction } from "../redux/actions/detailsAction";
+import { useNavigate } from "react-router-dom";
 
 const ArtistsItem = ({ item }) => {
   const dispatch = useDispatch();
-  const { artist, artistAlbums, artistTopTracks, artistRelated } = useSelector(
-    (state) => state.details
-  );
+  const navigate = useNavigate();
+  // const { artist, artistAlbums, artistTopTracks, artistRelated } = useSelector(
+  //   (state) => state.details
+  // );
   const showArtistDetail = (id) => {
-    // console.log("받은 데이터 : ", id);
-    dispatch(detailsAction.getArtistDetail(id));
+    // dispatch(detailsAction.getArtistDetail(id));
+    navigate(`/artists/${id}`);
   };
 
-  // useEffect(() => {
-  //   console.log("USEEFFECT 실행");
-  //   console.log("artist api : ", artist);
-  //   console.log("artistAlbums api : ", artistAlbums);
-  //   console.log("artistTopTracks api : ", artistTopTracks);
-  //   console.log("artistRelated api : ", artistRelated);
-  // }, [testing]);
   return (
     <div className={styles.item_wrap} onClick={() => showArtistDetail(item.id)}>
       <div className={styles.img_wrap}>
