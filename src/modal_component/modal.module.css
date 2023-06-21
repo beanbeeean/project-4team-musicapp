@@ -80,6 +80,12 @@
   margin-top: 10px;
 }
 
+.modal_playlist_create_date {
+  text-align: center;
+  padding: 5px;
+  margin-top: 10px;
+}
+
 .modal_footer input[type="button"] {
   width: 100%;
   padding: 10px;

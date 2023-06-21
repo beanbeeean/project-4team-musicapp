@@ -1,5 +1,6 @@
 .playlist_wrap {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .item_wrap {
