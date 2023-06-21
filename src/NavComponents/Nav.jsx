@@ -59,6 +59,10 @@ const Nav = ({ login }) => {
     navigate("/");
   };
 
+  const tokenBtnHandler = () => {
+    window.localStorage.removeItem("token");
+  };
+
   return (
     <Container>
       <div className={styles.search}>
@@ -95,6 +99,7 @@ const Nav = ({ login }) => {
               <a
                 className={styles.token_create}
                 href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+                onClick={tokenBtnHandler}
               >
                 Token
               </a>
