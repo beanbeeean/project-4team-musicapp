@@ -93,6 +93,8 @@
   text-align: center;
   line-height: 20px;
   border-radius: 5px;
+  min-height: 35px;
+  max-height: 35px;
 }
 
 .info_wrap {
@@ -102,6 +104,7 @@
 
 .welcome_wrap {
   display: flex;
+  align-items: center;
 }
 
 a.token_create {

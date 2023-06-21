@@ -16,6 +16,7 @@ const AllPlaylist = () => {
   const [month, setMonth] = useState("");
   const [date, setDate] = useState("");
   const [create_date, setCreate_date] = useState();
+  const [chk, setChk] = useState(0);
   
   const getNowDate = () => {
     let today = new Date();
@@ -64,14 +65,25 @@ const AllPlaylist = () => {
     allplaylist.push(allplay);
     window.localStorage.setItem("playlist", JSON.stringify(allplaylist));
 
-    let copylist = JSON.parse(window.localStorage.getItem(copy_key))[0].tracks.items;
-    let copy = [];
-    console.log(copylist[0].track);
-    copylist.map((item, idx) =>
-      copy.push({num:idx, item:copylist[idx].track})
-    )
-    if(copylist!==null)
+    let copylist ;
+    if(copy_key=="Recommand"){
+      copylist=JSON.parse(window.localStorage.getItem(copy_key))[0].tracks.items
+      let copy = [];
+      console.log(copylist[0].track);
+      copylist.map((item, idx) =>
+        copy.push({num:idx, item:copylist[idx].track})
+      )
       window.localStorage.setItem(m_id+playlist_title, JSON.stringify(copy));
+      setChk(c => c + 1);
+    }
+    else{
+      copylist=JSON.parse(window.localStorage.getItem(copy_key));
+      if(copylist!==null){
+        window.localStorage.setItem(m_id+playlist_title, JSON.stringify(copylist));
+        setChk(c => c + 1);
+      }
+    }
+    
   } 
 
   // console.log(curPlaylist);

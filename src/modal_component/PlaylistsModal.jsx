@@ -1,14 +1,38 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import styles from "./modal.module.css";
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function PlaylistsModal({ show, setShow, setSelectnum }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [year, setYear] = useState("");
+  const [month, setMonth] = useState("");
+  const [date, setDate] = useState("");
+
+  const getNowDate = () => {
+    let today = new Date();
+    let year = today.getFullYear();
+    let month =
+      today.getMonth() + 1 < 10
+        ? "0" + (today.getMonth() + 1)
+        : today.getMonth() + 1;
+    let date =
+      today.getDate() < 10 ? "0" + today.getDate() < 10 : today.getDate();
+
+    setYear(year);
+    setMonth(month);
+    setDate(date);
+    setCreate_date(`${year}.${month}.${date}`);
+  };
+
+  useEffect(() => {
+    getNowDate();
+  }, []);
+
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
 
   const [state, setState] = useState(0);
@@ -35,7 +59,6 @@ function PlaylistsModal({ show, setShow, setSelectnum }) {
   }, [log]);
 
   const nav = () => {
-    // navigate("/playlist/create_playlist");
     console.log("nav clicked! state:", state);
     setState(1);
   };
@@ -47,7 +70,7 @@ function PlaylistsModal({ show, setShow, setSelectnum }) {
       {
         playlist_title: playlist_title,
         about_playlist: about_playlist,
-        // create_date: create_date,
+        create_date: create_date,
       },
     ];
 
@@ -262,6 +285,12 @@ function PlaylistsModal({ show, setShow, setSelectnum }) {
                     placeholder="소개글을 입력하세요"
                     onChange={(e) => setAbout_playlist(e.target.value)}
                   ></input>
+                </Col>
+                <Col
+                  className={styles.modal_playlist_create_date}
+                  name="create_date"
+                >
+                  생성날짜&nbsp;: &nbsp;{year}.{month}.{date}
                 </Col>
               </Row>
             </div>
