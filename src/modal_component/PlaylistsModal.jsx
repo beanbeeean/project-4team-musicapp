@@ -22,7 +22,7 @@ function PlaylistsModal({ show, setShow, setSelectnum }) {
     alert("SUCCESS");
   };
 
-  if (m_id === null) {
+  if (m_id === null && show==true) {
     navigate("/signin");
   } else {
     return (
@@ -44,7 +44,7 @@ function PlaylistsModal({ show, setShow, setSelectnum }) {
                 수록곡 수
               </Col>
             </Row>
-            {playlist.map((item, idx) =>
+            {playlist === null? <></>:playlist.map((item, idx) =>
               idx == 0 ? (
                 ""
               ) : (
