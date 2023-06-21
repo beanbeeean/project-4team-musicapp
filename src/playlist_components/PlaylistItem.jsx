@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styles from "./css/playlist_item.module.css";
 import { Container, Row, Col } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PlaylistsModal from "../modal_component/PlaylistsModal";
 
 const PlaylistItem = (flag, m_id) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [selectedIndexes, setSelectedIndexes] = useState([]);
   const [show, setShow] = useState(false);
   const [selectnum, setSelectnum] = useState(0);
@@ -105,7 +106,7 @@ const PlaylistItem = (flag, m_id) => {
     } else {
       window.localStorage.setItem(member[selectnum].playlist_title, JSON.stringify(select));
     }
-    
+    navigate(`/allplaylist`);
     console.log("endddd");
   }
 
