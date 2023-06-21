@@ -52,12 +52,12 @@ const MainChartsItem = ({
     if (playlist !== null) {
       playlist = [...playlist, ...select];
       window.localStorage.setItem(
-        title[selectnum].playlist_title,
+        m_id + title[selectnum].playlist_title,
         JSON.stringify(playlist)
       );
     } else {
       window.localStorage.setItem(
-        title[selectnum].playlist_title,
+        m_id + title[selectnum].playlist_title,
         JSON.stringify(select)
       );
     }

@@ -56,12 +56,12 @@ function PlaylistsModal({ show, setShow, setSelectnum }) {
                     <Col className={styles.modal_pl_cnt} md={4} sm={1}>
                       {JSON.parse(
                         window.localStorage.getItem(
-                          playlist[idx].playlist_title
+                          m_id+playlist[idx].playlist_title
                         )
                       )
                         ? JSON.parse(
                             window.localStorage.getItem(
-                              playlist[idx].playlist_title
+                              m_id+playlist[idx].playlist_title
                             )
                           ).length
                         : 0}

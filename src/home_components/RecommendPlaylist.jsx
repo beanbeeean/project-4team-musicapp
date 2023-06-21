@@ -7,10 +7,44 @@ import { useDispatch, useSelector } from "react-redux";
 const RecommandPlaylist = () => {
   const dispatch = useDispatch();
   const { playlists } = useSelector((state) => state.playlists);
-  console.log("pl : ", playlists);
+  // console.log("pl : ", playlists);
   useEffect(() => {
     dispatch(playlistsAction.getPlaylists());
   }, []);
+  useEffect(() => {
+    console.log("Components Didupdate");
+    // console.log("playlists : ", playlists);
+    window.localStorage.setItem("Recommand", JSON.stringify([playlists]));
+    let baseStorage = JSON.parse(window.localStorage.getItem("Recommand"));
+
+    // baseStorage.push(playlists);
+    console.log("baseStorage : ", baseStorage);
+    if (
+      !window.localStorage.getItem("playlist") &&
+      JSON.parse(window.localStorage.getItem("Recommand"))[0].type == "playlist"
+    ) {
+      let basePlaylists = [
+        {
+          playlists_title: baseStorage[0].name,
+          playlist_key: "Recommand",
+          player: "Spotify",
+        },
+      ];
+      window.localStorage.setItem("playlist", JSON.stringify(basePlaylists));
+    } else if (
+      window.localStorage.getItem("playlist") &&
+      JSON.parse(window.localStorage.getItem("Recommand"))[0].type == "playlist"
+    ) {
+      let basePlaylists = [
+        {
+          playlists_title: baseStorage[0].name,
+          playlist_key: "Recommand",
+          player: "Spotify",
+        },
+      ];
+      window.localStorage.setItem("playlist", JSON.stringify(basePlaylists));
+    }
+  }, [playlists]);
   return (
     <div className={styles.show_list}>
       <div>
