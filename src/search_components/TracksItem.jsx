@@ -37,23 +37,20 @@ const TracksItem = ({ num, item, select, setSelect, show, setShow }) => {
   const saveBtnHandler = () => {
     let member = JSON.parse(window.localStorage.getItem(m_id));
     let playlist = JSON.parse(
-      window.localStorage.getItem(member[selectnum].playlist_title)
+      window.localStorage.getItem(m_id+member[selectnum].playlist_title)
     );
-    let allplaylist = JSON.parse(window.localStorage.getItem("playlist"));
 
     window.localStorage.setItem(m_id, JSON.stringify(member));
-
-    window.localStorage.setItem("playlist", JSON.stringify(allplaylist));
 
     if (playlist !== null) {
       playlist = [...playlist, ...select];
       window.localStorage.setItem(
-        member[selectnum].playlist_title,
+        m_id+member[selectnum].playlist_title,
         JSON.stringify(playlist)
       );
     } else {
       window.localStorage.setItem(
-        member[selectnum].playlist_title,
+        m_id+member[selectnum].playlist_title,
         JSON.stringify(select)
       );
     }

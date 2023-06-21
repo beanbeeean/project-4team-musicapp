@@ -114,6 +114,7 @@ const Charts = () => {
           }
           num={idx}
           select={select}
+          setSelect={setSelect}
           flag={true}
           show={show}
           setShow={setShow}

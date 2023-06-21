@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 
-function PlaylistsModal({ show, setShow, setSelectnum, login }) {
+function PlaylistsModal({ show, setShow, setSelectnum }) {
   const navigate = useNavigate();
 
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
@@ -13,6 +13,11 @@ function PlaylistsModal({ show, setShow, setSelectnum, login }) {
   const [state, setState] = useState(0);
   const [log, setLog] = useState();
   const [m_pw, setM_pw] = useState("");
+  const [playlist_title, setPlaylist_title] = useState("");
+  const [about_playlist, setAbout_playlist] = useState("");
+  const [create_date, setCreate_date] = useState();
+
+  const login = window.localStorage.getItem("session");
 
   let playlist = JSON.parse(window.localStorage.getItem(m_id));
 
@@ -35,6 +40,48 @@ function PlaylistsModal({ show, setShow, setSelectnum, login }) {
   };
 
   const nav2 = () => {
+    console.log("login:", login);
+
+    let playlist = [
+      {
+        playlist_title: playlist_title,
+        about_playlist: about_playlist,
+        // create_date: create_date,
+      },
+    ];
+
+    console.log("playlist:", playlist);
+    console.log("playlist_title:", playlist_title);
+
+    let user = JSON.parse(window.localStorage.getItem(login));
+    console.log("user:", user);
+    user = [...user, ...playlist];
+    window.localStorage.setItem(login, JSON.stringify(user));
+
+    // let allplaylist = JSON.parse(window.localStorage.getItem("playlist"));
+
+    // console.log("allplaylist:", allplaylist);
+
+    // if (allplaylist === null) {
+    //   allplaylist = [
+    //     {
+    //       playlist_title: playlist_title,
+    //       playlist_key: login + playlist_title,
+    //       player: login,
+    //     },
+    //   ];
+    //   window.localStorage.setItem("playlist", JSON.stringify(allplaylist));
+    // } else {
+    //   let allplay = {
+    //     playlist_title: playlist_title,
+    //     playlist_key: login + playlist_title,
+    //     player: login,
+    //   };
+    //   allplaylist.push(allplay);
+    //   window.localStorage.setItem("playlist", JSON.stringify(allplaylist));
+    // }
+
+    alert("플레이리스트 생성이 완료되었습니다!!");
     setState(0);
   };
 
@@ -49,10 +96,11 @@ function PlaylistsModal({ show, setShow, setSelectnum, login }) {
     let chk = JSON.parse(window.localStorage.getItem(m_id));
 
     if (chk !== null && m_pw === chk[0].m_pw) {
-      console.log(m_id);
+      console.log("m_id:", m_id);
       window.localStorage.setItem("session", m_id);
       alert("로그인 되었습니다!!");
-      navigate("/");
+      login.current = window.localStorage.getItem("session");
+      setLog(1);
     } else {
       alert("아이디 또는 비밀번호를 확인하세요!!");
     }
@@ -150,14 +198,14 @@ function PlaylistsModal({ show, setShow, setSelectnum, login }) {
                         <Col className={styles.modal_pl_cnt} md={4} sm={1}>
                           {JSON.parse(
                             window.localStorage.getItem(
-                              playlist[idx].playlist_title
+                              m_id + playlist[idx].playlist_title
                             )
                           )
                             ? JSON.parse(
                                 window.localStorage.getItem(
                                   playlist[idx].playlist_title
                                 )
-                              ).length
+                              )
                             : 0}
                         </Col>
                       </Row>
@@ -196,6 +244,7 @@ function PlaylistsModal({ show, setShow, setSelectnum, login }) {
                     type="text"
                     name="playlist_title"
                     placeholder="플레이리스트 명"
+                    onChange={(e) => setPlaylist_title(e.target.value)}
                   ></input>
                 </Col>
               </Row>
@@ -209,7 +258,8 @@ function PlaylistsModal({ show, setShow, setSelectnum, login }) {
                   <input
                     type="text"
                     name="about_playlist"
-                    placeholder="플레이리스트 소개글"
+                    placeholder="소개글을 입력하세요"
+                    onChange={(e) => setAbout_playlist(e.target.value)}
                   ></input>
                 </Col>
               </Row>

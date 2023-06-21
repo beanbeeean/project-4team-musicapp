@@ -49,7 +49,7 @@ const ArtistDetail = () => {
   const saveBtnHandler = () => {
     let member = JSON.parse(window.localStorage.getItem(m_id));
     let playlist = JSON.parse(
-      window.localStorage.getItem(member[selectnum].playlist_title)
+      window.localStorage.getItem(m_id+member[selectnum].playlist_title)
     );
 
     console.log(playlist);
@@ -57,15 +57,24 @@ const ArtistDetail = () => {
     if (playlist !== null) {
       playlist = [...playlist, ...select];
       window.localStorage.setItem(
-        member[selectnum].playlist_title,
+        m_id+member[selectnum].playlist_title,
         JSON.stringify(playlist)
       );
     } else {
       window.localStorage.setItem(
-        member[selectnum].playlist_title,
+        m_id+member[selectnum].playlist_title,
         JSON.stringify(select)
       );
     }
+    const checkboxes = document.querySelectorAll(".chkbox"); // .chkbox 클래스를 가진 모든 체크박스 선택
+
+    checkboxes.forEach((checkbox) => {
+      if (checkbox.checked) {
+        checkbox.checked = false; // 체크박스 선택 해제
+      }
+    });
+
+    setSelect([]);
   };
 
   useEffect(() => {
@@ -133,6 +142,7 @@ const ArtistDetail = () => {
             <Col className={styles.input_playlist} md={1}>
               <input
                 type="checkbox"
+                className="chkbox"
                 onChange={(e) => selecting(e, idx, item)}
               />
             </Col>

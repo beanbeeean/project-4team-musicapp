@@ -49,16 +49,26 @@ div.main_charts > p {
   display: flex;
   align-items: center;
 }
-.main_charts_song > a {
+.main_charts_song span {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
 }
 
-.main_charts_singer {
+.main_charts_song span:hover {
+  text-decoration: underline;
+}
+
+.main_charts_singer span {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.main_charts_singer span:hover {
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 576px) {

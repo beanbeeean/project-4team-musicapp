@@ -52,11 +52,11 @@ const CreatePlaylist = () => {
     console.log(allplaylist);
 
     if(allplaylist===null){
-      allplaylist=[{playlist_title: playlist_title, player: userid}];
+      allplaylist=[{playlist_title: playlist_title, playlist_key: userid+playlist_title, player: userid}];
       window.localStorage.setItem("playlist", JSON.stringify(allplaylist));
     }
     else{
-      let allplay = { playlist_title: playlist_title, player: userid};
+      let allplay = { playlist_title: playlist_title, playlist_key: userid+playlist_title, player: userid};
       allplaylist.push(allplay);
       window.localStorage.setItem("playlist", JSON.stringify(allplaylist));
     }
