@@ -21,7 +21,7 @@ const Nav = ({ login }) => {
   const [value, setValue] = useState("");
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
-
+  const [id, setId] = useState(login.current);
   useEffect(() => {
     const hash = window.location.hash;
     let token = window.localStorage.getItem("token");
@@ -63,6 +63,9 @@ const Nav = ({ login }) => {
     window.localStorage.removeItem("token");
   };
 
+  useEffect(() => {
+    setId(window.localStorage.getItem("session"));
+  }, [loginStatus]);
   return (
     <Container>
       <div className={styles.search}>
@@ -86,13 +89,13 @@ const Nav = ({ login }) => {
           </div>
         </div>
         <div className={`${styles.login_wrap} text-center`}>
-          {login.current !== null && loginStatus == true ? (
+          {loginStatus == true ? (
             <div className={styles.welcome_wrap}>
               <div className={styles.info_wrap}>
                 <Link to="/signup" className={styles.welcome}>
-                  {login.current}
+                  {id}
                 </Link>
-                님, ㅎㅇ
+                님, 반갑습니다!
               </div>
               <input type="button" value="Logout" onClick={logoutBtnHandler} />
               <a

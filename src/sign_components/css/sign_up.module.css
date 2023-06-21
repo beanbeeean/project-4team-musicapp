@@ -35,6 +35,11 @@ section h4 {
   color: #5e5e5e;
 }
 
+.input_id {
+  display: flex;
+  align-items: center;
+}
+
 .section_wrap input[name="m_id"] {
   width: 64%;
 }
@@ -50,12 +55,12 @@ section h4 {
 }
 
 .section_wrap button {
-  width: 100%;
-  padding: 9px 25px 9px 25px;
+  padding: 0 25px;
   border: 0px;
   border-radius: 7px;
   margin-left: 5px;
   font-size: 0.9em;
+  height: 40px;
 }
 
 .section_wrap input[type="button"] {

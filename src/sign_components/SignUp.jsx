@@ -82,7 +82,7 @@ const SignUp = ({ login }) => {
                 ? alert("회원가입이 완료되었습니다!!")
                 : alert("정보수정이 완료되었습니다!!");
             }
-            navigate("/");
+            navigate("/signin");
           } else alert("아이디 중복 확인하세요!!");
         }
         break;
@@ -139,23 +139,24 @@ const SignUp = ({ login }) => {
       <h4>{login.current === null ? "회원가입" : "정보수정"}</h4>
       <div className={styles.section_wrap}>
         <div className={styles.title}>아이디</div>
-        <input
-          type="text"
-          name={login.current === null ? "m_id" : ""}
-          placeholder="Input ID"
-          value={m_id}
-          onChange={(e) => setM_id(e.target.value)}
-          readOnly={login.current === null ? false : true}
-        />
-        {login.current === null ? (
-          <button onClick={ValidateUserId}>중복확인</button>
-        ) : (
-          <></>
-        )}
-        <br />
+        <div className={styles.input_id}>
+          <input
+            type="text"
+            name={login.current === null ? "m_id" : ""}
+            placeholder="Input ID"
+            value={m_id}
+            onChange={(e) => setM_id(e.target.value)}
+            readOnly={login.current === null ? false : true}
+          />
+          {login.current === null ? (
+            <button onClick={ValidateUserId}>중복확인</button>
+          ) : (
+            <></>
+          )}
+        </div>
         <div className={styles.title}>비밀번호</div>
         <input
-          type="text"
+          type="password"
           name="m_pw"
           placeholder="Input Password"
           value={m_pw}

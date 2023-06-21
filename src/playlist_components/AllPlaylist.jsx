@@ -17,7 +17,7 @@ const AllPlaylist = () => {
   const [date, setDate] = useState("");
   const [create_date, setCreate_date] = useState();
   const [chk, setChk] = useState(0);
-  
+
   const getNowDate = () => {
     let today = new Date();
     let year = today.getFullYear();
@@ -38,7 +38,6 @@ const AllPlaylist = () => {
     getNowDate();
   }, []);
 
-
   const curPlaylists = (idx) => {
     curPlaylist = !playlist[idx]
       ? null
@@ -48,43 +47,58 @@ const AllPlaylist = () => {
     console.log(curPlaylist);
   };
 
-  const copyPlaylist = (e, playlist_title, copy_key) => {
-    let playlist = [
-      {
+  const copyPlaylist = (e, playlist_title, copy_key, player) => {
+    // console.log("copyKey1", playlist_title);
+    // console.log("copyKey2", copy_key);
+    console.log("copyKey3", player);
+    console.log("현재", window.localStorage.getItem("session"));
+    if (player != window.localStorage.getItem("session")) {
+      let playlist = [
+        {
+          playlist_title: playlist_title,
+          about_playlist: "",
+          create_date: create_date,
+        },
+      ];
+      let user = JSON.parse(window.localStorage.getItem(m_id));
+      user = [...user, ...playlist];
+      window.localStorage.setItem(m_id, JSON.stringify(user));
+
+      let allplaylist = JSON.parse(window.localStorage.getItem("playlist"));
+      let allplay = {
         playlist_title: playlist_title,
-        about_playlist: "",
-        create_date: create_date,
-      },
-    ];
-    let user = JSON.parse(window.localStorage.getItem(m_id));
-    user = [...user, ...playlist];
-    window.localStorage.setItem(m_id, JSON.stringify(user));
+        playlist_key: m_id + playlist_title,
+        player: m_id,
+      };
+      allplaylist.push(allplay);
+      window.localStorage.setItem("playlist", JSON.stringify(allplaylist));
 
-    let allplaylist=JSON.parse(window.localStorage.getItem("playlist"));
-    let allplay = { playlist_title: playlist_title, playlist_key: m_id+playlist_title, player: m_id};
-    allplaylist.push(allplay);
-    window.localStorage.setItem("playlist", JSON.stringify(allplaylist));
-
-    let copylist ;
-    if(copy_key=="Recommand"){
-      copylist=JSON.parse(window.localStorage.getItem(copy_key))[0].tracks.items
-      let copy = [];
-      console.log(copylist[0].track);
-      copylist.map((item, idx) =>
-        copy.push({num:idx, item:copylist[idx].track})
-      )
-      window.localStorage.setItem(m_id+playlist_title, JSON.stringify(copy));
-      setChk(c => c + 1);
-    }
-    else{
-      copylist=JSON.parse(window.localStorage.getItem(copy_key));
-      if(copylist!==null){
-        window.localStorage.setItem(m_id+playlist_title, JSON.stringify(copylist));
-        setChk(c => c + 1);
+      let copylist;
+      if (copy_key == "Recommand") {
+        copylist = JSON.parse(window.localStorage.getItem(copy_key))[0].tracks
+          .items;
+        let copy = [];
+        console.log(copylist[0].track);
+        copylist.map((item, idx) =>
+          copy.push({ num: idx, item: copylist[idx].track })
+        );
+        window.localStorage.setItem(
+          m_id + playlist_title,
+          JSON.stringify(copy)
+        );
+        setChk((c) => c + 1);
+      } else {
+        copylist = JSON.parse(window.localStorage.getItem(copy_key));
+        if (copylist !== null) {
+          window.localStorage.setItem(
+            m_id + playlist_title,
+            JSON.stringify(copylist)
+          );
+          setChk((c) => c + 1);
+        }
       }
     }
-    
-  } 
+  };
 
   // console.log(curPlaylist);
 
@@ -120,7 +134,17 @@ const AllPlaylist = () => {
                           }
                         />
                       </Link>
-                      <a href="#none" onClick={(e) => copyPlaylist(e, playlist[idx].playlist_title, playlist[idx].playlist_key)}>
+                      <a
+                        href="#none"
+                        onClick={(e) =>
+                          copyPlaylist(
+                            e,
+                            playlist[idx].playlist_title,
+                            playlist[idx].playlist_key,
+                            playlist[idx].player
+                          )
+                        }
+                      >
                         <div className={styles.album_play}>
                           <FontAwesomeIcon
                             className={styles.play_icon}
@@ -189,13 +213,23 @@ const AllPlaylist = () => {
                         />
                       </Link>
 
-                      <a href="#none" onClick={(e) => copyPlaylist(e, playlist[idx].playlist_title, playlist[idx].playlist_key)}>
-                      <div className={styles.album_play}>
-                        <FontAwesomeIcon
-                          className={styles.play_icon}
-                          icon={faCopy}
-                        />
-                      </div>
+                      <a
+                        href="#none"
+                        onClick={(e) =>
+                          copyPlaylist(
+                            e,
+                            playlist[idx].playlist_title,
+                            playlist[idx].playlist_key,
+                            playlist[idx].player
+                          )
+                        }
+                      >
+                        <div className={styles.album_play}>
+                          <FontAwesomeIcon
+                            className={styles.play_icon}
+                            icon={faCopy}
+                          />
+                        </div>
                       </a>
                       <div>
                         <Link
