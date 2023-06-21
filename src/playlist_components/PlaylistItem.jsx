@@ -13,10 +13,9 @@ const PlaylistItem = (flag, m_id) => {
   const [show, setShow] = useState(false);
   const [selectnum, setSelectnum] = useState(0);
   const [select, setSelect] = useState([]);
-  let id = window.localStorage.getItem("session");
   
-  console.log(id,"location.state.m_id", location.state.m_id);
-  let playlist = JSON.parse(window.localStorage.getItem(id+location.state.m_id));
+  console.log("location.state.m_id", location.state.m_id);
+  let playlist = JSON.parse(window.localStorage.getItem(location.state.m_id));
   
   console.log("playlist", playlist);
 
@@ -93,7 +92,7 @@ const PlaylistItem = (flag, m_id) => {
     let member = JSON.parse(window.localStorage.getItem(id));
     console.log(member);
     let playlist2 = JSON.parse(
-      window.localStorage.getItem(member[selectnum].playlist_title)
+      window.localStorage.getItem(id+member[selectnum].playlist_title)
     );
     console.log(member);
     console.log(playlist2);

@@ -33,7 +33,7 @@ const Playlists = () => {
           idx == 0 ? (
             ""
           ) : (
-            <Link to="/playlistitem" state={{ flag: true, m_id: playlist[idx].playlist_title}}>
+            <Link to="/playlistitem" state={{ flag: true, m_id: m_id+playlist[idx].playlist_title}}>
               <div className={styles.playlists_item}>
                 <ul className={styles.playlist_item_wrap}>
                   <li className={styles.playlist_pic}>
