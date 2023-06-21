@@ -43,13 +43,16 @@ const AlbumDetail = () => {
   const saveBtnHandler = () => {
     let member = JSON.parse(window.localStorage.getItem(m_id));
     let playlist = JSON.parse(
-      window.localStorage.getItem(m_id+member[selectnum].playlist_title)
+      window.localStorage.getItem(m_id + member[selectnum].playlist_title)
     );
-    console.log("playlist:" +  JSON.parse(window.localStorage.getItem(m_id)));
-    console.log("selectnum:" +  selectnum);
-    console.log("member:" + JSON.parse(
-      window.localStorage.getItem(member[selectnum].playlist_title)
-    ));
+    console.log("playlist:" + JSON.parse(window.localStorage.getItem(m_id)));
+    console.log("selectnum:" + selectnum);
+    console.log(
+      "member:" +
+        JSON.parse(
+          window.localStorage.getItem(member[selectnum].playlist_title)
+        )
+    );
     if (playlist !== null) {
       playlist = [...playlist, ...select];
       window.localStorage.setItem(

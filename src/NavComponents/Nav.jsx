@@ -128,7 +128,7 @@ const Nav = ({ login }) => {
           <Link to="/allplaylist">All Playlist</Link>
         </Col>
         <Col className={`${styles.list} text-center`}>
-          {login.current === null ? (
+          {!window.localStorage.getItem("session") ? (
             <Link to="/signin">My Playlist</Link>
           ) : (
             <Link to="/playlist">My Playlist</Link>

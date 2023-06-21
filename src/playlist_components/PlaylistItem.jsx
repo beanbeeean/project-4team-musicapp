@@ -146,19 +146,21 @@ const PlaylistItem = () => {
       </div>
 
       <Row>
-        <Col md={5}>제목</Col>
-        <Col md={4}>앨범명</Col>
-        <Col md={2}>
+        <Col md={6}>제목</Col>
+        <Col md={3}>앨범명</Col>
+        <Col md={2} className="text-center">
           <FontAwesomeIcon icon={faClock} />
         </Col>
-        <Col>선택</Col>
+        <Col md={1} className="text-center">
+          선택
+        </Col>
       </Row>
       {playlist === null
         ? ""
         : location.state.m_id.includes("Recommand")
         ? playlist[0].tracks.items.map((item, idx) => (
             <Row className={styles.tracks_wrap}>
-              <Col md={5} className={styles.tracks_title}>
+              <Col md={6} className={styles.tracks_title}>
                 <div className={styles.tracks_img}>
                   <img src={item.track.album.images[2].url} alt="" />
                 </div>
@@ -167,18 +169,18 @@ const PlaylistItem = () => {
                   <span>{item.track.artists[0].name}</span>
                 </div>
               </Col>
-              <Col md={4}>
+              <Col md={3}>
                 <span className={styles.tracks_album}>
                   {item.track.album.name}
                 </span>
               </Col>
-              <Col md={2} className={styles.tracks_time}>
+              <Col md={2} className={`text-center ${styles.tracks_time}`}>
                 {parseInt(item.track.duration_ms / 1000 / 60)}:
                 {parseInt((item.track.duration_ms / 1000) % 60) + 1 < 10
                   ? "0" + (parseInt((item.track.duration_ms / 1000) % 60) + 1)
                   : parseInt((item.track.duration_ms / 1000) % 60) + 1}
               </Col>
-              <Col md={1}>
+              <Col md={1} className="text-center">
                 {location.state.flag ? (
                   <input
                     id="chkbox"
@@ -201,7 +203,7 @@ const PlaylistItem = () => {
           ))
         : playlist.map((item, idx) => (
             <Row className={styles.tracks_wrap}>
-              <Col md={5} className={styles.tracks_title}>
+              <Col md={6} className={styles.tracks_title}>
                 <div className={styles.tracks_img}>
                   <img src={playlist[idx].item.album.images[2].url} alt="" />
                 </div>
@@ -212,19 +214,19 @@ const PlaylistItem = () => {
                   <span>{playlist[idx].item.artists[0].name}</span>
                 </div>
               </Col>
-              <Col md={4}>
+              <Col md={3}>
                 <span className={styles.tracks_album}>
                   {playlist[idx].item.album.name}
                 </span>
               </Col>
-              <Col md={2} className={styles.tracks_time}>
+              <Col md={2} className={`text-center ${styles.tracks_time}`}>
                 {parseInt(playlist[idx].item.duration_ms / 1000 / 60)}:
                 {parseInt((playlist[idx].item.duration_ms / 1000) % 60) + 1 < 10
                   ? "0" +
                     (parseInt((playlist[idx].item.duration_ms / 1000) % 60) + 1)
                   : parseInt((playlist[idx].item.duration_ms / 1000) % 60) + 1}
               </Col>
-              <Col md={1}>
+              <Col md={1} className="text-center">
                 {location.state.flag ? (
                   <input
                     id="chkbox"

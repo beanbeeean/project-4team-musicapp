@@ -25,6 +25,7 @@ function SignInModal({ show, setShow, setSelectnum, login }) {
       window.localStorage.setItem("session", m_id);
       alert("로그인 되었습니다!!");
       login.current = window.localStorage.getItem("session");
+      console.log("login.current", login.current);
       navigate("/");
     } else {
       alert("아이디 또는 비밀번호를 확인하세요!!");
