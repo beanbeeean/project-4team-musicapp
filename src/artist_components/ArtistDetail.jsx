@@ -49,7 +49,7 @@ const ArtistDetail = () => {
   const saveBtnHandler = () => {
     let member = JSON.parse(window.localStorage.getItem(m_id));
     let playlist = JSON.parse(
-      window.localStorage.getItem(m_id+member[selectnum].playlist_title)
+      window.localStorage.getItem(m_id + member[selectnum].playlist_title)
     );
 
     console.log(playlist);
@@ -57,12 +57,12 @@ const ArtistDetail = () => {
     if (playlist !== null) {
       playlist = [...playlist, ...select];
       window.localStorage.setItem(
-        m_id+member[selectnum].playlist_title,
+        m_id + member[selectnum].playlist_title,
         JSON.stringify(playlist)
       );
     } else {
       window.localStorage.setItem(
-        m_id+member[selectnum].playlist_title,
+        m_id + member[selectnum].playlist_title,
         JSON.stringify(select)
       );
     }
@@ -115,10 +115,11 @@ const ArtistDetail = () => {
       <div className={styles.popular}>
         <div className={styles.popular_header}>
           <h5>인기</h5>
+          <button className={styles.input_btn} onClick={() => setShow(true)}>
+            담기
+          </button>
         </div>
-        <button className={styles.input_btn} onClick={() => setShow(true)}>
-          담기
-        </button>
+
         {artistTopTracks?.tracks?.map((item, idx) => (
           <Row className={styles.list_wrap}>
             <Col className={styles.song_num} md={1}>

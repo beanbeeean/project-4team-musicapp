@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import styles from "./css/sign_up.module.css";
 
 import $ from "jquery";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useHistory } from "react-router-dom";
 
 const SIGN_UP_BUTTON = "1";
 
 const SignUp = ({ login }) => {
   const navigate = useNavigate();
+  // const history = useHistory();
   let session = window.localStorage.getItem("session");
   let log;
 
@@ -82,6 +83,7 @@ const SignUp = ({ login }) => {
                 ? alert("회원가입이 완료되었습니다!!")
                 : alert("정보수정이 완료되었습니다!!");
             }
+            // history.back();
             navigate("/signin");
           } else alert("아이디 중복 확인하세요!!");
         }

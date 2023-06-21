@@ -43,6 +43,7 @@ li {
   align-items: center;
   font-size: 1.5em;
   height: 100px;
+  width: 100%;
 }
 
 button.open_modal_btn {
@@ -57,7 +58,6 @@ button.open_modal_btn {
 }
 
 button.open_modal_btn:hover {
-  /* background-color: rgb(108, 208, 255); */
   color: rgb(108, 208, 255);
   border: 1px solid rgb(108, 208, 255);
 }

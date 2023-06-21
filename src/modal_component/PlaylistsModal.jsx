@@ -129,6 +129,10 @@ function PlaylistsModal({ show, setShow, setSelectnum }) {
       alert("아이디 또는 비밀번호를 확인하세요!!");
     }
   };
+  const moveSignup = (e) => {
+    navigate("/signup");
+    console.log("click");
+  };
 
   return (
     <>
@@ -183,7 +187,10 @@ function PlaylistsModal({ show, setShow, setSelectnum }) {
           </Modal.Footer>
           <Modal.Footer className={styles.go_sign_up_wrap}>
             <div className={styles.go_sign_up}>
-              아직 회원이 아니신가요? <a href="#">회원가입</a>
+              아직 회원이 아니신가요?{" "}
+              <span style={{ cursor: "pointer" }} onClick={moveSignup}>
+                회원가입
+              </span>
             </div>
           </Modal.Footer>
         </Modal>
