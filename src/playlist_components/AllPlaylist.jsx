@@ -48,11 +48,13 @@ const AllPlaylist = () => {
   };
 
   const copyPlaylist = (e, playlist_title, copy_key, player) => {
-    // console.log("copyKey1", playlist_title);
-    // console.log("copyKey2", copy_key);
     console.log("copyKey3", player);
     console.log("현재", window.localStorage.getItem("session"));
-    if (player != window.localStorage.getItem("session")) {
+    
+    if(window.localStorage.getItem("session") ===null){
+      alert("로그인이 필요한 기능입니다!!");
+    }
+    else if (player != window.localStorage.getItem("session")) {
       let playlist = [
         {
           playlist_title: playlist_title,
@@ -60,9 +62,14 @@ const AllPlaylist = () => {
           create_date: create_date,
         },
       ];
-      let user = JSON.parse(window.localStorage.getItem(m_id));
-      user = [...user, ...playlist];
-      window.localStorage.setItem(m_id, JSON.stringify(user));
+      if(JSON.parse(window.localStorage.getItem(m_id))!==null){
+        let user = JSON.parse(window.localStorage.getItem(m_id));
+        user = [...user, ...playlist];
+        window.localStorage.setItem(m_id, JSON.stringify(user));
+      }
+      else{
+        window.localStorage.setItem(m_id, JSON.stringify(playlist));
+      }
 
       let allplaylist = JSON.parse(window.localStorage.getItem("playlist"));
       let allplay = {
@@ -97,6 +104,9 @@ const AllPlaylist = () => {
           setChk((c) => c + 1);
         }
       }
+    }
+    else {
+      alert("자신의 플레이리스트는 복제할 수 없습니다!!");
     }
   };
 
@@ -140,8 +150,8 @@ const AllPlaylist = () => {
                           copyPlaylist(
                             e,
                             playlist[idx].playlist_title,
-                            playlist[idx].playlist_key,
-                            playlist[idx].player
+                            "Recommand",
+                            "Spotify"
                           )
                         }
                       >
