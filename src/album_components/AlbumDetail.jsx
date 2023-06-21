@@ -19,7 +19,7 @@ const AlbumDetail = () => {
   const { albums, albumsTracks, loading } = useSelector(
     (state) => state.details
   );
-
+  console.log("albumsTracks ", albumsTracks);
   const selecting = (e, num, spoItem) => {
     if (e.target.checked) {
       select.push({ num: num, item: spoItem });
@@ -34,18 +34,18 @@ const AlbumDetail = () => {
   };
 
   useEffect(() => {
-    if(show===false && selectnum!==0){
+    if (show === false && selectnum !== 0) {
       saveBtnHandler();
     }
     setSelectnum(0);
-  }, [selectnum]);  
+  }, [selectnum]);
 
   const saveBtnHandler = () => {
     let member = JSON.parse(window.localStorage.getItem(m_id));
     let playlist = JSON.parse(
       window.localStorage.getItem(member[selectnum].playlist_title)
     );
-  }
+  };
 
   useEffect(() => {
     dispatch(detailsAction.getAlbumsDetail(id));
@@ -54,12 +54,7 @@ const AlbumDetail = () => {
 
   useEffect(() => {
     dispatch(detailsAction.getAlbumsDetail(id));
-    // console.log("useEffect ", albums);
     console.log("useEffect ", albumsTracks);
-    // console.log("id", id);
-    // console.log("artistAlbums : ", artistAlbums);
-    // console.log("artistTopTracks : ", artistTopTracks);
-    // console.log("artistRelated : ", artistRelated);
   }, [id]);
 
   if (loading) {
@@ -99,8 +94,8 @@ const AlbumDetail = () => {
       </div>
       <h3>트랙</h3>
       <button className={styles.input_btn} onClick={() => setShow(true)}>
-          담기
-        </button>
+        담기
+      </button>
       <Row className={styles.tracks_header}>
         <Col md={1} className={styles.tracks_num}>
           #
@@ -141,7 +136,11 @@ const AlbumDetail = () => {
           </Col>
         </Row>
       ))}
-        <PlaylistsModal show={show} setShow={setShow} setSelectnum={setSelectnum}/>
+      <PlaylistsModal
+        show={show}
+        setShow={setShow}
+        setSelectnum={setSelectnum}
+      />
     </Container>
   );
 };

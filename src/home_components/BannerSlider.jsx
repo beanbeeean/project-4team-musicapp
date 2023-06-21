@@ -2,6 +2,12 @@ import React from "react";
 import Slider from "react-slick";
 import styles from "./css/newMusic.module.css";
 export default function BannerSlider() {
+  const Banners = [
+    "./imgs/banner1.png",
+    "./imgs/banner2.png",
+    "./imgs/banner3.png",
+    "./imgs/banner4.png",
+  ];
   var settings = {
     dots: false,
     infinite: true,
@@ -13,18 +19,11 @@ export default function BannerSlider() {
   };
   return (
     <Slider {...settings}>
-      <div className={`${styles.slider_item} ${styles.slider_item1}`}>
-        <img
-          src="https://cdnimg.melon.co.kr/svc/images/main/imgUrl20230619040202.png/melon/quality/80"
-          alt=""
-        />
-      </div>
-      <div className={`${styles.slider_item} ${styles.slider_item2}`}>
-        <img
-          src="https://cdnimg.melon.co.kr/svc/images/main/imgUrl20230619040303.png/melon/quality/80"
-          alt=""
-        />
-      </div>
+      {Banners.map((item) => (
+        <div className={`${styles.slider_item} ${styles.slider_item1}`}>
+          <img src={item} alt="" />
+        </div>
+      ))}
     </Slider>
   );
 }
