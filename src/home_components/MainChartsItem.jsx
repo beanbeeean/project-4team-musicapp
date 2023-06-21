@@ -45,11 +45,11 @@ const MainChartsItem = ({ item, spoItem, idx, num, select, flag, show, setShow})
     if (playlist !== null) {
       playlist = [...playlist, ...select];
       window.localStorage.setItem(
-        title[selectnum].playlist_title,
+        m_id+title[selectnum].playlist_title,
         JSON.stringify(playlist)
       );
     } else {
-      window.localStorage.setItem(title[selectnum].playlist_title, JSON.stringify(select));
+      window.localStorage.setItem(m_id+title[selectnum].playlist_title, JSON.stringify(select));
     }
   };
 

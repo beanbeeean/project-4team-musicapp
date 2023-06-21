@@ -13,7 +13,7 @@ const AllPlaylist = () => {
   const curPlaylists = (idx) => {
     curPlaylist = !playlist[idx]
       ? null
-      : JSON.parse(window.localStorage.getItem(playlist[idx].playlist_title));
+      : JSON.parse(window.localStorage.getItem(playlist[idx].playlist_key));
 
     console.log(playlist);
     console.log(curPlaylist);
@@ -29,7 +29,7 @@ const AllPlaylist = () => {
           ? playlist.map((item, idx) => (
               <Link
                 to="/playlistitem"
-                state={{ flag: false, m_id: playlist[idx].playlist_title }}
+                state={{ flag: false, m_id: playlist[idx].playlist_key }}
               >
                 <div className={styles.albums_wrap}>
                   <div className={styles.item_wrap}>
@@ -38,12 +38,12 @@ const AllPlaylist = () => {
                         className={styles.album_img}
                         src={
                           window.localStorage.getItem(
-                            playlist[idx].playlist_title
+                            playlist[idx].playlist_key
                           ) === null
                             ? "./imgs/default.jpg"
                             : JSON.parse(
                                 window.localStorage.getItem(
-                                  playlist[idx].playlist_title
+                                  playlist[idx].playlist_key
                                 )
                               )[0].item.album.images[1].url
                         }

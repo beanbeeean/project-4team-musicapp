@@ -13,9 +13,10 @@ const PlaylistItem = (flag, m_id) => {
   const [show, setShow] = useState(false);
   const [selectnum, setSelectnum] = useState(0);
   const [select, setSelect] = useState([]);
+  let id = window.localStorage.getItem("session");
   
-  console.log("location.state.m_id", location.state.m_id);
-  let playlist = JSON.parse(window.localStorage.getItem(location.state.m_id));
+  console.log(id,"location.state.m_id", location.state.m_id);
+  let playlist = JSON.parse(window.localStorage.getItem(id+location.state.m_id));
   
   console.log("playlist", playlist);
 
@@ -100,11 +101,11 @@ const PlaylistItem = (flag, m_id) => {
     if (playlist2 !== null) {
       playlist2 = [...playlist2, ...select];
       window.localStorage.setItem(
-        member[selectnum].playlist_title,
+        id+member[selectnum].playlist_title,
         JSON.stringify(playlist2)
       );
     } else {
-      window.localStorage.setItem(member[selectnum].playlist_title, JSON.stringify(select));
+      window.localStorage.setItem(id+member[selectnum].playlist_title, JSON.stringify(select));
     }
     navigate(`/allplaylist`);
     console.log("endddd");
