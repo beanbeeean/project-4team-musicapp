@@ -58,28 +58,28 @@ function PlaylistsModal({ show, setShow, setSelectnum }) {
     user = [...user, ...playlist];
     window.localStorage.setItem(login, JSON.stringify(user));
 
-    // let allplaylist = JSON.parse(window.localStorage.getItem("playlist"));
+    let allplaylist = JSON.parse(window.localStorage.getItem("playlist"));
 
-    // console.log("allplaylist:", allplaylist);
+    console.log("allplaylist:", allplaylist);
 
-    // if (allplaylist === null) {
-    //   allplaylist = [
-    //     {
-    //       playlist_title: playlist_title,
-    //       playlist_key: login + playlist_title,
-    //       player: login,
-    //     },
-    //   ];
-    //   window.localStorage.setItem("playlist", JSON.stringify(allplaylist));
-    // } else {
-    //   let allplay = {
-    //     playlist_title: playlist_title,
-    //     playlist_key: login + playlist_title,
-    //     player: login,
-    //   };
-    //   allplaylist.push(allplay);
-    //   window.localStorage.setItem("playlist", JSON.stringify(allplaylist));
-    // }
+    if (allplaylist === null) {
+      allplaylist = [
+        {
+          playlist_title: playlist_title,
+          playlist_key: login + playlist_title,
+          player: login,
+        },
+      ];
+      window.localStorage.setItem("playlist", JSON.stringify(allplaylist));
+    } else {
+      let allplay = {
+        playlist_title: playlist_title,
+        playlist_key: login + playlist_title,
+        player: login,
+      };
+      allplaylist.push(allplay);
+      window.localStorage.setItem("playlist", JSON.stringify(allplaylist));
+    }
 
     alert("플레이리스트 생성이 완료되었습니다!!");
     setState(0);
@@ -203,9 +203,9 @@ function PlaylistsModal({ show, setShow, setSelectnum }) {
                           )
                             ? JSON.parse(
                                 window.localStorage.getItem(
-                                  playlist[idx].playlist_title
+                                  m_id + playlist[idx].playlist_title
                                 )
-                              )
+                              ).length
                             : 0}
                         </Col>
                       </Row>
