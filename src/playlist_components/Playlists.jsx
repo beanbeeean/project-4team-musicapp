@@ -11,10 +11,12 @@ const Playlists = () => {
   const curPlaylists = (idx) => {
     curPlaylist = !playlist[idx]
       ? null
-      : JSON.parse(window.localStorage.getItem(m_id+playlist[idx].playlist_title));
-    
-  console.log("playlist",playlist);
-  console.log(curPlaylist);
+      : JSON.parse(
+          window.localStorage.getItem(m_id + playlist[idx].playlist_title)
+        );
+
+    console.log("playlist", playlist);
+    console.log(curPlaylist);
   };
 
   const deletePlaylist = (e,idx) => {
@@ -62,8 +64,14 @@ const Playlists = () => {
             ""
           ) : (
             <div className={styles.playlists_item}>
-                <ul className={styles.playlist_item_wrap}>
-                <Link to="/playlistitem" state={{ flag: true, m_id: m_id+playlist[idx].playlist_title}}>
+              <ul className={styles.playlist_item_wrap}>
+                <Link
+                  to="/playlistitem"
+                  state={{
+                    flag: true,
+                    m_id: m_id + playlist[idx].playlist_title,
+                  }}
+                >
                   <li className={styles.playlist_pic}>
                     {curPlaylists(idx)}
                     <img
@@ -85,7 +93,7 @@ const Playlists = () => {
                     </div>
                     <br />
                     <div className={styles.music_cnt}>
-                      {curPlaylist ===null ? 0: curPlaylist.length}곡&nbsp;
+                      {curPlaylist === null ? 0 : curPlaylist.length}곡&nbsp;
                     </div>
                   </li>
                   </Link>

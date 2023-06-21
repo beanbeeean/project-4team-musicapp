@@ -62,7 +62,7 @@ const Charts = () => {
     );
   }
   return (
-    <Container className={styles.container} pb-3>
+    <Container className={styles.container}>
       <Row>
         <Col md={8}>
           <div className={`${styles.chart} ${styles.item1}`}>
@@ -97,6 +97,7 @@ const Charts = () => {
                     idx={idx}
                     num={idx}
                     flag={false}
+                    key={idx}
                   />
                 ))
               : ""}

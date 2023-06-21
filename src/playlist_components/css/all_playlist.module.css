@@ -26,6 +26,9 @@
 
 .album_play {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   opacity: 0;
   bottom: 0px;
   right: 0px;
@@ -34,13 +37,15 @@
   border-radius: 50%;
   background-color: rgb(108, 208, 255);
   color: #fff;
+  cursor: pointer;
 }
 
 .play_icon {
   font-size: 1.2em;
-  position: absolute;
+  margin-left: 3px;
+  /* position: absolute;
   top: 30%;
-  left: 38%;
+  left: 38%; */
 }
 
 .playlistName {
