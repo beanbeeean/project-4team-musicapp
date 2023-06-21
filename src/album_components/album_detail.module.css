@@ -19,9 +19,9 @@ div.album_img img {
   border-radius: 10px;
 }
 
-div.album_name {
+/* div.album_name {
   margin-top: 150px;
-}
+} */
 
 div.album_name h2 {
   font-size: 3em;
@@ -31,7 +31,7 @@ div.album_name h2 {
 
 div.button_img {
   display: flex;
-  margin: 30px auto;
+  margin-left: 30px;
 }
 
 .play_button {
@@ -45,6 +45,7 @@ div.button_img {
   padding-left: 3px;
   font-size: 1.5em;
   margin-right: 20px;
+  cursor: pointer;
 }
 
 .pick_button {
@@ -55,6 +56,7 @@ div.button_img {
   line-height: 47px;
   text-align: center;
   font-size: 1.5em;
+  cursor: pointer;
 }
 
 .song_num,
@@ -140,6 +142,12 @@ h5 a {
 }
 .album_wrap div ul li:nth-child(3) {
   font-size: 0.8em;
+}
+
+.track_wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .tracks_num {

@@ -5,15 +5,14 @@ import Container from "react-bootstrap/Container";
 import styles from "./nav.module.css";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { searchAction } from "../redux/actions/searchAction";
 
 const Nav = ({ login }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const { loginStatus } = useSelector((state) => state.home);
   const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
   // console.log(process.env.REACT_APP_CLIENT_ID);
   const REDIRECT_URI = "http://localhost:3000";
@@ -56,6 +55,7 @@ const Nav = ({ login }) => {
     alert("로그아웃 되었습니다!!");
     window.localStorage.removeItem("session");
     login.current = null;
+    dispatch({ type: "LOGOUT_SUCCESS" });
     navigate("/");
   };
 
@@ -86,14 +86,13 @@ const Nav = ({ login }) => {
           </div>
         </div>
         <div className={`${styles.login_wrap} text-center`}>
-          {login.current !== null ? (
+          {login.current !== null && loginStatus == true ? (
             <div className={styles.welcome_wrap}>
               <div className={styles.info_wrap}>
                 <Link to="/signup" className={styles.welcome}>
                   {login.current}
                 </Link>
                 님, ㅎㅇ
-                <FontAwesomeIcon />
               </div>
               <input type="button" value="Logout" onClick={logoutBtnHandler} />
               <a

@@ -2,6 +2,7 @@ let initialState = {
   newRelease: {},
   charts: {},
   chartsSpotify: [],
+  loginStatus: false,
 };
 function homeReducer(state = initialState, action) {
   let { type, payload } = action;
@@ -12,6 +13,10 @@ function homeReducer(state = initialState, action) {
       return { ...state, charts: payload.charts };
     case "GET_CHARTS_IMG_SUCCESS":
       return { ...state, chartsSpotify: payload.chartsSpotify };
+    case "LOGIN_SUCCESS":
+      return { ...state, loginStatus: true };
+    case "LOGOUT_SUCCESS":
+      return { ...state, loginStatus: false };
     default:
       return { ...state };
   }

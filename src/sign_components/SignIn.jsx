@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./css/sign_in.module.css";
+import { useDispatch } from "react-redux";
 
 const SIGN_IN_BUTTON = "1";
 
 const SignIn = ({ login }) => {
+  const dispatch = useDispatch();
   const [m_id, setM_id] = useState("");
   const [m_pw, setM_pw] = useState("");
 
@@ -24,6 +26,7 @@ const SignIn = ({ login }) => {
       window.localStorage.setItem("session", m_id);
       alert("로그인 되었습니다!!");
       login.current = window.localStorage.getItem("session");
+      dispatch({ type: "LOGIN_SUCCESS" });
       navigate("/");
     } else {
       alert("아이디 또는 비밀번호를 확인하세요!!");

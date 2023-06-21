@@ -1,3 +1,8 @@
+.track_header_wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .tracks_header {
   font-weight: bold;
   border-bottom: 1px dotted #000;

@@ -5,6 +5,7 @@ let initialState = {
   artistRelated: {},
   albums: {},
   albumsTracks: {},
+  albumsArr: [],
   loading: false,
 };
 
@@ -30,7 +31,12 @@ function detailsReducer(state = initialState, action) {
     case "ALBUMS_DETAIL_SUCCESS":
       return { ...state, albums: payload.albums, loading: false };
     case "ALBUMS_TRACKS_SUCCESS":
-      return { ...state, albumsTracks: payload.albumsTracks, loading: false };
+      return {
+        ...state,
+        albumsTracks: payload.albumsTracks,
+        albumsArr: payload.albumsArr,
+        loading: false,
+      };
     default:
       return { ...state };
   }

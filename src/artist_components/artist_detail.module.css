@@ -16,7 +16,7 @@ div.container li {
 .header_info {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 h1 {

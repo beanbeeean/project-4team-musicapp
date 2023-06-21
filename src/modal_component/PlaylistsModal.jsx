@@ -4,10 +4,11 @@ import styles from "./modal.module.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 
 function PlaylistsModal({ show, setShow, setSelectnum }) {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
 
   const [state, setState] = useState(0);
@@ -99,8 +100,8 @@ function PlaylistsModal({ show, setShow, setSelectnum }) {
       console.log("m_id:", m_id);
       window.localStorage.setItem("session", m_id);
       alert("로그인 되었습니다!!");
-      login.current = window.localStorage.getItem("session");
       setLog(1);
+      dispatch({ type: "LOGIN_SUCCESS" });
     } else {
       alert("아이디 또는 비밀번호를 확인하세요!!");
     }

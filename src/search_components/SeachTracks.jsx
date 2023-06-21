@@ -16,9 +16,13 @@ const SearchTracks = () => {
   }, [select]);
   return (
     <div>
-      <button className={styles.input_btn} onClick={() => setShow(true)}>
-          담기
+      <div className={styles.track_header_wrap}>
+        <h3>곡</h3>
+        <button className="open_modal_btn" onClick={() => setShow(true)}>
+          + 담기
         </button>
+      </div>
+
       <Row className={`${styles.tracks_header} pt-2 pb-1`}>
         <Col md={1} className={styles.tracks_num}>
           #

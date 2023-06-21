@@ -45,14 +45,20 @@ function getAlbumsDetail(id) {
       dispatch({ type: "GET_REQUEST_SUCCESS" });
       const albums = await api.get(`/albums/${id}`);
       const albumsTracks = await api.get(`/albums/${id}/tracks`);
-
+      console.log("ACTION ", albumsTracks.data.items);
+      let albumsArr = [];
+      for (let i = 0; i < albumsTracks.data.items.length; i++) {
+        let temp = await api.get(`/tracks/${albumsTracks.data.items[i].id}`);
+        albumsArr.push(temp.data);
+      }
+      console.log("ACTION ARR ", albumsArr);
       dispatch({
         type: "ALBUMS_DETAIL_SUCCESS",
         payload: { albums: albums.data },
       });
       dispatch({
         type: "ALBUMS_TRACKS_SUCCESS",
-        payload: { albumsTracks: albumsTracks.data },
+        payload: { albumsTracks: albumsTracks.data, albumsArr: albumsArr },
       });
     } catch (e) {
       dispatch({ type: "GET_DETAIL_FAILED" });

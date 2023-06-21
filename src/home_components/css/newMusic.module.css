@@ -211,6 +211,7 @@ div.column2 {
 
 .slider_item > img {
   width: 100%;
+  cursor: pointer;
 }
 
 .titleBox li:nth-child(1) {

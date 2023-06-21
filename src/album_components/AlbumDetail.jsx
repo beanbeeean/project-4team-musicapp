@@ -16,10 +16,10 @@ const AlbumDetail = () => {
   const [selectnum, setSelectnum] = useState(0);
   const [select, setSelect] = useState([]);
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
-  const { albums, albumsTracks, loading } = useSelector(
+  const { albums, albumsTracks, albumsArr, loading } = useSelector(
     (state) => state.details
   );
-  console.log("albumsTracks ", albumsTracks);
+  // console.log("albumsTracks ", albumsTracks);
   const selecting = (e, num, spoItem) => {
     if (e.target.checked) {
       select.push({ num: num, item: spoItem });
@@ -45,6 +45,27 @@ const AlbumDetail = () => {
     let playlist = JSON.parse(
       window.localStorage.getItem(member[selectnum].playlist_title)
     );
+    if (playlist !== null) {
+      playlist = [...playlist, ...select];
+      window.localStorage.setItem(
+        m_id + member[selectnum].playlist_title,
+        JSON.stringify(playlist)
+      );
+    } else {
+      window.localStorage.setItem(
+        m_id + member[selectnum].playlist_title,
+        JSON.stringify(select)
+      );
+    }
+    const checkboxes = document.querySelectorAll(".chkbox"); // .chkbox 클래스를 가진 모든 체크박스 선택
+
+    checkboxes.forEach((checkbox) => {
+      if (checkbox.checked) {
+        checkbox.checked = false; // 체크박스 선택 해제
+      }
+    });
+
+    setSelect([]);
   };
 
   useEffect(() => {
@@ -86,16 +107,19 @@ const AlbumDetail = () => {
               {albums.release_date} • {albums.total_tracks} 곡
             </li>
           </ul>
+          <div className={styles.button_img}>
+            <div className={styles.play_button}>▶</div>
+            <div className={styles.pick_button}>♡</div>
+          </div>
         </div>
       </div>
-      <div className={styles.button_img}>
-        <div className={styles.play_button}>▶</div>
-        <div className={styles.pick_button}>♡</div>
+
+      <div className={styles.track_wrap}>
+        <h3>트랙</h3>
+        <button className="open_modal_btn" onClick={() => setShow(true)}>
+          + 담기
+        </button>
       </div>
-      <h3>트랙</h3>
-      <button className={styles.input_btn} onClick={() => setShow(true)}>
-        담기
-      </button>
       <Row className={styles.tracks_header}>
         <Col md={1} className={styles.tracks_num}>
           #
@@ -110,7 +134,7 @@ const AlbumDetail = () => {
           <FontAwesomeIcon icon={faClock} />
         </Col>
         <Col md={1} className={styles.tracks_input}>
-          담기
+          선택
         </Col>
       </Row>
       <hr />
@@ -132,7 +156,10 @@ const AlbumDetail = () => {
               : parseInt((item.duration_ms / 1000) % 60) + 1}
           </Col>
           <Col className={styles.input_playlist} md={1}>
-            <input type="checkbox" onChange={(e) => selecting(e, idx, item)} />
+            <input
+              type="checkbox"
+              onChange={(e) => selecting(e, idx, albumsArr[idx])}
+            />
           </Col>
         </Row>
       ))}

@@ -73,12 +73,14 @@ const Charts = () => {
     <Container className="pb-3">
       <div className={styles.main_charts}>
         <h5>실시간 차트</h5>
-        <p>
-          {year}.{month}.{date} {hour}:{minute}
-        </p>
-        <button className={styles.input_btn} onClick={() => setShow(true)}>
-          담기
-        </button>
+        <div className={styles.right_options}>
+          <p>
+            {year}.{month}.{date} {hour}:{minute}
+          </p>
+          <button className="open_modal_btn" onClick={() => setShow(true)}>
+            + 담기
+          </button>
+        </div>
       </div>
       <Row className={`${styles.charts_header_wrap} pb-3 pt-3`}>
         <Col className={styles.main_charts_header} md={1} sm={2}>

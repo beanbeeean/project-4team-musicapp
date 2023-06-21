@@ -9,12 +9,16 @@ div.main_charts > h5 {
   width: 120px;
 }
 
-div.main_charts > p {
+div.main_charts .right_options {
+  display: flex;
+  align-items: center;
+}
+
+div.main_charts .right_options > p {
   margin-top: 20px;
   font-size: 0.9em;
   color: #6e6e6e;
-  width: 150px;
-  float: right;
+  margin-right: 20px;
 }
 
 .charts_header_wrap {

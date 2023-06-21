@@ -1,10 +1,21 @@
 import React from "react";
 import Slider from "react-slick";
 import styles from "./css/newMusic.module.css";
-const BannerImg = ({ item }) => {
+import { useNavigate } from "react-router-dom";
+const BannerImg = ({ item, idx }) => {
+  const navigate = useNavigate();
+  const movePage = (idx) => {
+    if (idx == 1) {
+      navigate("/playlist");
+    } else if (idx == 2) {
+      navigate("/charts");
+    } else {
+      return;
+    }
+  };
   return (
     <div className={`${styles.slider_item} ${styles.slider_item1}`}>
-      <img src={item} alt="" />
+      <img src={item} alt="" onClick={() => movePage(idx)} />
     </div>
   );
 };
@@ -26,8 +37,8 @@ export default function BannerSlider() {
   };
   return (
     <Slider {...settings}>
-      {Banners.map((item, key) => (
-        <BannerImg item={item} key={key} />
+      {Banners.map((item, idx) => (
+        <BannerImg item={item} key={idx} idx={idx} />
       ))}
     </Slider>
   );
