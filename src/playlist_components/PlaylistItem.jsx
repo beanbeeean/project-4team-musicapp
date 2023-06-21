@@ -92,7 +92,7 @@ const PlaylistItem = (flag, m_id) => {
     let member = JSON.parse(window.localStorage.getItem(id));
     console.log(member);
     let playlist2 = JSON.parse(
-      window.localStorage.getItem(id+member[selectnum].playlist_title)
+      window.localStorage.getItem(member[selectnum].playlist_title)
     );
     console.log(member);
     console.log(playlist2);

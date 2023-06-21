@@ -46,6 +46,15 @@ div.wrap ul.playlist_item_wrap li img {
   width: 100px;
   margin-right: 20px;
 }
+div.wrap ul.playlist_item_wrap > li {
+  width: 30px;
+  margin-right: 10px;
+  float: right;
+}
+div.wrap ul.playlist_item_wrap > li img {
+  width: 30px;
+  margin-top: 35px;
+}
 
 div.wrap ul.playlist_item_wrap li div.playlist_name {
   font-weight: bold;

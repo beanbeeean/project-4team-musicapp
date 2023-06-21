@@ -4,7 +4,7 @@ import styled from "styled-components";
 import styles from "./css/main_charts.module.css";
 import PlaylistsModal from "../modal_component/PlaylistsModal";
 
-const MainChartsItem = ({ item, spoItem, idx, num, select, flag, show, setShow}) => {
+const MainChartsItem = ({ item, spoItem, idx, num, select, setSelect,flag, show, setShow}) => {
   // console.log("key", key);
 
   const [selectnum, setSelectnum] = useState(0);
@@ -51,6 +51,7 @@ const MainChartsItem = ({ item, spoItem, idx, num, select, flag, show, setShow})
     } else {
       window.localStorage.setItem(m_id+title[selectnum].playlist_title, JSON.stringify(select));
     }
+    setSelect([]);
   };
 
   const ListWrap = styled.div`

@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 const Playlists = () => {
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
+  const [num, setNum] = useState(0);
   let playlist = JSON.parse(window.localStorage.getItem(m_id));
 
   let curPlaylist;
@@ -15,6 +16,33 @@ const Playlists = () => {
   console.log("playlist",playlist);
   console.log(curPlaylist);
   };
+
+  const deletePlaylist = (e,idx) => {
+    let chk = window.confirm("플레이리스트를 삭제하시겠습니까?");
+    if(chk===true){
+
+      let allPlaylist = JSON.parse(window.localStorage.getItem("playlist"));
+      let key=m_id+playlist[idx].playlist_title;
+
+      allPlaylist.map((item, idx) =>
+      {
+          console.log(allPlaylist[idx].playlist_key);
+          if(allPlaylist[idx].playlist_key===key)
+          {
+            allPlaylist.splice(idx, 1);
+          }
+        } 
+      )
+
+      playlist.splice(idx, 1);
+
+      window.localStorage.setItem("playlist",JSON.stringify(allPlaylist));
+      window.localStorage.setItem(m_id,JSON.stringify(playlist));
+      window.localStorage.removeItem(key);
+      alert("삭제되었습니다.");
+      setNum(e => e+1);
+    }
+  }
 
   return (
     <>
@@ -33,9 +61,9 @@ const Playlists = () => {
           idx == 0 ? (
             ""
           ) : (
-            <Link to="/playlistitem" state={{ flag: true, m_id: m_id+playlist[idx].playlist_title}}>
-              <div className={styles.playlists_item}>
+            <div className={styles.playlists_item}>
                 <ul className={styles.playlist_item_wrap}>
+                <Link to="/playlistitem" state={{ flag: true, m_id: m_id+playlist[idx].playlist_title}}>
                   <li className={styles.playlist_pic}>
                     {curPlaylists(idx)}
                     <img
@@ -60,9 +88,14 @@ const Playlists = () => {
                       {curPlaylist ===null ? 0: curPlaylist.length}곡&nbsp;
                     </div>
                   </li>
+                  </Link>
+                  <li>
+                    <a href="#none" onClick={(e)=>deletePlaylist(e,idx)}>
+                      <img src="./imgs/delete.png" />
+                    </a>
+                  </li>
                 </ul>
               </div>
-            </Link>
           )
         )}
       </div>
