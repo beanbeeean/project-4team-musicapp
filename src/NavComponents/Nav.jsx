@@ -64,11 +64,9 @@ const Nav = ({ login }) => {
       <div className={styles.search}>
         <div className={styles.search_area}>
           <div className={styles.logo}>
-            <a
-              href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
-            >
+            <Link to="/" className={styles.welcome}>
               <img src="./imgs/logo.png" />
-            </a>
+            </Link>
           </div>
           <div className={styles.search_form}>
             <form onSubmit={searching}>
@@ -94,6 +92,12 @@ const Nav = ({ login }) => {
                 <FontAwesomeIcon />
               </div>
               <input type="button" value="Logout" onClick={logoutBtnHandler} />
+              <a
+                className={styles.token_create}
+                href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+              >
+                Token
+              </a>
             </div>
           ) : (
             <Link to="/signin">로그인/회원가입</Link>
@@ -105,13 +109,13 @@ const Nav = ({ login }) => {
           <Link to="/charts">Music Chart</Link>
         </Col>
         <Col className={`${styles.list} text-center`}>
-          <Link to="/allplaylist">Playlist</Link>
+          <Link to="/allplaylist">All Playlist</Link>
         </Col>
         <Col className={`${styles.list} text-center`}>
           {login.current === null ? (
-            <Link to="/signin">My Page</Link>
+            <Link to="/signin">My Playlist</Link>
           ) : (
-            <Link to="/playlist">My Page</Link>
+            <Link to="/playlist">My Playlist</Link>
           )}
         </Col>
       </Row>
