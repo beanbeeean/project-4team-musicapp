@@ -8,9 +8,7 @@ const RecommandPlaylist = () => {
   const dispatch = useDispatch();
   const { playlists } = useSelector((state) => state.playlists);
   // console.log("pl : ", playlists);
-  useEffect(() => {
-    dispatch(playlistsAction.getPlaylists());
-  }, []);
+  useEffect(() => {}, []);
   useEffect(() => {
     console.log("Components Didupdate");
     // console.log("playlists : ", playlists);
@@ -25,25 +23,26 @@ const RecommandPlaylist = () => {
     ) {
       let basePlaylists = [
         {
-          playlists_title: baseStorage[0].name,
-          playlist_key: "Recommand",
-          player: "Spotify",
-        },
-      ];
-      window.localStorage.setItem("playlist", JSON.stringify(basePlaylists));
-    } else if (
-      window.localStorage.getItem("playlist") &&
-      JSON.parse(window.localStorage.getItem("Recommand"))[0].type == "playlist"
-    ) {
-      let basePlaylists = [
-        {
-          playlists_title: baseStorage[0].name,
+          playlist_title: baseStorage[0].name,
           playlist_key: "Recommand",
           player: "Spotify",
         },
       ];
       window.localStorage.setItem("playlist", JSON.stringify(basePlaylists));
     }
+    // else if (
+    //   window.localStorage.getItem("playlist") &&
+    //   JSON.parse(window.localStorage.getItem("Recommand"))[0].type == "playlist"
+    // ) {
+    //   let basePlaylists = [
+    //     {
+    //       playlist_title: baseStorage[0].name,
+    //       playlist_key: "Recommand",
+    //       player: "Spotify",
+    //     },
+    //   ];
+    //   window.localStorage.setItem("playlist", JSON.stringify(basePlaylists));
+    // }
   }, [playlists]);
   return (
     <div className={styles.show_list}>

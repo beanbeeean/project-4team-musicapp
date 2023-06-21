@@ -6,22 +6,18 @@ import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PlaylistsModal from "../modal_component/PlaylistsModal";
 
-const PlaylistItem = (flag, m_id) => {
+const PlaylistItem = () => {
+  // console.log("m_id ", m_id);
   const location = useLocation();
   const navigate = useNavigate();
   const [selectedIndexes, setSelectedIndexes] = useState([]);
   const [show, setShow] = useState(false);
   const [selectnum, setSelectnum] = useState(0);
   const [select, setSelect] = useState([]);
-  let id = window.localStorage.getItem("session");
 
-  console.log(id, "location.state.m_id", location.state.m_id);
-  let playlist = JSON.parse(
-    window.localStorage.getItem(id + location.state.m_id)
-  );
-
-  console.log("playlist", playlist);
-
+  console.log("location.state.m_id", location.state.m_id);
+  let playlist = JSON.parse(window.localStorage.getItem(location.state.m_id));
+  console.log("pl", playlist);
   const deleting = (e, idx) => {
     if (e.target.checked) {
       console.log("idx: ", idx);
@@ -94,7 +90,7 @@ const PlaylistItem = (flag, m_id) => {
     let member = JSON.parse(window.localStorage.getItem(id));
     console.log(member);
     let playlist2 = JSON.parse(
-      window.localStorage.getItem(member[selectnum].playlist_title)
+      window.localStorage.getItem(id + member[selectnum].playlist_title)
     );
     console.log(member);
     console.log(playlist2);
@@ -121,7 +117,7 @@ const PlaylistItem = (flag, m_id) => {
 
   return (
     <Container className={styles.wrap}>
-      <h5>내가 담은 곡</h5>
+      {location.state.flag ? <h5>내가 담은 곡</h5> : <h5>플레이리스트</h5>}
       <div className={styles.button_container}>
         <button className={styles.select_all} onClick={selectBtnClicked}>
           전체선택
@@ -155,6 +151,48 @@ const PlaylistItem = (flag, m_id) => {
       </Row>
       {playlist === null
         ? ""
+        : location.state.m_id.includes("Recommand")
+        ? playlist[0].tracks.items.map((item, idx) => (
+            <Row className={styles.tracks_wrap}>
+              <Col md={5} className={styles.tracks_title}>
+                <div className={styles.tracks_img}>
+                  <img src={item.track.album.images[2].url} alt="" />
+                </div>
+                <div className={styles.tracks_info}>
+                  <div className={styles.tracks_track}>{item.track.name}</div>
+                  <span>{item.track.artists[0].name}</span>
+                </div>
+              </Col>
+              <Col md={4}>
+                <span className={styles.tracks_album}>
+                  {item.track.album.name}
+                </span>
+              </Col>
+              <Col md={2} className={styles.tracks_time}>
+                {parseInt(item.track.duration_ms / 1000 / 60)}:
+                {parseInt((item.track.duration_ms / 1000) % 60) + 1 < 10
+                  ? "0" + (parseInt((item.track.duration_ms / 1000) % 60) + 1)
+                  : parseInt((item.track.duration_ms / 1000) % 60) + 1}
+              </Col>
+              <Col md={1}>
+                {location.state.flag ? (
+                  <input
+                    id="chkbox"
+                    className="chkbox"
+                    type="checkbox"
+                    onChange={(e) => deleting(e, idx)}
+                  />
+                ) : (
+                  <input
+                    id="chkbox"
+                    className="chkbox"
+                    type="checkbox"
+                    onChange={(e) => selecting(e, idx, item.track)}
+                  />
+                )}
+              </Col>
+            </Row>
+          ))
         : playlist.map((item, idx) => (
             <Row className={styles.tracks_wrap}>
               <Col md={5} className={styles.tracks_title}>

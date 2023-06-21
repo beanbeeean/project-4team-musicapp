@@ -42,7 +42,7 @@ const MainChartsItem = ({
     let m_id = window.localStorage.getItem("session");
     let title = JSON.parse(window.localStorage.getItem(m_id));
     let playlist = JSON.parse(
-      window.localStorage.getItem(title[selectnum].playlist_title)
+      window.localStorage.getItem(m_id+title[selectnum].playlist_title)
     );
     let allplaylist = JSON.parse(window.localStorage.getItem("playlist"));
 
