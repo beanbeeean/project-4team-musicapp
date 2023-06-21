@@ -205,13 +205,14 @@ div.column2 {
   margin-left: 40px;
   display: flex !important;
   justify-content: center;
-  width: 250px !important;
+  width: 350px !important;
+  height: 350px;
 }
 
 .slider_item > img {
-  max-width: 250px;
-  min-width: 250px;
+  width: 100%;
 }
+
 .titleBox li:nth-child(1) {
   color: rgb(108, 208, 255);
 }

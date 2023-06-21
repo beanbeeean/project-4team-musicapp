@@ -16,7 +16,6 @@ const ArtistDetail = () => {
   const [select, setSelect] = useState([]);
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
 
-
   const { artist, artistAlbums, artistTopTracks, artistRelated, loading } =
     useSelector((state) => state.details);
 
@@ -41,11 +40,11 @@ const ArtistDetail = () => {
     console.log(select);
   };
   useEffect(() => {
-    if(show===false && selectnum!==0){
+    if (show === false && selectnum !== 0) {
       saveBtnHandler();
     }
     setSelectnum(0);
-  }, [selectnum]);  
+  }, [selectnum]);
 
   const saveBtnHandler = () => {
     let member = JSON.parse(window.localStorage.getItem(m_id));
@@ -54,7 +53,7 @@ const ArtistDetail = () => {
     );
 
     console.log(playlist);
-    
+
     if (playlist !== null) {
       playlist = [...playlist, ...select];
       window.localStorage.setItem(
@@ -62,10 +61,12 @@ const ArtistDetail = () => {
         JSON.stringify(playlist)
       );
     } else {
-      window.localStorage.setItem(member[selectnum].playlist_title, JSON.stringify(select));
+      window.localStorage.setItem(
+        member[selectnum].playlist_title,
+        JSON.stringify(select)
+      );
     }
-
-  }
+  };
 
   useEffect(() => {
     dispatch(detailsAction.getArtistDetail(id));
@@ -73,7 +74,7 @@ const ArtistDetail = () => {
 
   useEffect(() => {
     dispatch(detailsAction.getArtistDetail(id));
-    console.log("11",artistTopTracks)
+    console.log("11", artistTopTracks);
   }, [id]);
 
   if (loading) {
@@ -97,7 +98,7 @@ const ArtistDetail = () => {
         </div>
         <div className={styles.header_info}>
           <h1>{artist?.name}</h1>
-          <h6>팔로워 {artist?.followers?.total}명</h6>
+          <h6>Followers {artist?.followers?.total}</h6>
           <div className={styles.play_button}>▶</div>
         </div>
       </div>
@@ -130,7 +131,10 @@ const ArtistDetail = () => {
                 : parseInt((item.duration_ms / 1000) % 60) + 1}
             </Col>
             <Col className={styles.input_playlist} md={1}>
-              <input type="checkbox" onChange={(e) => selecting(e, idx, item)}/>
+              <input
+                type="checkbox"
+                onChange={(e) => selecting(e, idx, item)}
+              />
             </Col>
           </Row>
         ))}
@@ -179,7 +183,11 @@ const ArtistDetail = () => {
           )}
         </div>
       </div>
-      <PlaylistsModal show={show} setShow={setShow} setSelectnum={setSelectnum}/>
+      <PlaylistsModal
+        show={show}
+        setShow={setShow}
+        setSelectnum={setSelectnum}
+      />
     </Container>
   );
 };
