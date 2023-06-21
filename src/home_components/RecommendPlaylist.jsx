@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 const RecommandPlaylist = () => {
   const dispatch = useDispatch();
   const { playlists } = useSelector((state) => state.playlists);
+  console.log("pl : ", playlists);
   useEffect(() => {
     dispatch(playlistsAction.getPlaylists());
   }, []);

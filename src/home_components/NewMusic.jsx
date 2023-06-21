@@ -94,7 +94,7 @@ const NewMusic = () => {
           </div>
           <div className={styles.albums_list}>
             {newRelease.length > 0
-              ? newRelease.map((item) => <Album item={item} />)
+              ? newRelease.map((item, key) => <Album item={item} key={key} />)
               : ""}
           </div>
         </Col>

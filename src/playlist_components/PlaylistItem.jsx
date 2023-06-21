@@ -13,10 +13,10 @@ const PlaylistItem = (flag, m_id) => {
   const [show, setShow] = useState(false);
   const [selectnum, setSelectnum] = useState(0);
   const [select, setSelect] = useState([]);
-  
+
   console.log("location.state.m_id", location.state.m_id);
   let playlist = JSON.parse(window.localStorage.getItem(location.state.m_id));
-  
+
   console.log("playlist", playlist);
 
   const deleting = (e, idx) => {
@@ -31,7 +31,6 @@ const PlaylistItem = (flag, m_id) => {
     }
   };
   const selecting = (e, num, spoItem) => {
-    
     console.log(e.target.checked);
     console.log(num);
     console.log(spoItem);
@@ -56,38 +55,38 @@ const PlaylistItem = (flag, m_id) => {
     const updatedPlaylist = playlist.filter(
       (_, idx) => !selectedIndexes.includes(idx)
     );
-      
+
     console.log("updatedPlaylist: ", updatedPlaylist);
 
     window.localStorage.setItem(
       location.state.m_id,
       JSON.stringify(updatedPlaylist)
     );
-    
+
     console.log("playlist: ", playlist);
     setSelectedIndexes([]);
     document.getElementById("chkbox").checked = false;
     alert("삭제 되었습니다!!");
     console.log(playlist);
-    
+
     const checkboxes = document.querySelectorAll(".chkbox"); // .chkbox 클래스를 가진 모든 체크박스 선택
 
     checkboxes.forEach((checkbox) => {
-      if(checkbox.checked){
+      if (checkbox.checked) {
         checkbox.checked = false; // 체크박스 선택 해제
       }
     });
   };
 
   useEffect(() => {
-    if(show===false && selectnum!==0){
+    if (show === false && selectnum !== 0) {
       saveBtnHandler();
     }
     setSelectnum(0);
-  }, [selectnum]);  
+  }, [selectnum]);
 
   const saveBtnHandler = () => {
-    let id=window.localStorage.getItem("session");
+    let id = window.localStorage.getItem("session");
     console.log(id);
     let member = JSON.parse(window.localStorage.getItem(id));
     console.log(member);
@@ -96,7 +95,7 @@ const PlaylistItem = (flag, m_id) => {
     );
     console.log(member);
     console.log(playlist2);
-    
+
     if (playlist2 !== null) {
       playlist2 = [...playlist2, ...select];
       window.localStorage.setItem(
@@ -104,11 +103,14 @@ const PlaylistItem = (flag, m_id) => {
         JSON.stringify(playlist2)
       );
     } else {
-      window.localStorage.setItem(member[selectnum].playlist_title, JSON.stringify(select));
+      window.localStorage.setItem(
+        member[selectnum].playlist_title,
+        JSON.stringify(select)
+      );
     }
     navigate(`/allplaylist`);
     console.log("endddd");
-  }
+  };
 
   const selectBtnClicked = () => {
     console.log("selectBtnClicked!");
@@ -121,22 +123,23 @@ const PlaylistItem = (flag, m_id) => {
         <button className={styles.select_all} onClick={selectBtnClicked}>
           전체선택
         </button>
-        {
-          location.state.flag ? 
+        {location.state.flag ? (
           <button
             className={styles.selected_delete}
             onClick={selectedDeleteClicked}
             disabled={selectedIndexes.length === 0}
           >
             선택삭제
-          </button> : <button
+          </button>
+        ) : (
+          <button
             className={styles.selected_delete}
             onClick={() => setShow(true)}
             disabled={selectedIndexes.length === 0}
           >
             선택추가
-          </button> 
-        }
+          </button>
+        )}
       </div>
 
       <Row>
@@ -149,7 +152,7 @@ const PlaylistItem = (flag, m_id) => {
       </Row>
       {playlist === null
         ? ""
-        : playlist.map((item, idx) => (
+        : playlist.map((item, idx) => {
             <Row className={styles.tracks_wrap}>
               <Col md={5} className={styles.tracks_title}>
                 <div className={styles.tracks_img}>
@@ -169,32 +172,35 @@ const PlaylistItem = (flag, m_id) => {
               </Col>
               <Col md={2} className={styles.tracks_time}>
                 {parseInt(playlist[idx].item.duration_ms / 1000 / 60)}:
-                {parseInt((playlist[idx].item.duration_ms / 1000) % 60) + 1 <
-                10
+                {parseInt((playlist[idx].item.duration_ms / 1000) % 60) + 1 < 10
                   ? "0" +
-                    (parseInt((playlist[idx].item.duration_ms / 1000) % 60) +
-                      1)
-                  : parseInt((playlist[idx].item.duration_ms / 1000) % 60) +
-                    1}
+                    (parseInt((playlist[idx].item.duration_ms / 1000) % 60) + 1)
+                  : parseInt((playlist[idx].item.duration_ms / 1000) % 60) + 1}
               </Col>
               <Col md={1}>
-                {location.state.flag ?
-                <input
-                id="chkbox"
-                className="chkbox"
-                type="checkbox"
-                onChange={(e) => deleting(e, idx)}
-              /> :
-                 <input
-                 id="chkbox"
-                 className="chkbox"
-                 type="checkbox"
-                 onChange={(e) => selecting(e, idx, item)}
-               /> }
+                {location.state.flag ? (
+                  <input
+                    id="chkbox"
+                    className="chkbox"
+                    type="checkbox"
+                    onChange={(e) => deleting(e, idx)}
+                  />
+                ) : (
+                  <input
+                    id="chkbox"
+                    className="chkbox"
+                    type="checkbox"
+                    onChange={(e) => selecting(e, idx, item)}
+                  />
+                )}
               </Col>
-            </Row>
-          ))} 
-          <PlaylistsModal show={show} setShow={setShow} setSelectnum={setSelectnum}/>
+            </Row>;
+          })}
+      <PlaylistsModal
+        show={show}
+        setShow={setShow}
+        setSelectnum={setSelectnum}
+      />
     </Container>
   );
 };

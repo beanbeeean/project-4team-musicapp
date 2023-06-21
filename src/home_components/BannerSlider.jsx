@@ -1,6 +1,13 @@
 import React from "react";
 import Slider from "react-slick";
 import styles from "./css/newMusic.module.css";
+const BannerImg = ({ item }) => {
+  return (
+    <div className={`${styles.slider_item} ${styles.slider_item1}`}>
+      <img src={item} alt="" />
+    </div>
+  );
+};
 export default function BannerSlider() {
   const Banners = [
     "./imgs/banner1.png",
@@ -19,10 +26,8 @@ export default function BannerSlider() {
   };
   return (
     <Slider {...settings}>
-      {Banners.map((item) => (
-        <div className={`${styles.slider_item} ${styles.slider_item1}`}>
-          <img src={item} alt="" />
-        </div>
+      {Banners.map((item, key) => (
+        <BannerImg item={item} key={key} />
       ))}
     </Slider>
   );
