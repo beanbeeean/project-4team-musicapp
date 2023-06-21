@@ -105,7 +105,16 @@ const Nav = ({ login }) => {
               </a>
             </div>
           ) : (
-            <Link to="/signin">로그인/회원가입</Link>
+            <>
+              <Link to="/signin">로그인/회원가입</Link>
+              <a
+                className={styles.token_create}
+                href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+                onClick={tokenBtnHandler}
+              >
+                Token
+              </a>
+            </>
           )}
         </div>
       </div>
