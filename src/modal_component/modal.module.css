@@ -2,7 +2,7 @@
   font-size: 1.3em;
 }
 
-.modal_header_wrap {
+.modal_header_wrap:nth-child(1) {
   padding-bottom: 10px;
   border-bottom: 1px solid #000;
 }
@@ -48,4 +48,75 @@
   background-color: rgb(108, 208, 255);
   color: #fff;
   font-weight: bold;
+}
+
+.modal_playlist_create input[type="text"] {
+  border: 1px solid #dadada;
+  border-radius: 7px;
+  padding: 10px 0;
+  margin: 10px 0;
+}
+
+.modal_playlist_create input[name="playlist_title"] {
+  width: 300px;
+}
+.modal_playlist_create input[name="about_playlist"] {
+  width: 300px;
+}
+
+.modal_header_wrap .modal_playlist_create {
+  text-align: center;
+  padding: 5px;
+}
+
+.modal_playlist_create_name {
+  text-align: center;
+  padding: 5px;
+  margin-top: 20px;
+}
+.modal_playlist_create_info {
+  text-align: center;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.modal_footer input[type="button"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #dadada;
+  border: 1px solid #dadada;
+  border-radius: 7px;
+  color: #242424;
+}
+
+.go_sign_up_wrap {
+  justify-content: center;
+}
+
+.modal_header_wrap input {
+  width: 100%;
+  margin: 5px;
+  border: 10px;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  padding: 7px;
+  margin-bottom: 10px;
+}
+
+.modal_header_wrap .modal_create_account_id,
+.modal_header_wrap .modal_create_account_pw {
+  text-align: center;
+  margin-top: 30px;
+  font-weight: bold;
+  color: #5e5e5e;
+  line-height: 30px;
+}
+
+.modal_header_wrap input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 30px;
+
+  font-size: 0.9em;
+  color: #5e5e5e;
 }

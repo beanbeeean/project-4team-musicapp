@@ -10,6 +10,7 @@ function SignInModal({ show, setShow, setSelectnum, login }) {
 
   const [m_id, setM_id] = useState("");
   const [m_pw, setM_pw] = useState("");
+
   let playlist = JSON.parse(window.localStorage.getItem(m_id));
 
   const nav = () => {
@@ -36,43 +37,39 @@ function SignInModal({ show, setShow, setSelectnum, login }) {
       onHide={() => setShow(false)}
       dialogClassName={`modal-90w ${styles.container}`}
     >
-      <h4>로그인</h4>
       <Modal.Header closeButton style={{ border: "none" }}>
-        <div className={styles.modal_header}>PLI PLAYLISTS</div>
+        <div className={styles.modal_header}>로그인</div>
       </Modal.Header>
       <Modal.Body>
         <div className={styles.modal_body}>
           <Row className={styles.modal_header_wrap}>
-            <Col md={8} className={styles.modal_list_header}>
-              플레이리스트 명
+            <Col md={2} className={styles.modal_list_header}>
+              아이디
             </Col>
-            <Col md={4} className={styles.modal_list_header}>
-              수록곡 수
+            <Col md={6} className={styles.modal_list_header}>
+              <input
+                type="text"
+                name="m_id"
+                placeholder="Input ID"
+                value={m_id}
+                onChange={(e) => setM_id(e.target.value)}
+              />
             </Col>
           </Row>
-          {/* {playlist.map((item, idx) =>
-            idx == 0
-              ? ""
-              :    <a href="#none" onClick={(e) => numBtnHandler(e, idx)}>
-                    <Row className={`${styles.modal_pl} pb-3 pt-3`}>
-                      <Col className={styles.modal_pl_name} md={8} sm={6}>
-                        {playlist[idx].playlist_title}
-                      </Col>
-                      <Col className={styles.modal_pl_cnt} md={4} sm={1}>
-                        {JSON.parse(
-                          window.localStorage.getItem(playlist[idx].playlist_title)
-                        )
-                          ? JSON.parse(
-                              window.localStorage.getItem(
-                                playlist[idx].playlist_title
-                              )
-                            ).length
-                          : 0}
-                      </Col>
-                    </Row>
-                  </a>
-                ""
-          )} */}
+          <Row>
+            <Col md={2} className={styles.modal_list_header}>
+              비밀번호
+            </Col>
+            <Col md={6} className={styles.modal_list_header}>
+              <input
+                type="text"
+                name="m_id"
+                placeholder="Input ID"
+                value={m_id}
+                onChange={(e) => setM_id(e.target.value)}
+              />
+            </Col>
+          </Row>
         </div>
       </Modal.Body>
       <Modal.Footer className={styles.modal_footer}>

@@ -118,6 +118,7 @@ const TracksItem = ({ num, item, select, setSelect, show, setShow }) => {
           {/* 로컬 스토리지에 보관해야할지 리듀서에 보관해야할지 */}
         </Col>
       </Row>
+
       {num == 0 ? (
         <PlaylistsModal
           show={show}
