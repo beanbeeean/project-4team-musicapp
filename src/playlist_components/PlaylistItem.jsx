@@ -68,8 +68,9 @@ const PlaylistItem = () => {
     alert("삭제 되었습니다!!");
     console.log(playlist);
 
-    const checkboxes = document.querySelectorAll(".chkbox"); // .chkbox 클래스를 가진 모든 체크박스 선택
+    let checkboxes = document.querySelectorAll(".chkbox"); // .chkbox 클래스를 가진 모든 체크박스 선택
 
+   
     checkboxes.forEach((checkbox) => {
       if (checkbox.checked) {
         checkbox.checked = false; // 체크박스 선택 해제
@@ -115,15 +116,27 @@ const PlaylistItem = () => {
     console.log("endddd");
   };
 
-  const selectBtnClicked = () => {
+  const selectBtnClicked = (e, playlist) => {
     console.log("selectBtnClicked!");
+
+    let checkboxes = document.querySelectorAll(".chkbox"); // .chkbox 클래스를 가진 모든 체크박스 선택
+    
+    let cnt = 0;
+    checkboxes.forEach((checkbox) => {
+      if (!checkbox.checked) {
+        checkbox.checked = true; // 체크박스 전체 선택
+        setSelectedIndexes((prevIndexes) => [...prevIndexes, cnt]);
+      }
+      cnt = cnt + 1;
+    });
+    setSelect(playlist);
   };
 
   return (
     <Container className={styles.wrap}>
       {location.state.flag ? <h5>내가 담은 곡</h5> : <h5>플레이리스트</h5>}
       <div className={styles.button_container}>
-        <button className={styles.select_all} onClick={selectBtnClicked}>
+        <button className={styles.select_all} onClick={(e) => selectBtnClicked(e,playlist)}>
           전체선택
         </button>
         {location.state.flag ? (
