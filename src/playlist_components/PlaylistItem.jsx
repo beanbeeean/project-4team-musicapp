@@ -39,7 +39,7 @@ const PlaylistItem = () => {
       setSelectedIndexes((prevIndexes) => [...prevIndexes, num]);
     } else if (!e.target.checked) {
       select.forEach((item, index) => {
-        if (item.num === num) {
+        if (index === num) {
           select.splice(index, 1);
         }
       });

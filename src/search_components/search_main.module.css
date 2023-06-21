@@ -44,15 +44,27 @@ h3 {
 }
 
 .songs {
-  margin: 0 20px 0 20px;
+  /* margin: 0 20px 0 20px; */
 }
 
 div.list_wrap:hover {
   background-color: rgba(108, 208, 255, 0.1);
 }
 
+.songs_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.songs_header button {
+  
+}
+
 .songs .list_wrap {
   padding: 5px;
+  margin: 0 5px;
   border-top: 1px solid #dadada4f;
 }
 

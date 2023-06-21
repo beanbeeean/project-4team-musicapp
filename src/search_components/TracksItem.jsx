@@ -17,7 +17,7 @@ const TracksItem = ({ num, item, select, setSelect, show, setShow }) => {
       setSelect(temp);
     } else if (!e.target.checked) {
       select.forEach((item, index) => {
-        if (item.num === num) {
+        if (index === num) {
           select.splice(index, 1);
         }
       });

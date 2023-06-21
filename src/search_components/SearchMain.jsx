@@ -1,11 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import styles from "./search_main.module.css";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import PlaylistsModal from "../modal_component/PlaylistsModal";
 
 const SearchMain = () => {
   const navigate = useNavigate();
+  const [show,setShow] = useState(false);
+  const [select, setSelect] = useState([]);
+  const [selectnum, setSelectnum] = useState(0);
   const { searchArtists, searchTracks, searchAlbums } = useSelector(
     (state) => state.search
   );
@@ -20,6 +24,66 @@ const SearchMain = () => {
 
   const navigateArtist = (id) => {
     navigate(`/artists/${id}`);
+  };
+
+
+  const selecting = (e, num, spoItem) => {
+    console.log(e.target.checked);
+    console.log(num);
+    console.log(spoItem);
+    console.log(select);
+
+    if (e.target.checked) {
+      select.push({num: num, item: spoItem});
+    } 
+    else if (!e.target.checked) {
+      select.forEach((item, index) => {
+        console.log(item.num);
+        if (index === num) {
+          select.splice(index, 1);
+        }
+      });
+    }
+    console.log(select);
+  };
+
+  useEffect(() => {
+    if (show === false && selectnum !== 0) {
+      saveBtnHandler();
+    }
+    setSelectnum(0);
+  }, [selectnum]);
+
+  const saveBtnHandler = () => {
+    let id = window.localStorage.getItem("session");
+    console.log(id);
+    let member = JSON.parse(window.localStorage.getItem(id));
+    console.log(member);
+    let playlist2 = JSON.parse(
+      window.localStorage.getItem(id + member[selectnum].playlist_title)
+    );
+    console.log(member);
+    console.log(playlist2);
+
+    if (playlist2 !== null) {
+      playlist2 = [...playlist2, ...select];
+      window.localStorage.setItem(
+        id + member[selectnum].playlist_title,
+        JSON.stringify(playlist2)
+      );
+    } else {
+      window.localStorage.setItem(
+        id + member[selectnum].playlist_title,
+        JSON.stringify(select)
+      );
+    }
+    const checkboxes = document.querySelectorAll(".chkbox"); // .chkbox 클래스를 가진 모든 체크박스 선택
+
+    checkboxes.forEach((checkbox) => {
+      if (checkbox.checked) {
+        checkbox.checked = false; // 체크박스 선택 해제
+      }
+    });
   };
   return (
     <Container>
@@ -87,7 +151,17 @@ const SearchMain = () => {
       </Row>
       <hr />
       <div className={styles.songs}>
-        <h5>곡</h5>
+        <div className={styles.songs_header}>
+          <h5>곡</h5>
+          <button className="open_modal_btn" onClick={() => setShow(true)}>
+              + 담기
+          </button>
+        </div>
+        <PlaylistsModal
+          show={show}
+          setShow={setShow}
+          setSelectnum={setSelectnum}
+        />
         {searchTracks.length > 0 ? (
           searchTracks.map((track, idx) =>
             idx <= 4 ? (
@@ -101,11 +175,18 @@ const SearchMain = () => {
                 <Col className={styles.singer} md={3}>
                   {track.artists[0].name}
                 </Col>
-                <Col className={styles.running_time} md={2}>
+                <Col className={styles.running_time} md={1}>
                   {parseInt(track.duration_ms / 1000 / 60)}:
                   {parseInt((track.duration_ms / 1000) % 60) + 1 < 10
                     ? "0" + (parseInt((track.duration_ms / 1000) % 60) + 1)
                     : parseInt((track.duration_ms / 1000) % 60) + 1}
+                </Col>
+                <Col className={styles.running_time} md={1}>
+                      <input
+                    type="checkbox"
+                    className="chkbox"
+                    onChange={(e) => selecting(e, idx, searchTracks[idx])}
+                  />
                 </Col>
               </Row>
             ) : null
