@@ -187,7 +187,9 @@ const PlaylistItem = () => {
                     id="chkbox"
                     className="chkbox"
                     type="checkbox"
-                    onChange={(e) => selecting(e, idx, item.track)}
+                    onChange={(e) =>
+                      selecting(e, idx, { num: idx, item: item.track })
+                    }
                   />
                 )}
               </Col>
