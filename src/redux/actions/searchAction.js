@@ -3,6 +3,7 @@ import api from "../api";
 function searchByKeyword(keyword) {
   return async (dispatch) => {
     try {
+      dispatch({ type: "SEARCH_REQUEST" });
       const artists = await api.get("/search", {
         params: {
           q: keyword,
@@ -41,6 +42,7 @@ function searchByKeyword(keyword) {
         payload: { searchAlbums: albums.data.albums.items },
       });
     } catch (e) {
+      dispatch({ type: "SEARCH_REQUEST" });
       console.log(e);
     }
   };

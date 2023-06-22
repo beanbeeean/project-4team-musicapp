@@ -45,7 +45,7 @@ const Playlists = () => {
 
   return (
     <>
-      <Container>
+      <Container className="content_wrap">
         <div className={styles.wrap}>
           <div className={styles.header}>
             <h5>My Playlist</h5>

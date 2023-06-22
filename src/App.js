@@ -32,21 +32,27 @@ function App() {
     }
   }, []);
   return (
-    <div>
+    <div id="wrap">
       <Nav login={login} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/playlist" element={<Playlists />} />
-        <Route path="/charts" element={<Charts />} />
-        <Route path="/signin" element={<SignIn login={login} />} />
-        <Route path="/signup/" element={<SignUp login={login} />} />
-        <Route path="/playlistitem" element={<PlaylistItem />} />
-        <Route path="/allplaylist" element={<AllPlaylist />} />
-        <Route path="/playlist/create_playlist" element={<CreatePlaylist />} />
-        <Route path="/artists/:id" element={<ArtistDetail />} />
-        <Route path="/albums/:id" element={<AlbumDetail />} />
-      </Routes>
+      <div className="content_wrap">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/playlist" element={<Playlists />} />
+          <Route path="/charts" element={<Charts />} />
+          <Route path="/signin" element={<SignIn login={login} />} />
+          <Route path="/signup/" element={<SignUp login={login} />} />
+          <Route path="/playlistitem" element={<PlaylistItem />} />
+          <Route path="/allplaylist" element={<AllPlaylist />} />
+          <Route
+            path="/playlist/create_playlist"
+            element={<CreatePlaylist />}
+          />
+          <Route path="/artists/:id" element={<ArtistDetail />} />
+          <Route path="/albums/:id" element={<AlbumDetail />} />
+        </Routes>
+      </div>
+
       <Footer />
     </div>
   );

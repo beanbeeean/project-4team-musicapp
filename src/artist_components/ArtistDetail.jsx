@@ -79,10 +79,12 @@ const ArtistDetail = () => {
 
   useEffect(() => {
     dispatch(detailsAction.getArtistDetail(id));
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, []);
 
   useEffect(() => {
     dispatch(detailsAction.getArtistDetail(id));
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     console.log("11", artistTopTracks);
   }, [id]);
 

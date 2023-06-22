@@ -4,44 +4,27 @@ import { GoMarkGithub } from "react-icons/go";
 import styles from "./css/footer.module.css";
 const Footer = () => {
   return (
-    <Container className={styles.footer_container}>
-      <div className={styles.footer_copyright}>
-        CopyRight@ BTC Developer TEAM 4
-      </div>
-      <div className={styles.footer_member}>
-        LEADER : <span>홍재희</span> | PHONE : <span>010.9111.6653</span> |
-        EMAIL : <span>beanbeeean@gmail.com</span>
-        <a
-          className={styles.footer_link}
-          target="_blank"
-          href="https://github.com/beanbeeean"
-        >
-          <GoMarkGithub />
-        </a>
-      </div>
-      <div className={styles.footer_member}>
-        MEMBER : <span>이시영</span> | PHONE : <span>010.9111.6653</span> |
-        EMAIL : <span>beanbeeean@gmail.com</span>
-        <a
-          className={styles.footer_link}
-          target="_blank"
-          href="https://github.com/siyeong1013"
-        >
-          <GoMarkGithub />
-        </a>
-      </div>
-      <div className={styles.footer_member}>
-        MEMBER : <span>강동훈</span> | PHONE : <span>010.9111.6653</span> |
-        EMAIL : <span>beanbeeean@gmail.com</span>
-        <a
-          className={styles.footer_link}
-          target="_blank"
-          href="https://github.com/gilgan9852"
-        >
-          <GoMarkGithub />
-        </a>
-      </div>
-    </Container>
+    <div className={styles.footer_container}>
+      <Container className={styles.footer_wrap}>
+        <div className={styles.footer_options}>
+          <span>About PLI</span>
+          <span>Service</span>
+          <span>TEAM4</span>
+          <span>FAQ</span>
+          <span>Partner</span>
+        </div>
+        <div className={styles.footer_copyright}>
+          CopyRight@ BTC Developer TEAM 4
+          <a
+            className={styles.footer_link}
+            target="_blank"
+            href="https://github.com/beanbeeean/project-4team-musicapp"
+          >
+            <GoMarkGithub />
+          </a>
+        </div>
+      </Container>
+    </div>
   );
 };
 
