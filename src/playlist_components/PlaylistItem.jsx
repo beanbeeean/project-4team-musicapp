@@ -129,7 +129,17 @@ const PlaylistItem = () => {
       }
       cnt = cnt + 1;
     });
-    setSelect(playlist);
+    if(location.state.m_id.includes("Recommand")){ 
+      let arr=[];
+      playlist.map((item, idx)=>
+        arr.push({ num: idx, item: item.track })
+      )
+      setSelect(arr);
+    }
+    else {
+      setSelect(playlist);
+    }
+
   };
 
   useEffect(() => {
