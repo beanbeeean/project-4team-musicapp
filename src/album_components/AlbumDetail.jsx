@@ -41,11 +41,16 @@ const AlbumDetail = () => {
   }, [selectnum]);
 
   const saveBtnHandler = () => {
-    let member = JSON.parse(window.localStorage.getItem(m_id));
+    
+    let login=window.localStorage.getItem("session");
+    let member = JSON.parse(window.localStorage.getItem(login));
+    console.log(member);
+    console.log(m_id);
+    console.log(member[selectnum].playlist_title);
     let playlist = JSON.parse(
-      window.localStorage.getItem(m_id + member[selectnum].playlist_title)
+      window.localStorage.getItem(login + member[selectnum].playlist_title)
     );
-    console.log("playlist:" + JSON.parse(window.localStorage.getItem(m_id)));
+    console.log("playlist:" + JSON.parse(window.localStorage.getItem(login)));
     console.log("selectnum:" + selectnum);
     console.log(
       "member:" +
@@ -56,12 +61,12 @@ const AlbumDetail = () => {
     if (playlist !== null) {
       playlist = [...playlist, ...select];
       window.localStorage.setItem(
-        m_id + member[selectnum].playlist_title,
+        login + member[selectnum].playlist_title,
         JSON.stringify(playlist)
       );
     } else {
       window.localStorage.setItem(
-        m_id + member[selectnum].playlist_title,
+        login + member[selectnum].playlist_title,
         JSON.stringify(select)
       );
     }
@@ -169,6 +174,7 @@ const AlbumDetail = () => {
           <Col className={styles.input_playlist} md={1}>
             <input
               type="checkbox"
+              className="chkbox"
               onChange={(e) => selecting(e, idx, albumsArr[idx])}
             />
           </Col>
