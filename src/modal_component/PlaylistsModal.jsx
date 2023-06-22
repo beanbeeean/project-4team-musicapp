@@ -113,7 +113,7 @@ function PlaylistsModal({ show, setShow, setSelectnum }) {
     console.log(idx);
     setSelectnum(idx);
     setShow(false);
-    alert("SUCCESS");
+    alert("플레이리스트에 저장되었습니다!!");
   };
 
   const loginBtnHandler = () => {

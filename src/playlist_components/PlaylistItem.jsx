@@ -132,11 +132,18 @@ const PlaylistItem = () => {
     setSelect(playlist);
   };
 
+  useEffect(() => {
+    
+    console.log("select: ",select);
+    console.log("select: ",location.state.m_id);
+  }, [select]);
+
   return (
     <Container className={styles.wrap}>
       {location.state.flag ? <h5>내가 담은 곡</h5> : <h5>플레이리스트</h5>}
       <div className={styles.button_container}>
-        <button className={styles.select_all} onClick={(e) => selectBtnClicked(e,playlist)}>
+        <button className={styles.select_all} onClick={(e) => {location.state.m_id.includes("Recommand")
+        ? selectBtnClicked(e,playlist[0].tracks.items) : selectBtnClicked(e,playlist)} }>
           전체선택
         </button>
         {location.state.flag ? (
