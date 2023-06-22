@@ -58,7 +58,7 @@ const AllPlaylist = () => {
       let playlist = [
         {
           playlist_title: playlist_title,
-          about_playlist: "",
+          about_playlist: player+"님의 플레이리스트",
           create_date: create_date,
         },
       ];

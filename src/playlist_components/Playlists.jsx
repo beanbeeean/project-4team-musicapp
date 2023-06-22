@@ -98,6 +98,10 @@ const Playlists = () => {
                           곡&nbsp;
                         </div>
                       </li>
+                        {playlist[idx].about_playlist}
+                      <li>
+
+                      </li>
                     </Link>
                     <li>
                       <a href="#none" onClick={(e) => deletePlaylist(e, idx)}>
