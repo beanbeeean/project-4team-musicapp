@@ -1,8 +1,15 @@
+.new_container {
+  margin-bottom: 20px;
+}
 .titleBox {
   width: 100%;
   overflow: hidden;
   text-align: center;
   padding-left: 0.2rem;
+}
+
+.albumbox {
+  margin-top: 10px;
 }
 .albumbox > ul {
   height: 100%;

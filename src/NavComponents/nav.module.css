@@ -68,6 +68,11 @@
   /* height: 60px; */
 }
 
+.menu_wrap {
+  background-color: rgb(108, 208, 255);
+  width: 100%;
+}
+
 .Menubar {
   height: 35px;
   background-color: rgb(108, 208, 255);

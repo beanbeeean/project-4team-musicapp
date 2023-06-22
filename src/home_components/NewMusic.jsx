@@ -59,7 +59,7 @@ const NewMusic = () => {
     console.log("USEEFFECT ", offset);
   }, [selection, page]);
   return (
-    <Container>
+    <Container className={styles.new_container}>
       <Row>
         <Col md={8} sm={12} className={styles.colum1}>
           <div className={styles.albumbox}>

@@ -4,13 +4,14 @@ import styles from "./search_main.module.css";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import PlaylistsModal from "../modal_component/PlaylistsModal";
+import { ClipLoader } from "react-spinners";
 
 const SearchMain = () => {
   const navigate = useNavigate();
-  const [show,setShow] = useState(false);
+  const [show, setShow] = useState(false);
   const [select, setSelect] = useState([]);
   const [selectnum, setSelectnum] = useState(0);
-  const { searchArtists, searchTracks, searchAlbums } = useSelector(
+  const { searchArtists, searchTracks, searchAlbums, loading } = useSelector(
     (state) => state.search
   );
 
@@ -26,7 +27,6 @@ const SearchMain = () => {
     navigate(`/artists/${id}`);
   };
 
-
   const selecting = (e, num, spoItem) => {
     console.log(e.target.checked);
     console.log(num);
@@ -34,9 +34,8 @@ const SearchMain = () => {
     console.log(select);
 
     if (e.target.checked) {
-      select.push({num: num, item: spoItem});
-    } 
-    else if (!e.target.checked) {
+      select.push({ num: num, item: spoItem });
+    } else if (!e.target.checked) {
       select.forEach((item, index) => {
         console.log(item.num);
         if (index === num) {
@@ -85,6 +84,19 @@ const SearchMain = () => {
       }
     });
   };
+  if (loading) {
+    return (
+      <div className="spinner_wrap">
+        <ClipLoader
+          color="rgb(108, 208, 255)"
+          loading={loading}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
+  }
   return (
     <Container>
       <Row className={styles.artist_name}>
@@ -154,7 +166,7 @@ const SearchMain = () => {
         <div className={styles.songs_header}>
           <h5>곡</h5>
           <button className="open_modal_btn" onClick={() => setShow(true)}>
-              + 담기
+            + 담기
           </button>
         </div>
         <PlaylistsModal
@@ -182,7 +194,7 @@ const SearchMain = () => {
                     : parseInt((track.duration_ms / 1000) % 60) + 1}
                 </Col>
                 <Col className={styles.running_time} md={1}>
-                      <input
+                  <input
                     type="checkbox"
                     className="chkbox"
                     onChange={(e) => selecting(e, idx, searchTracks[idx])}

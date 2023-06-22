@@ -23,6 +23,10 @@ li {
   list-style: none;
   float: left;
 }
+#wrap {
+  position: relative;
+  width: 100%;
+}
 
 .slick-slide > div {
   display: flex;
@@ -60,4 +64,8 @@ button.open_modal_btn {
 button.open_modal_btn:hover {
   color: rgb(108, 208, 255);
   border: 1px solid rgb(108, 208, 255);
+}
+
+.content_wrap {
+  min-height: 70vh;
 }

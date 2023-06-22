@@ -79,10 +79,13 @@ const AlbumDetail = () => {
   useEffect(() => {
     dispatch(detailsAction.getAlbumsDetail(id));
     console.log("useEffect ", albums);
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, []);
 
   useEffect(() => {
     dispatch(detailsAction.getAlbumsDetail(id));
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+
     console.log("useEffect ", albumsTracks);
   }, [id]);
 

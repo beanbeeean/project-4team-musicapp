@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Col, Row, ToggleButton } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import styles from "./css/search_tracks.module.css";
 import PlaylistsModal from "../modal_component/PlaylistsModal";
 
@@ -7,7 +7,6 @@ const TracksItem = ({ num, item, select, setSelect, show, setShow }) => {
   const [m_id, setM_id] = useState(window.localStorage.getItem("session"));
   const [selectnum, setSelectnum] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  let ply = useRef(new Audio(item.preview_url));
   let temp;
 
   const selecting = (e) => {
@@ -37,7 +36,7 @@ const TracksItem = ({ num, item, select, setSelect, show, setShow }) => {
   const saveBtnHandler = () => {
     let member = JSON.parse(window.localStorage.getItem(m_id));
     let playlist = JSON.parse(
-      window.localStorage.getItem(m_id+member[selectnum].playlist_title)
+      window.localStorage.getItem(m_id + member[selectnum].playlist_title)
     );
 
     window.localStorage.setItem(m_id, JSON.stringify(member));
@@ -45,12 +44,12 @@ const TracksItem = ({ num, item, select, setSelect, show, setShow }) => {
     if (playlist !== null) {
       playlist = [...playlist, ...select];
       window.localStorage.setItem(
-        m_id+member[selectnum].playlist_title,
+        m_id + member[selectnum].playlist_title,
         JSON.stringify(playlist)
       );
     } else {
       window.localStorage.setItem(
-        m_id+member[selectnum].playlist_title,
+        m_id + member[selectnum].playlist_title,
         JSON.stringify(select)
       );
     }
@@ -80,10 +79,6 @@ const TracksItem = ({ num, item, select, setSelect, show, setShow }) => {
     return newObj;
   }
 
-  const togglePlaying = () => {
-    ply.current.play();
-  };
-
   return (
     <>
       <Row className={styles.tracks_wrap}>
@@ -95,9 +90,7 @@ const TracksItem = ({ num, item, select, setSelect, show, setShow }) => {
             <img src={item.album.images[2].url} alt="" />
           </div>
           <div className={styles.tracks_info}>
-            <div className={styles.tracks_track} onClick={togglePlaying}>
-              {item.name}
-            </div>
+            <div className={styles.tracks_track}>{item.name}</div>
             <span>{item.artists[0].name}</span>
           </div>
         </Col>
