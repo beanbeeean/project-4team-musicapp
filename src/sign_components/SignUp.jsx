@@ -190,7 +190,7 @@ const SignUp = ({ login }) => {
           <option value="1">직접입력</option>
           <option value="naver.com">naver.com</option>
           <option value="gmail.com">gmail.com</option>
-          <option value="duam.net">duam.net</option>
+          <option value="daum.net">daum.net</option>
         </select>
         <br />
         <div className={styles.title}>휴대폰 번호</div>
