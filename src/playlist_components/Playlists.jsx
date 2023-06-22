@@ -83,12 +83,15 @@ const Playlists = () => {
                           }
                         />
                       </li>
-                      <li>
+                      <li
+                        style={{
+                          width: "100px",
+                          borderRight: "1px solid #dadada",
+                        }}
+                      >
                         <div className={styles.playlist_name}>
                           {playlist[idx].playlist_title}
                         </div>
-                        <br />
-                        <br />
                         <div className={styles.create_date}>
                           {playlist[idx].create_date}&nbsp;
                         </div>
@@ -98,12 +101,11 @@ const Playlists = () => {
                           곡&nbsp;
                         </div>
                       </li>
-                        {playlist[idx].about_playlist}
-                      <li>
-
-                      </li>
                     </Link>
-                    <li>
+                    <li style={{ padding: "10px", marginLeft: "10px" }}>
+                      {playlist[idx].about_playlist}
+                    </li>
+                    <li className={styles.delete_wrap}>
                       <a href="#none" onClick={(e) => deletePlaylist(e, idx)}>
                         <img src="./imgs/delete.png" />
                       </a>
