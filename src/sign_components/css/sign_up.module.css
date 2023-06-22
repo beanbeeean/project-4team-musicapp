@@ -45,7 +45,7 @@ section h4 {
 }
 
 .section_wrap input[name="m_phone"] {
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 }
 
 .section_wrap input {
@@ -61,11 +61,18 @@ section h4 {
   margin-left: 5px;
   font-size: 0.9em;
   height: 40px;
+  width: 300px;
 }
 
 .section_wrap input[type="button"] {
   background-color: #5e5e5e;
   color: #fff;
+}
+
+.section_wrap input[name="m_delete"]{
+  background-color: #c9c3c3;
+  color: #fff;
+  
 }
 
 .section_wrap input[name="m_mail"] {

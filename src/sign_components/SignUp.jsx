@@ -98,6 +98,7 @@ const SignUp = ({ login }) => {
       alert("회원 삭제 되었습니다!!");
       window.localStorage.removeItem("session");
       window.localStorage.removeItem(m_id);
+      
       navigate("/");
     }
   };
@@ -203,14 +204,19 @@ const SignUp = ({ login }) => {
         <br />
         <input
           type="button"
-          value="SAVE"
+          value="저장"
           name={SIGN_UP_BUTTON}
           onClick={btnClickedHandler}
         />
         {login.current === null ? (
           <></>
         ) : (
-          <button onClick={deleteBtnHandler}>회원탈퇴</button>
+          <input
+          type="button"
+          value="회원 탈퇴"
+          name="m_delete"
+          onClick={deleteBtnHandler}
+        />
         )}
       </div>
     </section>
